@@ -6,7 +6,7 @@
 
 ### What is this madness?
 
-`sorokin.py` is a ~500-line Python script that takes your innocent prompts, tears them apart like a psychopathic linguist, builds a recursive tree of semantic mutations, and then—like Dr. Frankenstein having a particularly creative day—reassembles the corpse into something *new*.
+`sorokin.py` is a ~700-line Python script that takes your innocent prompts, tears them apart like a psychopathic linguist, builds a recursive tree of semantic mutations, and then—like Dr. Frankenstein having a particularly creative day—reassembles the corpse into something *new*.
 
 Named after Vladimir Sorokin, the Russian writer known for his transgressive and experimental style, this tool embodies the same spirit of literary dissection and reconstruction. It's not here to help you. It's here to show you what your words *could have been*.
 
@@ -125,12 +125,13 @@ Or maybe it's just fun to watch language come apart at the seams.
 ### Technical Details (For the Nerds)
 
 - **Pure Python 3**: No external dependencies except stdlib
-- **~500 lines**: Compact enough to understand, complex enough to surprise
-- **Recursive tree building**: Width × depth branching
+- **~700 lines**: Compact enough to understand, complex enough to surprise
+- **Recursive tree building**: Width × depth branching with global deduplication
 - **Phonetic fingerprinting**: Crude but effective
 - **Web scraping**: urllib + regex, the old way
 - **SQLite persistence**: Your words, forever
 - **Markov reassembly**: Bigram chains with fallbacks
+- **HTML artifact filtering**: Extensive blacklist to filter web scraping noise
 
 ### Known Limitations
 
@@ -140,11 +141,16 @@ Or maybe it's just fun to watch language come apart at the seams.
 - **Reassembly can be janky**: Sometimes the corpse doesn't stitch well
 - **No guarantee of coherence**: That's not a bug, it's a feature
 
-### The Bug That Was Fixed
+### Recent Improvements
 
-There was a bug in `reassemble_corpse()` where `random.randint(5, min(10, len(leaves)))` would crash if `len(leaves) < 5`. This meant short prompts couldn't complete their autopsy. Frankenstein couldn't stitch the body if there weren't enough parts.
+**Global Deduplication (Latest)**
+Implemented cross-tree word deduplication to prevent the same mutations from appearing in different core word branches. Each tree now gets unique mutations, resulting in more diverse and interesting autopsies.
 
-Fixed by changing to `random.randint(min(5, len(leaves)), min(10, len(leaves)))`. Now even corpses with few leaves can be reassembled.
+**Enhanced HTML Artifact Filtering**
+Expanded the HTML_ARTIFACTS blacklist with ~40 common web UI/UX words (redirected, accessing, feedback, google, etc.) that were polluting mutation results from web scraping.
+
+**The Original Bug Fix**
+Fixed a crash in `reassemble_corpse()` where `random.randint(5, min(10, len(leaves)))` would fail if `len(leaves) < 5`. Changed to `random.randint(min(5, len(leaves)), min(10, len(leaves)))` so even small corpses can be reassembled.
 
 ### Credits
 
