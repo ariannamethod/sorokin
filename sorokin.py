@@ -200,6 +200,46 @@ def phonetic_fingerprint(word: str) -> str:
     return consonants[:3] + vowels[-2:]
 
 
+def _generate_phonetic_variants(word: str, count: int) -> List[str]:
+    """Generate phonetically plausible variants of a word when real synonyms unavailable."""
+    variants = []
+    lw = word.lower()
+
+    # Reverse the word
+    if count > 0:
+        variants.append(lw[::-1])
+        count -= 1
+
+    # Swap first and last char
+    if count > 0 and len(lw) > 2:
+        swapped = lw[-1] + lw[1:-1] + lw[0]
+        if swapped != lw:
+            variants.append(swapped)
+        count -= 1
+
+    # Duplicate first consonant
+    if count > 0:
+        consonants = "bcdfghjklmnpqrstvwxyz"
+        first_consonant = next((c for c in lw if c in consonants), None)
+        if first_consonant:
+            variants.append(first_consonant + lw)
+            count -= 1
+
+    # Remove vowels
+    if count > 0:
+        no_vowels = "".join(c for c in lw if c not in "aeiouаеёиоуыэюя")
+        if no_vowels and no_vowels != lw:
+            variants.append(no_vowels)
+            count -= 1
+
+    # Pad with original word variations
+    while count > 0:
+        variants.append(f"{lw}_mut{count}")
+        count -= 1
+
+    return variants[:len(set(variants))]
+
+
 def find_phonetic_neighbors(word: str, candidate_pool: List[str], limit: int) -> List[str]:
     """
     Return words from candidate_pool that sound similar to word.
@@ -273,8 +313,14 @@ def _extract_candidate_words(html_text: str) -> List[str]:
     if not html_text:
         return []
 
-    stripped = re.sub(r"<[^>]+>", " ", html_text)
-    stripped = html.unescape(stripped)
+    # First unescape HTML entities, then strip tags with proper spacing
+    stripped = html.unescape(html_text)
+    # Add spaces around tags to prevent word concatenation
+    stripped = re.sub(r"<[^>]+>", " ", stripped)
+    # Also replace common separators with spaces
+    stripped = re.sub(r"[&\-_=/\\:;,]", " ", stripped)
+    # Collapse multiple spaces
+    stripped = re.sub(r"\s+", " ", stripped)
     words = WORD_RE.findall(stripped)
 
     counts: Dict[str, int] = {}
@@ -319,16 +365,35 @@ def lookup_branches_for_word(word: str, width: int, all_candidates: List[str]) -
         return filtered[:width]
 
     # 3) Google synonyms
-    html_text = _fetch_google_snippets(f"{word} synonym")
-    candidates = _extract_candidate_words(html_text)
+    # Try multiple search strategies: with synonym suffix, plain word, and related terms
+    search_queries = [
+        f"{word} synonym",
+        f"{word} similar",
+        word,
+        f"{word} meaning",
+    ]
 
-    if not candidates:
-        html_text = _fetch_google_snippets(word)
+    candidates = []
+    for query in search_queries:
+        html_text = _fetch_google_snippets(query)
         candidates = _extract_candidate_words(html_text)
+        if candidates:
+            break  # Stop on first successful extraction
 
     seen: Set[str] = {w.lower() for w in filtered}
     lw = word.lower()
 
+    # Try to find more phonetic neighbors in Google results
+    if candidates:
+        google_phonetic = find_phonetic_neighbors(word, candidates, width - len(filtered))
+        for gp in google_phonetic:
+            if gp.lower() not in seen:
+                filtered.append(gp)
+                seen.add(gp.lower())
+                if len(filtered) >= width:
+                    break
+
+    # If still not enough, add other non-phonetic candidates
     for c in candidates:
         lc = c.lower()
         if lc == lw:
@@ -340,10 +405,11 @@ def lookup_branches_for_word(word: str, width: int, all_candidates: List[str]) -
         if len(filtered) >= width:
             break
 
-    # 4) Pad with placeholders if the web was boring
-    while len(filtered) < width:
-        placeholder = f"{lw}_x{len(filtered) + 1}"
-        filtered.append(placeholder)
+    # 4) Pad with phonetic variants if the web was boring
+    remaining = width - len(filtered)
+    if remaining > 0:
+        variants = _generate_phonetic_variants(word, remaining)
+        filtered.extend(variants)
 
     store_word_relations(word, filtered)
     return filtered
