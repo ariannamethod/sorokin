@@ -41,6 +41,48 @@ STOPWORDS = {
     "и", "в", "на", "но", "не", "это", "как", "что", "тот", "той", "то", "за",
 }
 
+# HTML/JS artifact blacklist - garbage from poorly parsed web content
+HTML_ARTIFACTS = {
+    # Common JS function names
+    "multiselectable", "canhavechildren", "sourcemappingurl", "encodeuricomponent",
+    "removelistener", "removeattribute", "stoppropagation", "textcontent",
+    "autocomplete", "license", "multiline", "getboundingclientrect", "addeventlistener",
+    "preventdefault", "innerhtml", "parentnode", "appendchild", "createelement",
+    "setattribute", "classname", "tostring", "valueof", "constructor", "prototype",
+    "function", "return", "window", "document", "console", "method", "property",
+    "callback", "handler", "listener", "event", "target", "result", "promise",
+    "async", "await", "export", "import", "module", "require", "define",
+
+    # HTML tags and attributes
+    "onclick", "onload", "onchange", "onsubmit", "onmouseover", "onmouseout",
+    "href", "src", "alt", "title", "class", "style", "id", "data", "aria",
+    "doctype", "charset", "viewport", "meta", "head", "body", "script", "style",
+    "thead", "tbody", "tfoot", "tr", "td", "th", "colgroup", "col", "table",
+    "blockquote", "figcaption", "address", "basefont", "bdo", "br", "cite",
+    "code", "del", "dfn", "em", "font", "i", "ins", "kbd", "mark", "q", "s",
+    "samp", "small", "strong", "sub", "sup", "time", "u", "var", "wbr",
+    "datalist", "fieldset", "legend", "label", "input", "button", "select",
+    "textarea", "option", "optgroup", "keygen", "output", "progress", "meter",
+    "article", "aside", "footer", "header", "hgroup", "nav", "section",
+    "details", "summary", "dialog", "template", "embed", "object", "param",
+    "source", "track", "canvas", "svg", "picture", "video", "audio",
+    "iframe", "form", "noscript", "applet", "bgsound", "marquee", "plaintext",
+
+    # Common browser properties
+    "scrollable", "readonly", "disabled", "scriptable", "orientation",
+    "horizontal", "vertical", "transparent", "opaque", "visible", "hidden",
+    "before", "after", "first", "last", "only", "nth", "even", "odd",
+    "mouseover", "mouseout", "mouseenter", "mouseleave", "mousedown", "mouseup",
+    "keypress", "keydown", "keyup", "focus", "blur", "change", "submit",
+    "haspopup", "dropeffect", "redirected", "invalid", "contains", "resolve",
+
+    # Other common garbage
+    "uricomponent", "javascript", "about", "data", "blob", "chrome", "webkit",
+    "moz", "ms", "o", "x", "v", "uri", "url", "api", "json", "xml", "html",
+    "css", "js", "ts", "tsx", "jsx", "vue", "svelte", "react", "angular",
+    "version", "build", "debug", "release", "beta", "alpha", "rc", "dev",
+}
+
 
 @dataclass
 class Node:
@@ -201,40 +243,45 @@ def phonetic_fingerprint(word: str) -> str:
 
 
 def _generate_phonetic_variants(word: str, count: int) -> List[str]:
-    """Generate phonetically plausible variants of a word when real synonyms unavailable."""
+    """Generate phonetically plausible variants - conservative approach."""
     variants = []
     lw = word.lower()
 
-    # Reverse the word
-    if count > 0:
-        variants.append(lw[::-1])
-        count -= 1
+    # Only generate variants if word is long enough to be meaningful
+    if len(lw) < 4:
+        # For short words, just use original with suffix
+        while count > 0:
+            variants.append(f"{lw}_alt{count}")
+            count -= 1
+        return variants
 
-    # Swap first and last char
-    if count > 0 and len(lw) > 2:
-        swapped = lw[-1] + lw[1:-1] + lw[0]
-        if swapped != lw:
-            variants.append(swapped)
-        count -= 1
-
-    # Duplicate first consonant
+    # Duplicate first consonant cluster (more subtle)
     if count > 0:
-        consonants = "bcdfghjklmnpqrstvwxyz"
-        first_consonant = next((c for c in lw if c in consonants), None)
+        consonants = "bcdfghjklmnpqrstvwxyzаеёиоуыэюя"
+        vowels = "aeiouаеёиоуыэюя"
+        # Find first consonant
+        first_consonant = next((c for c in lw if c not in vowels), None)
         if first_consonant:
             variants.append(first_consonant + lw)
             count -= 1
 
-    # Remove vowels
-    if count > 0:
-        no_vowels = "".join(c for c in lw if c not in "aeiouаеёиоуыэюя")
-        if no_vowels and no_vowels != lw:
-            variants.append(no_vowels)
-            count -= 1
+    # Add suffix to original (more sensible)
+    suffixes = ["s", "ed", "ing", "er", "est", "ly"]
+    for suffix in suffixes:
+        if count > 0:
+            candidate = lw + suffix
+            if candidate not in variants:
+                variants.append(candidate)
+                count -= 1
 
-    # Pad with original word variations
+    # Keep original word itself if we still need more
+    if count > 0 and lw not in variants:
+        variants.append(lw)
+        count -= 1
+
+    # Pad with reasonable placeholders
     while count > 0:
-        variants.append(f"{lw}_mut{count}")
+        variants.append(f"{lw}_var{count}")
         count -= 1
 
     return variants[:len(set(variants))]
@@ -308,6 +355,12 @@ def _fetch_google_snippets(query: str) -> str:
     return html_text
 
 
+def _split_camelcase(text: str) -> str:
+    """Split camelCase words into separate words."""
+    # Insert spaces before uppercase letters
+    return re.sub(r'([a-z])([A-Z])', r'\1 \2', text)
+
+
 def _extract_candidate_words(html_text: str) -> List[str]:
     """Strip tags, keep charged co-occurrences, discard dignity."""
     if not html_text:
@@ -317,8 +370,10 @@ def _extract_candidate_words(html_text: str) -> List[str]:
     stripped = html.unescape(html_text)
     # Add spaces around tags to prevent word concatenation
     stripped = re.sub(r"<[^>]+>", " ", stripped)
+    # Split camelCase words
+    stripped = _split_camelcase(stripped)
     # Also replace common separators with spaces
-    stripped = re.sub(r"[&\-_=/\\:;,]", " ", stripped)
+    stripped = re.sub(r"[&\-_=/\\:;,.\(\)\[\]\{\}]", " ", stripped)
     # Collapse multiple spaces
     stripped = re.sub(r"\s+", " ", stripped)
     words = WORD_RE.findall(stripped)
@@ -329,6 +384,8 @@ def _extract_candidate_words(html_text: str) -> List[str]:
         if len(lw) < 3:
             continue
         if lw in STOPWORDS:
+            continue
+        if lw in HTML_ARTIFACTS:
             continue
         counts[lw] = counts.get(lw, 0) + 1
 
