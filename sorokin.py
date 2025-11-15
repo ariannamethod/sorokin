@@ -20,7 +20,7 @@ import sys
 from collections import defaultdict
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import List, Dict, Tuple, Set
+from typing import List, Dict, Tuple, Set, Optional
 import urllib.parse
 import urllib.request
 
@@ -56,6 +56,17 @@ HTML_ARTIFACTS = {
 
     # Very common JS framework names
     "uricomponent", "javascript", "chrome", "webkit",
+
+    # Google search result artifacts - common UI/UX words that pollute results
+    "redirected", "accessing", "feedback", "search", "here", "seconds", "please",
+    "loading", "results", "click", "more", "about", "show", "hide", "menu",
+    "page", "pages", "next", "previous", "back", "forward", "refresh", "reload",
+    "sign", "signin", "signup", "login", "logout", "account", "profile", "settings",
+    "help", "support", "contact", "privacy", "terms", "cookies", "accept", "decline",
+    "close", "open", "select", "selected", "copy", "paste", "share", "save",
+    "delete", "edit", "update", "cancel", "submit", "send", "receive",
+    "google", "bing", "yahoo", "website", "sites", "site", "link", "links",
+    "button", "buttons", "image", "images", "video", "videos", "view", "views",
 }
 
 
@@ -411,7 +422,12 @@ def _extract_candidate_words(html_text: str) -> List[str]:
     return [w for _, w in scored]
 
 
-def lookup_branches_for_word(word: str, width: int, all_candidates: List[str]) -> List[str]:
+def lookup_branches_for_word(
+    word: str,
+    width: int,
+    all_candidates: List[str],
+    global_used: Optional[Set[str]] = None
+) -> List[str]:
     """
     Return EXACTLY `width` branches for a word.
     Order of preference:
@@ -419,20 +435,32 @@ def lookup_branches_for_word(word: str, width: int, all_candidates: List[str]) -
       2) phonetic neighbors from candidate pool
       3) fresh trash from Google
       4) synthetic placeholders if all else fails
+
+    global_used: set of already-used words across all trees (for deduplication)
     """
     width = max(1, width)
+    if global_used is None:
+        global_used = set()
 
     # 1) Memory first
     mem = recall_word_relations(word, width)
+    # Filter out globally used words
+    mem = [m for m in mem if m.lower() not in global_used]
     if len(mem) >= width:
-        return mem[:width]
+        result = mem[:width]
+        global_used.update(w.lower() for w in result)
+        return result
 
     # 2) Phonetic neighbors
     remaining = width - len(mem)
-    phonetic = find_phonetic_neighbors(word, all_candidates, remaining)
+    phonetic = find_phonetic_neighbors(word, all_candidates, remaining * 2)  # Get more candidates
+    # Filter out globally used words
+    phonetic = [p for p in phonetic if p.lower() not in global_used]
     filtered = mem + phonetic
     if len(filtered) >= width:
-        return filtered[:width]
+        result = filtered[:width]
+        global_used.update(w.lower() for w in result)
+        return result
 
     # 3) Google synonyms
     # Try multiple search strategies: with synonym suffix, plain word, and related terms
@@ -450,7 +478,7 @@ def lookup_branches_for_word(word: str, width: int, all_candidates: List[str]) -
         if candidates:
             break  # Stop on first successful extraction
 
-    seen: Set[str] = {w.lower() for w in filtered}
+    seen: Set[str] = {w.lower() for w in filtered} | global_used
     lw = word.lower()
 
     # Try to find more phonetic neighbors in Google results
@@ -481,6 +509,9 @@ def lookup_branches_for_word(word: str, width: int, all_candidates: List[str]) -
         variants = _generate_phonetic_variants(word, remaining)
         filtered.extend(variants)
 
+    # Update global used set
+    global_used.update(w.lower() for w in filtered)
+
     store_word_relations(word, filtered)
     return filtered
 
@@ -489,20 +520,30 @@ def lookup_branches_for_word(word: str, width: int, all_candidates: List[str]) -
 # Tree building
 # ───────────────────────────
 
-def build_tree_for_word(word: str, width: int, depth: int, all_candidates: List[str]) -> Node:
+def build_tree_for_word(
+    word: str,
+    width: int,
+    depth: int,
+    all_candidates: List[str],
+    global_used: Optional[Set[str]] = None
+) -> Node:
     """
     Recursively mutate a word into a branching freak.
     width = fan-out, depth = how far down we keep mutating.
+    global_used: set of already-used words across all trees (for deduplication)
     """
+    if global_used is None:
+        global_used = set()
+
     node = Node(word=word)
     if depth <= 1:
         return node
 
-    first_level = lookup_branches_for_word(word, width, all_candidates)
+    first_level = lookup_branches_for_word(word, width, all_candidates, global_used)
 
     next_depth = depth - 1
     for b in first_level:
-        child = build_tree_for_word(b, width=width, depth=next_depth, all_candidates=all_candidates)
+        child = build_tree_for_word(b, width=width, depth=next_depth, all_candidates=all_candidates, global_used=global_used)
         node.children.append(child)
 
     return node
@@ -622,7 +663,10 @@ def sorokin_autopsy(prompt: str) -> str:
 
     all_candidates = tokens.copy()
 
-    trees = [build_tree_for_word(w, width, depth, all_candidates) for w in core]
+    # Global deduplication: prevent same mutations across different core words
+    global_used: Set[str] = {w.lower() for w in core}  # Start with core words themselves
+
+    trees = [build_tree_for_word(w, width, depth, all_candidates, global_used) for w in core]
     report = render_autopsy(short, core, trees)
     store_autopsy(short, report)
     return report
