@@ -29,6 +29,7 @@ USER_AGENT = "Mozilla/5.0 (compatible; SorokinAutopsy/1.0)"
 MAX_INPUT_CHARS = 100
 MAX_WORDS = 6          # max core words to dissect
 MAX_DEPTH = 4          # recursion safety cap
+MAX_HTML_CACHE = 50    # max cached HTML responses to prevent unbounded memory growth
 
 # Latin + extended + Cyrillic
 WORD_RE = re.compile(r"[A-Za-zÀ-ÖØ-öø-ÿА-Яа-яЁё]+")
@@ -77,6 +78,9 @@ def init_db() -> None:
             ON word_memory(word)
         """)
         conn.commit()
+    except Exception:
+        conn.rollback()
+        raise
     finally:
         conn.close()
 
@@ -90,6 +94,9 @@ def store_autopsy(prompt: str, tree_text: str) -> None:
             (prompt, tree_text),
         )
         conn.commit()
+    except Exception:
+        conn.rollback()
+        raise
     finally:
         conn.close()
 
@@ -102,9 +109,12 @@ def store_word_relations(word: str, related: List[str]) -> None:
     try:
         conn.executemany(
             "INSERT INTO word_memory(word, related) VALUES (?, ?)",
-            [(word.lower(), r) for r in related],
+            [(word.lower(), r.lower()) for r in related],
         )
         conn.commit()
+    except Exception:
+        conn.rollback()
+        raise
     finally:
         conn.close()
 
@@ -216,7 +226,7 @@ def find_phonetic_neighbors(word: str, candidate_pool: List[str], limit: int) ->
         score = 0
         if fp[:2] == cfp[:2]:
             score += 2
-        if len(fp) >= 2 and len(cfp) >= 2 and fp[-2:] == cfp[-2:]:
+        if fp[-2:] == cfp[-2:]:
             score += 2
         if score == 0:
             continue
@@ -249,6 +259,10 @@ def _fetch_google_snippets(query: str) -> str:
             html_text = resp.read().decode("utf-8", "ignore")
     except Exception:
         html_text = ""
+
+    # Prevent unbounded memory growth of cache
+    if len(_html_cache) >= MAX_HTML_CACHE:
+        _html_cache.clear()
 
     _html_cache[query] = html_text
     return html_text
