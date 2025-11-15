@@ -42,45 +42,20 @@ STOPWORDS = {
 }
 
 # HTML/JS artifact blacklist - garbage from poorly parsed web content
+# Keep this list minimal to preserve interesting words from web results
 HTML_ARTIFACTS = {
-    # Common JS function names
+    # Obvious JS artifacts
     "multiselectable", "canhavechildren", "sourcemappingurl", "encodeuricomponent",
     "removelistener", "removeattribute", "stoppropagation", "textcontent",
-    "autocomplete", "license", "multiline", "getboundingclientrect", "addeventlistener",
-    "preventdefault", "innerhtml", "parentnode", "appendchild", "createelement",
-    "setattribute", "classname", "tostring", "valueof", "constructor", "prototype",
-    "function", "return", "window", "document", "console", "method", "property",
-    "callback", "handler", "listener", "event", "target", "result", "promise",
-    "async", "await", "export", "import", "module", "require", "define",
+    "getboundingclientrect", "addeventlistener", "preventdefault", "appendchild",
+    "createelement", "setattribute", "tostring", "valueof", "prototype",
 
-    # HTML tags and attributes
-    "onclick", "onload", "onchange", "onsubmit", "onmouseover", "onmouseout",
-    "href", "src", "alt", "title", "class", "style", "id", "data", "aria",
-    "doctype", "charset", "viewport", "meta", "head", "body", "script", "style",
-    "thead", "tbody", "tfoot", "tr", "td", "th", "colgroup", "col", "table",
-    "blockquote", "figcaption", "address", "basefont", "bdo", "br", "cite",
-    "code", "del", "dfn", "em", "font", "i", "ins", "kbd", "mark", "q", "s",
-    "samp", "small", "strong", "sub", "sup", "time", "u", "var", "wbr",
-    "datalist", "fieldset", "legend", "label", "input", "button", "select",
-    "textarea", "option", "optgroup", "keygen", "output", "progress", "meter",
-    "article", "aside", "footer", "header", "hgroup", "nav", "section",
-    "details", "summary", "dialog", "template", "embed", "object", "param",
-    "source", "track", "canvas", "svg", "picture", "video", "audio",
-    "iframe", "form", "noscript", "applet", "bgsound", "marquee", "plaintext",
+    # HTML structure tags (very common in parsing)
+    "thead", "tbody", "tfoot", "colgroup", "doctype", "charset", "viewport",
+    "blockquote", "figcaption", "noscript", "marquee", "plaintext",
 
-    # Common browser properties
-    "scrollable", "readonly", "disabled", "scriptable", "orientation",
-    "horizontal", "vertical", "transparent", "opaque", "visible", "hidden",
-    "before", "after", "first", "last", "only", "nth", "even", "odd",
-    "mouseover", "mouseout", "mouseenter", "mouseleave", "mousedown", "mouseup",
-    "keypress", "keydown", "keyup", "focus", "blur", "change", "submit",
-    "haspopup", "dropeffect", "redirected", "invalid", "contains", "resolve",
-
-    # Other common garbage
-    "uricomponent", "javascript", "about", "data", "blob", "chrome", "webkit",
-    "moz", "ms", "o", "x", "v", "uri", "url", "api", "json", "xml", "html",
-    "css", "js", "ts", "tsx", "jsx", "vue", "svelte", "react", "angular",
-    "version", "build", "debug", "release", "beta", "alpha", "rc", "dev",
+    # Very common JS framework names
+    "uricomponent", "javascript", "chrome", "webkit",
 }
 
 
@@ -243,43 +218,48 @@ def phonetic_fingerprint(word: str) -> str:
 
 
 def _generate_phonetic_variants(word: str, count: int) -> List[str]:
-    """Generate phonetically plausible variants - conservative approach."""
+    """Generate interesting phonetic variants for more creative mutations."""
     variants = []
     lw = word.lower()
 
-    # Only generate variants if word is long enough to be meaningful
-    if len(lw) < 4:
-        # For short words, just use original with suffix
-        while count > 0:
-            variants.append(f"{lw}_alt{count}")
-            count -= 1
-        return variants
-
-    # Duplicate first consonant cluster (more subtle)
+    # Reverse the word (uncanny)
     if count > 0:
-        consonants = "bcdfghjklmnpqrstvwxyzаеёиоуыэюя"
+        reversed_word = lw[::-1]
+        if reversed_word != lw:
+            variants.append(reversed_word)
+            count -= 1
+
+    # Remove vowels (skeleton)
+    if count > 0:
+        no_vowels = "".join(c for c in lw if c not in "aeiouаеёиоуыэюя")
+        if no_vowels and no_vowels != lw and len(no_vowels) > 1:
+            variants.append(no_vowels)
+            count -= 1
+
+    # Duplicate first consonant
+    if count > 0:
         vowels = "aeiouаеёиоуыэюя"
-        # Find first consonant
         first_consonant = next((c for c in lw if c not in vowels), None)
         if first_consonant:
             variants.append(first_consonant + lw)
             count -= 1
 
-    # Add suffix to original (more sensible)
-    suffixes = ["s", "ed", "ing", "er", "est", "ly"]
-    for suffix in suffixes:
-        if count > 0:
-            candidate = lw + suffix
-            if candidate not in variants:
-                variants.append(candidate)
-                count -= 1
+    # Add suffix to original
+    if count > 0:
+        suffixes = ["s", "ed", "ing", "er", "est", "ly"]
+        for suffix in suffixes:
+            if count > 0:
+                candidate = lw + suffix
+                if candidate not in variants:
+                    variants.append(candidate)
+                    count -= 1
 
-    # Keep original word itself if we still need more
+    # Keep original word itself if needed
     if count > 0 and lw not in variants:
         variants.append(lw)
         count -= 1
 
-    # Pad with reasonable placeholders
+    # Pad with placeholders
     while count > 0:
         variants.append(f"{lw}_var{count}")
         count -= 1
