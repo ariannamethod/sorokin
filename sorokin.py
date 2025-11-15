@@ -41,6 +41,23 @@ STOPWORDS = {
     "и", "в", "на", "но", "не", "это", "как", "что", "тот", "той", "то", "за",
 }
 
+# HTML/JS artifact blacklist - garbage from poorly parsed web content
+# Keep this list minimal to preserve interesting words from web results
+HTML_ARTIFACTS = {
+    # Obvious JS artifacts
+    "multiselectable", "canhavechildren", "sourcemappingurl", "encodeuricomponent",
+    "removelistener", "removeattribute", "stoppropagation", "textcontent",
+    "getboundingclientrect", "addeventlistener", "preventdefault", "appendchild",
+    "createelement", "setattribute", "tostring", "valueof", "prototype",
+
+    # HTML structure tags (very common in parsing)
+    "thead", "tbody", "tfoot", "colgroup", "doctype", "charset", "viewport",
+    "blockquote", "figcaption", "noscript", "marquee", "plaintext",
+
+    # Very common JS framework names
+    "uricomponent", "javascript", "chrome", "webkit",
+}
+
 
 @dataclass
 class Node:
@@ -201,40 +218,50 @@ def phonetic_fingerprint(word: str) -> str:
 
 
 def _generate_phonetic_variants(word: str, count: int) -> List[str]:
-    """Generate phonetically plausible variants of a word when real synonyms unavailable."""
+    """Generate interesting phonetic variants for more creative mutations."""
     variants = []
     lw = word.lower()
 
-    # Reverse the word
+    # Reverse the word (uncanny)
     if count > 0:
-        variants.append(lw[::-1])
-        count -= 1
+        reversed_word = lw[::-1]
+        if reversed_word != lw:
+            variants.append(reversed_word)
+            count -= 1
 
-    # Swap first and last char
-    if count > 0 and len(lw) > 2:
-        swapped = lw[-1] + lw[1:-1] + lw[0]
-        if swapped != lw:
-            variants.append(swapped)
-        count -= 1
+    # Remove vowels (skeleton)
+    if count > 0:
+        no_vowels = "".join(c for c in lw if c not in "aeiouаеёиоуыэюя")
+        if no_vowels and no_vowels != lw and len(no_vowels) > 1:
+            variants.append(no_vowels)
+            count -= 1
 
     # Duplicate first consonant
     if count > 0:
-        consonants = "bcdfghjklmnpqrstvwxyz"
-        first_consonant = next((c for c in lw if c in consonants), None)
+        vowels = "aeiouаеёиоуыэюя"
+        first_consonant = next((c for c in lw if c not in vowels), None)
         if first_consonant:
             variants.append(first_consonant + lw)
             count -= 1
 
-    # Remove vowels
+    # Add suffix to original
     if count > 0:
-        no_vowels = "".join(c for c in lw if c not in "aeiouаеёиоуыэюя")
-        if no_vowels and no_vowels != lw:
-            variants.append(no_vowels)
-            count -= 1
+        suffixes = ["s", "ed", "ing", "er", "est", "ly"]
+        for suffix in suffixes:
+            if count > 0:
+                candidate = lw + suffix
+                if candidate not in variants:
+                    variants.append(candidate)
+                    count -= 1
 
-    # Pad with original word variations
+    # Keep original word itself if needed
+    if count > 0 and lw not in variants:
+        variants.append(lw)
+        count -= 1
+
+    # Pad with placeholders
     while count > 0:
-        variants.append(f"{lw}_mut{count}")
+        variants.append(f"{lw}_var{count}")
         count -= 1
 
     return variants[:len(set(variants))]
@@ -308,32 +335,75 @@ def _fetch_google_snippets(query: str) -> str:
     return html_text
 
 
+def _split_camelcase(text: str) -> str:
+    """Split camelCase words into separate words."""
+    # Insert spaces before uppercase letters
+    return re.sub(r'([a-z])([A-Z])', r'\1 \2', text)
+
+
 def _extract_candidate_words(html_text: str) -> List[str]:
     """Strip tags, keep charged co-occurrences, discard dignity."""
     if not html_text:
         return []
 
-    # First unescape HTML entities, then strip tags with proper spacing
-    stripped = html.unescape(html_text)
+    # Remove script and style blocks completely (they add noise)
+    stripped = re.sub(r'<script[^>]*>.*?</script>', ' ', html_text, flags=re.DOTALL | re.IGNORECASE)
+    stripped = re.sub(r'<style[^>]*>.*?</style>', ' ', stripped, flags=re.DOTALL | re.IGNORECASE)
+
+    # First unescape HTML entities
+    stripped = html.unescape(stripped)
+
+    # Remove non-semantic tags (noscript, meta, etc)
+    stripped = re.sub(r'<(?:noscript|meta|link|base|title)[^>]*>', ' ', stripped, flags=re.IGNORECASE)
+
     # Add spaces around tags to prevent word concatenation
     stripped = re.sub(r"<[^>]+>", " ", stripped)
+    # Split camelCase words
+    stripped = _split_camelcase(stripped)
     # Also replace common separators with spaces
-    stripped = re.sub(r"[&\-_=/\\:;,]", " ", stripped)
+    stripped = re.sub(r"[&\-_=/\\:;,.\(\)\[\]\{\}]", " ", stripped)
     # Collapse multiple spaces
     stripped = re.sub(r"\s+", " ", stripped)
     words = WORD_RE.findall(stripped)
 
+    def _looks_like_real_word(word: str) -> bool:
+        """Filter out gibberish - real words have some vowels and not all same consonants."""
+        vowels = "aeiouаеёиоуыэюя"
+        vowel_count = sum(1 for c in word if c in vowels)
+        consonant_count = len(word) - vowel_count
+
+        # Must have at least some vowels
+        if vowel_count < max(1, len(word) // 4):
+            return False
+
+        # Check for repeating patterns (gibberish detector)
+        # e.g., "xyzxyzxyz" or "tttttt" are probably garbage
+        if len(word) >= 6:
+            # Check if it's mostly repeating 1-2 char patterns
+            for pattern_len in [1, 2, 3]:
+                pattern = word[:pattern_len]
+                if all(word[i:i+pattern_len] == pattern for i in range(0, len(word), pattern_len)):
+                    return False
+
+        return True
+
     counts: Dict[str, int] = {}
     for w in words:
         lw = w.lower()
-        if len(lw) < 3:
+        if len(lw) < 4:  # Increased from 3
             continue
         if lw in STOPWORDS:
+            continue
+        if lw in HTML_ARTIFACTS:
+            continue
+        if not _looks_like_real_word(lw):
             continue
         counts[lw] = counts.get(lw, 0) + 1
 
     scored: List[Tuple[float, str]] = []
     for w, freq in counts.items():
+        # Prefer less frequent words (they're more interesting)
+        # and reasonably sized words
         score = (min(len(w) / 10.0, 1.5)) * (1.0 / (1.0 + freq))
         scored.append((score, w))
 
