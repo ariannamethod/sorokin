@@ -12,6 +12,9 @@ class PromptAnalyzer:
     Provides advanced analysis capabilities for prompts.
     """
     
+    # Compiled regex patterns for better performance
+    _WORD_PATTERN = re.compile(r'\b[a-z]{3,}\b')
+    
     @staticmethod
     def analyze_complexity(autopsy: PromptAutopsy) -> Dict[str, Any]:
         """
@@ -97,10 +100,13 @@ class PromptAnalyzer:
             'of', 'with', 'by', 'from', 'as', 'is', 'was', 'are', 'were', 'be',
             'been', 'being', 'have', 'has', 'had', 'do', 'does', 'did', 'will',
             'would', 'could', 'should', 'may', 'might', 'must', 'can', 'this',
-            'that', 'these', 'those', 'i', 'you', 'he', 'she', 'it', 'we', 'they'
+            'that', 'these', 'those', 'i', 'you', 'he', 'she', 'it', 'we', 'they',
+            'their', 'them', 'who', 'what', 'when', 'where', 'why', 'how', 'all',
+            'each', 'every', 'both', 'few', 'more', 'most', 'other', 'some', 'such',
+            'about', 'into', 'through', 'during', 'before', 'after', 'above', 'below'
         }
         
-        words = re.findall(r'\b[a-z]{3,}\b', text.lower())
+        words = PromptAnalyzer._WORD_PATTERN.findall(text.lower())
         word_freq = {}
         
         for word in words:
@@ -140,7 +146,7 @@ class PromptAnalyzer:
             patterns['has_examples'] = True
         
         # Check for constraints
-        if re.search(r'\bmust not\b|\bdon\'t\b|\bdo not\b|\bshould not\b', combined_text) or \
+        if re.search(r"\bmust not\b|\bdon't\b|\bdo not\b|\bshould not\b", combined_text) or \
            re.search(r'\bconstraint[s]?:', combined_text):
             patterns['has_constraints'] = True
         
@@ -155,7 +161,7 @@ class PromptAnalyzer:
             patterns['has_role_playing'] = True
         
         # Check for chain of thought
-        if re.search(r'\bstep by step\b|\bthink through\b|\breasoning\b|\blet\'s think\b', combined_text):
+        if re.search(r"\bstep by step\b|\bthink through\b|\breasoning\b|\blet's think\b", combined_text):
             patterns['has_chain_of_thought'] = True
         
         # Check for few-shot (multiple examples)

@@ -1,6 +1,5 @@
 """Integration tests for the entire prompt autopsy engine."""
 
-import pytest
 import json
 from sorokin import PromptAutopsy, AutopsyReport, PromptAnalyzer
 

@@ -1,6 +1,5 @@
 """Tests for the AutopsyReport class."""
 
-import pytest
 import json
 from sorokin.autopsy import PromptAutopsy
 from sorokin.reporter import AutopsyReport
@@ -61,8 +60,8 @@ class TestAutopsyReport:
         report = AutopsyReport(autopsy)
         json_output = report.to_json(indent=None)
         
-        # Should not have newlines (compact)
-        assert '\n' not in json_output or json_output.count('\n') < 5
+        # Should not have indentation spaces (compact)
+        assert '  ' not in json_output  # No double spaces (indentation)
     
     def test_to_markdown(self):
         """Test Markdown report generation."""

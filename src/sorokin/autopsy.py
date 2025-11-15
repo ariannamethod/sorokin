@@ -77,7 +77,7 @@ class PromptAutopsy:
     def _count_tokens(self):
         """
         Count tokens for each component.
-        Uses a simple approximation: ~4 chars per token for English text.
+        Uses word-based approximation: counts words and punctuation as separate tokens.
         """
         for component in self._components:
             # Simple token estimation: split on whitespace and punctuation

@@ -2,14 +2,20 @@
 
 from setuptools import setup, find_packages
 from pathlib import Path
+import re
 
 # Read README for long description
 readme_file = Path(__file__).parent / "README.md"
 long_description = readme_file.read_text() if readme_file.exists() else ""
 
+# Read version from package
+version_file = Path(__file__).parent / "src" / "sorokin" / "__init__.py"
+version_match = re.search(r'^__version__\s*=\s*[\'"]([^\'"]*)[\'"]', version_file.read_text(), re.MULTILINE)
+version = version_match.group(1) if version_match else "0.0.0"
+
 setup(
     name="sorokin",
-    version="0.1.0",
+    version=version,
     author="Sorokin Project",
     description="A prompt autopsy engine for analyzing and dissecting LLM prompts",
     long_description=long_description,

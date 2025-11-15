@@ -1,6 +1,5 @@
 """Tests for the PromptAnalyzer class."""
 
-import pytest
 from sorokin.autopsy import PromptAutopsy
 from sorokin.analyzer import PromptAnalyzer
 

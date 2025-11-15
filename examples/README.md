@@ -7,7 +7,7 @@ This directory contains example scripts demonstrating the usage of the Sorokin P
 Make sure you have installed the package first:
 
 ```bash
-cd /home/runner/work/sorokin/sorokin
+# From the project root directory
 pip install -e .
 ```
 

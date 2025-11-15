@@ -1,7 +1,6 @@
 """Tests for the PromptAutopsy class."""
 
-import pytest
-from sorokin.autopsy import PromptAutopsy, PromptComponent
+from sorokin.autopsy import PromptAutopsy
 
 
 class TestPromptAutopsy:

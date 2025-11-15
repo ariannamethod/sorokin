@@ -45,26 +45,30 @@ class AutopsyReport:
         
         return report
     
-    def to_json(self, indent: Optional[int] = 2) -> str:
+    def to_json(self, indent: Optional[int] = 2, include_analysis: bool = True) -> str:
         """
         Generate JSON report.
         
         Args:
             indent: JSON indentation level (None for compact)
+            include_analysis: Whether to include advanced analysis
             
         Returns:
             JSON string
         """
-        return json.dumps(self.generate(), indent=indent)
+        return json.dumps(self.generate(include_analysis=include_analysis), indent=indent)
     
-    def to_markdown(self) -> str:
+    def to_markdown(self, include_analysis: bool = True) -> str:
         """
         Generate Markdown report.
         
+        Args:
+            include_analysis: Whether to include advanced analysis
+            
         Returns:
             Markdown formatted string
         """
-        report = self.generate()
+        report = self.generate(include_analysis=include_analysis)
         
         lines = [
             "# Prompt Autopsy Report",
@@ -133,14 +137,17 @@ class AutopsyReport:
         
         return '\n'.join(lines)
     
-    def to_text(self) -> str:
+    def to_text(self, include_analysis: bool = True) -> str:
         """
         Generate plain text report.
         
+        Args:
+            include_analysis: Whether to include advanced analysis
+            
         Returns:
             Plain text formatted string
         """
-        report = self.generate()
+        report = self.generate(include_analysis=include_analysis)
         
         lines = [
             "=" * 60,
@@ -161,13 +168,16 @@ class AutopsyReport:
         lines.extend(["", "DETAILED COMPONENTS", "-" * 60])
         
         for i, component in enumerate(report['components'], 1):
+            content_preview = component['content'][:100]
+            if len(component['content']) > 100:
+                content_preview += "..."
             lines.extend([
                 "",
                 f"Component {i}: {component['role'].upper()}",
                 f"  Tokens: {component['tokens']}",
                 f"  Length: {component['metadata']['length']} characters",
                 f"  Lines: {component['metadata']['line_count']}",
-                f"  Content: {component['content'][:100]}...",
+                f"  Content: {content_preview}",
                 ""
             ])
         
