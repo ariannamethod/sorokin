@@ -203,7 +203,7 @@ def select_core_words(tokens: List[str]) -> List[str]:
         jitter = random.uniform(0.9, 1.1)
 
         weight = length_score * rarity_bonus * position_bonus * jitter
-        scored.append((weight, t))
+        scored.append((weight, lw))  # Use lowercased to avoid "Create" vs "create"
 
     if not scored:
         return tokens[:MAX_WORDS]
@@ -232,13 +232,6 @@ def _generate_phonetic_variants(word: str, count: int) -> List[str]:
     """Generate interesting phonetic variants for more creative mutations."""
     variants = []
     lw = word.lower()
-
-    # Reverse the word (uncanny)
-    if count > 0:
-        reversed_word = lw[::-1]
-        if reversed_word != lw:
-            variants.append(reversed_word)
-            count -= 1
 
     # Remove vowels (skeleton)
     if count > 0:
@@ -503,11 +496,11 @@ def lookup_branches_for_word(
         if len(filtered) >= width:
             break
 
-    # 4) Pad with phonetic variants if the web was boring
+    # 4) Fallback: if still need more, just repeat the word (minimal mutation)
+    # Better to have shallow trees than synthetic garbage
     remaining = width - len(filtered)
-    if remaining > 0:
-        variants = _generate_phonetic_variants(word, remaining)
-        filtered.extend(variants)
+    if remaining > 0 and lw not in [f.lower() for f in filtered]:
+        filtered.append(word)  # Add original if not present
 
     # Update global used set
     global_used.update(w.lower() for w in filtered)
@@ -519,6 +512,46 @@ def lookup_branches_for_word(
 # ───────────────────────────
 # Tree building
 # ───────────────────────────
+
+def _is_synthetic_word(word: str) -> bool:
+    """
+    Detect if a word is a synthetic variant that shouldn't breed further.
+    Synthetic words are mutations (reversed, no-vowels, duplicated letters, etc.)
+    that would create garbage if allowed to mutate recursively.
+    """
+    if len(word) < 3:
+        return False
+
+    lw = word.lower()
+
+    # Placeholder pattern
+    if "_var" in lw or "_x" in lw:
+        return True
+
+    # Heavy consonant clusters (no vowels or very few)
+    vowels = "aeiouаеёиоуыэюя"
+    vowel_count = sum(1 for c in lw if c in vowels)
+    if vowel_count < max(1, len(lw) // 5):  # Less than 20% vowels
+        return True
+
+    # Excessive letter repetition (ttt, sss, nnn, etc.) anywhere in word
+    for i in range(len(lw) - 2):
+        if lw[i] == lw[i+1] == lw[i+2]:
+            return True
+
+    # Starts with 2+ same letters (synthetic duplicate pattern)
+    if len(lw) >= 3 and lw[0] == lw[1] and lw[0].isalpha():
+        return True
+
+    # Ends with repeated suffix (ss, sss, ed, ing repeated)
+    # Catches things like "createss", "simplesss", "wordsss"
+    if len(lw) >= 4:
+        # Check for double suffix repetition
+        if lw.endswith("ss") and len(lw) > 4 and lw[-3] == lw[-4]:
+            return True  # Catches "wordsss" (s repeated 3 times)
+
+    return False
+
 
 def build_tree_for_word(
     word: str,
@@ -539,7 +572,17 @@ def build_tree_for_word(
     if depth <= 1:
         return node
 
+    # Synthetic words (reversed, no-vowels, etc.) don't breed further
+    if _is_synthetic_word(word):
+        return node
+
     first_level = lookup_branches_for_word(word, width, all_candidates, global_used)
+
+    # If all branches are just the same word repeating, stop here
+    # (No point in creating tree of identical words)
+    unique_branches = [b for b in first_level if b.lower() != word.lower()]
+    if not unique_branches:
+        return node
 
     next_depth = depth - 1
     for b in first_level:

@@ -143,7 +143,15 @@ Or maybe it's just fun to watch language come apart at the seams.
 
 ### Recent Improvements
 
-**Global Deduplication (Latest)**
+**Synthetic Mutation Purge (Latest)**
+Removed `_generate_phonetic_variants` entirely because it was creating garbage that polluted the autopsy:
+- Reversed words ("elpmis", "etaerc") bred recursively into unreadable noise
+- Suffix mutations ("createded" → "creatededed" → "createedededed") were pure madness
+- Now uses minimal fallback: only real Google synonyms + phonetic neighbors
+- Synthetic word detection prevents breeding of low-vowel/repeated-letter mutations
+- Result: Clean autopsy output like "trouble within having fuck" instead of "creatededed elpmisss tttrouble"
+
+**Global Deduplication**
 Implemented cross-tree word deduplication to prevent the same mutations from appearing in different core word branches. Each tree now gets unique mutations, resulting in more diverse and interesting autopsies.
 
 **Enhanced HTML Artifact Filtering**
