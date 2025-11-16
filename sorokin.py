@@ -89,9 +89,12 @@ HTML_ARTIFACTS = {
 
     # Thesaurus/dictionary site artifacts (pollute DDG results)
     "collinsdictionary", "powerthesaurus", "freethesaurus", "classicthesaurus",
-    "wordreference", "pronunciation", "pronunciations", "pronouncement", "definitions",
-    "collocations", "collections", "international", "reference", "translations",
-    "meanings", "dictionary", "thesaurus", "synonyms", "antonyms", "examples",
+    "wordreference", "wordhippo", "wordpanda", "wordthesauri", "snappywords",
+    "opensynonym", "sinonimkata", "vocabdictionary", "webdictionary", "collins",
+    "relatedwords", "bighugelabs", "pronunciation", "pronunciations", "pronouncement",
+    "definitions", "collocations", "collections", "international", "reference",
+    "translations", "meanings", "dictionary", "thesaurus", "synonyms", "antonyms",
+    "examples", "dictionaries", "categories", "quotations", "alphabetically",
 }
 
 
