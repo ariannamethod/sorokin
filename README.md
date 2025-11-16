@@ -10,7 +10,7 @@
 
 Named after Vladimir Sorokin, the Russian writer known for his transgressive and experimental style, this tool embodies the same spirit of literary dissection and reconstruction. It's not here to help you. It's here to show you what your words *could have been*.
 
-### Exhibit: Full Autopsy Tree (Rated 912.2 on the Absurdity Scale)
+### Exhibit: Maximum Autopsy Tree (Rated 912.2 on the Absurdity Scale)
 
 Because Sorokin builds trees vertically like a linguo-necromancer Christmas celebration, here's a full corpse-map straight from the shizo-Carpathian morgue. The phrase being exhumed is the exquisitely dumb "galactic spleen orchestra," chosen because it vibrates like a haunted accordion. Enjoy the joke; it tested at exactly **912.2 balov of sheer derangement** during user trials:
 
@@ -19,20 +19,36 @@ galactic
 ├── spleen
 │   ├── marrow
 │   │   ├── rib-whisper
+│   │   │   ├── cartilage-hiss
+│   │   │   └── paperwork-fang
 │   │   └── bone-sun
+│   │       ├── famine-polka
+│   │       └── velvet-cough
 │   └── bile
 │       ├── acid-harp
+│       │   ├── bureaucracy-yodel
+│       │   └── migraine-honeymoon
 │       └── gut-halo
+│           ├── stomach-disco
+│           └── spleen-taxidermy
 └── orchestra
     ├── choir
     │   ├── hymn-rattle
+    │   │   ├── incense-kazoo
+    │   │   └── liturgy-thunderclap
     │   └── chant-smog
+    │       ├── psalmic-smokestack
+    │       └── gospel-seltzer
     └── cacophony
         ├── shriek-fiddle
+        │   ├── migraine-accordion
+        │   └── bureaucrat-hiccups
         └── howl-trombone
+            ├── midnight-hairdryer
+            └── velvet-megaphone
 ```
 
-Somewhere between the rib-whisper and the howl-trombone, a tiny bureaucrat asked "why" and immediately received unpaid therapy. That's the punchline. You're welcome.
+Somewhere between paperwork-fang and velvet-megaphone, a tiny bureaucrat asked "why" and immediately received unpaid therapy plus a commemorative bile-flavored party hat. That's the punchline. You're welcome.
 
 ### The Three-Act Horror Show
 
@@ -104,11 +120,11 @@ Now that we have a forest of mutated word-trees, it's time to play God.
    - Jumping to random unvisited words when stuck
    - Stopping after 5-10 words (or when we run out)
 
-The result is a Frankenstein sentence: technically made of the same parts, but *uncanny*. Not quite right. Resonant but wrong.
+The result is a Frankenstein sentence: technically made of the same parts, but *uncanny*. Not quite right. Resonant but wrong. This is the part where Sorokin shrugs on the lab coat, jams a fork into the storm cloud, and cackles while stitching together whatever limbs are left on the slab.
 
 ```
 AUTOPSY RESULT:
-  phrase declaration utterance clause expression statement
+  hymn-rattle migraine-honeymoon howl-trombone midnight-hairdryer spleen-taxidermy chant-smog
 ```
 
 ### Usage
