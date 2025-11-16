@@ -97,6 +97,7 @@ HTML_ARTIFACTS = {
     "pronouncement", "definitions", "collocations", "international", "reference",
     "translations", "meanings", "dictionary", "thesaurus", "synonyms", "antonyms",
     "examples", "dictionaries", "categories", "quotations", "alphabetically",
+    "yourdictionary", "thefreedictionary", "urbanthesaurus", "urbandictionary",
 }
 
 
@@ -522,8 +523,8 @@ def lookup_branches_for_word(
 
     # 1) Memory first
     mem = recall_word_relations(word, width)
-    # Filter out globally used words
-    mem = [m for m in mem if m.lower() not in global_used]
+    # Filter out globally used words AND HTML artifacts
+    mem = [m for m in mem if m.lower() not in global_used and m.lower() not in HTML_ARTIFACTS]
     if len(mem) >= width:
         result = mem[:width]
         global_used.update(w.lower() for w in result)
@@ -532,8 +533,8 @@ def lookup_branches_for_word(
     # 2) Phonetic neighbors
     remaining = width - len(mem)
     phonetic = find_phonetic_neighbors(word, all_candidates, remaining * 2)  # Get more candidates
-    # Filter out globally used words
-    phonetic = [p for p in phonetic if p.lower() not in global_used]
+    # Filter out globally used words AND HTML artifacts
+    phonetic = [p for p in phonetic if p.lower() not in global_used and p.lower() not in HTML_ARTIFACTS]
     filtered = mem + phonetic
     if len(filtered) >= width:
         result = filtered[:width]
@@ -559,13 +560,13 @@ def lookup_branches_for_word(
     seen: Set[str] = {w.lower() for w in filtered} | global_used
     lw = word.lower()
 
-    # Try to find more phonetic neighbors in Google results
+    # Try to find more phonetic neighbors in web results
     if candidates:
-        google_phonetic = find_phonetic_neighbors(word, candidates, width - len(filtered))
-        for gp in google_phonetic:
-            if gp.lower() not in seen:
-                filtered.append(gp)
-                seen.add(gp.lower())
+        web_phonetic = find_phonetic_neighbors(word, candidates, width - len(filtered))
+        for wp in web_phonetic:
+            if wp.lower() not in seen and wp.lower() not in HTML_ARTIFACTS:
+                filtered.append(wp)
+                seen.add(wp.lower())
                 if len(filtered) >= width:
                     break
 
@@ -575,6 +576,8 @@ def lookup_branches_for_word(
         if lc == lw:
             continue
         if lc in seen:
+            continue
+        if lc in HTML_ARTIFACTS:
             continue
         seen.add(lc)
         filtered.append(c)
@@ -665,12 +668,14 @@ def build_tree_for_word(
     width: int,
     depth: int,
     all_candidates: List[str],
-    global_used: Optional[Set[str]] = None
+    global_used: Optional[Set[str]] = None,
+    is_core_word: bool = False
 ) -> Node:
     """
     Recursively mutate a word into a branching freak.
     width = fan-out, depth = how far down we keep mutating.
     global_used: set of already-used words across all trees (for deduplication)
+    is_core_word: True for top-level core words (allows synthetic words to be dissected)
     """
     if global_used is None:
         global_used = set()
@@ -679,8 +684,8 @@ def build_tree_for_word(
     if depth <= 1:
         return node
 
-    # Synthetic words (reversed, no-vowels, etc.) don't breed further
-    if _is_synthetic_word(word):
+    # Synthetic words don't breed further, EXCEPT core words (user-provided prompts must dissect)
+    if _is_synthetic_word(word) and not is_core_word:
         return node
 
     first_level = lookup_branches_for_word(word, width, all_candidates, global_used)
@@ -689,7 +694,7 @@ def build_tree_for_word(
     # (Ensures all words have at least depth=1 tree structure for rendering)
     next_depth = depth - 1
     for b in first_level:
-        child = build_tree_for_word(b, width=width, depth=next_depth, all_candidates=all_candidates, global_used=global_used)
+        child = build_tree_for_word(b, width=width, depth=next_depth, all_candidates=all_candidates, global_used=global_used, is_core_word=False)
         node.children.append(child)
 
     return node
@@ -812,7 +817,7 @@ def sorokin_autopsy(prompt: str) -> str:
     # Global deduplication: prevent same mutations across different core words
     global_used: Set[str] = {w.lower() for w in core}  # Start with core words themselves
 
-    trees = [build_tree_for_word(w, width, depth, all_candidates, global_used) for w in core]
+    trees = [build_tree_for_word(w, width, depth, all_candidates, global_used, is_core_word=True) for w in core]
     report = render_autopsy(short, core, trees)
     store_autopsy(short, report)
     return report
@@ -1130,26 +1135,27 @@ def build_tree_for_word_bootstrap(
     width: int,
     depth: int,
     all_candidates: List[str],
-    global_used: Optional[Set[str]] = None
+    global_used: Optional[Set[str]] = None,
+    is_core_word: bool = False
 ) -> Node:
     """Bootstrap version using lookup_branches_bootstrap()."""
     if global_used is None:
         global_used = set()
-    
+
     node = Node(word=word)
     if depth <= 1:
         return node
-    
-    # Synthetic words don't breed further
-    if _is_synthetic_word(word):
+
+    # Synthetic words don't breed further, EXCEPT core words (user-provided prompts must dissect)
+    if _is_synthetic_word(word) and not is_core_word:
         return node
     
     first_level = lookup_branches_bootstrap(word, width, all_candidates, global_used)
-    
+
     next_depth = depth - 1
     for b in first_level:
-        child = build_tree_for_word_bootstrap(b, width=width, depth=next_depth, 
-                                              all_candidates=all_candidates, global_used=global_used)
+        child = build_tree_for_word_bootstrap(b, width=width, depth=next_depth,
+                                              all_candidates=all_candidates, global_used=global_used, is_core_word=False)
         node.children.append(child)
     
     return node
@@ -1230,7 +1236,7 @@ def sorokin_autopsy_bootstrap(prompt: str) -> str:
     global_used: Set[str] = {w.lower() for w in core}
     
     # Build trees using bootstrap lookup
-    trees = [build_tree_for_word_bootstrap(w, width, depth, all_candidates, global_used) for w in core]
+    trees = [build_tree_for_word_bootstrap(w, width, depth, all_candidates, global_used, is_core_word=True) for w in core]
     
     # Collect leaves for corpse
     all_leaves: List[str] = []
