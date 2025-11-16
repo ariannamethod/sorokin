@@ -6,49 +6,66 @@
 
 ### What is this madness?
 
-`sorokin.py` is a ~700-line Python script that takes your innocent prompts, tears them apart like a psychopathic linguist, builds a recursive tree of semantic mutations, and then—like Dr. Frankenstein having a particularly creative day—reassembles the corpse into something *new*.
+`sorokin.py` is a ~1330-line Python script that takes your innocent prompts, tears them apart like a psychopathic linguist, builds a recursive tree of semantic mutations, and then—like Dr. Frankenstein having a particularly creative day—reassembles the corpse into something *new*.
+
+**NEW**: Bootstrap edition with pattern accumulation! Sorokin now learns from every autopsy, accumulating successful mutation templates and bigram patterns in his SQLite morgue. No intelligence, no embeddings—just structural resonance and ritual repetition.
 
 Named after Vladimir Sorokin, the Russian writer known for his transgressive and experimental style, sorokin embodies the same spirit of literary dissection and reconstruction. It's not here to help you. It's here to show you what your words *could have been*.
 
-### Exhibit: Maximum Autopsy Tree (Rated 912.2 on the Absurdity Scale)
+### Exhibit: Maximum Autopsy Tree (Bootstrap Edition)
 
-Because Sorokin builds trees vertically like a linguo-necromancer Christmas celebration, here's a full corpse-map straight from his SQlite morgue. The phrase being exhumed is the exquisitely dumb "galactic spleen orchestra," chosen because it vibrates like a haunted accordion. 
+Because Sorokin builds trees vertically like a linguo-necromancer performing open-heart surgery on reality itself, here's a full corpse-map straight from his SQLite morgue. The phrase being dissected is "darkness consumes reality," chosen because it sounds like a rejected Nietzsche tweet. Watch as DuckDuckGo synonyms breed with phonetic chaos and learned mutation patterns:
 
 ```
-galactic
-├── spleen
-│   ├── marrow
-│   │   ├── rib-whisper
-│   │   │   ├── cartilage-hiss
-│   │   │   └── paperwork-fang
-│   │   └── bone-sun
-│   │       ├── famine-polka
-│   │       └── velvet-cough
-│   └── bile
-│       ├── acid-harp
-│       │   ├── bureaucracy-yodel
-│       │   └── migraine-honeymoon
-│       └── gut-halo
-│           ├── stomach-disco
-│           └── spleen-taxidermy
-└── orchestra
-    ├── choir
-    │   ├── hymn-rattle
-    │   │   ├── incense-kazoo
-    │   │   └── liturgy-thunderclap
-    │   └── chant-smog
-    │       ├── psalmic-smokestack
-    │       └── gospel-seltzer
-    └── cacophony
-        ├── shriek-fiddle
-        │   ├── migraine-accordion
-        │   └── bureaucrat-hiccups
-        └── howl-trombone
-            ├── midnight-hairdryer
-            └── velvet-megaphone
+darkness consumes reality
+
+darkness
+  ├─ collinsdictionary
+  │  ├─ international
+  │  ├─ collocations
+  │  └─ collections
+  ├─ ignorance
+  │  ├─ unenlightenment
+  │  ├─ example
+  │  └─ naïveté
+  └─ brilliance
+     ├─ powerthesaurus
+     ├─ greatness
+     └─ blackness
+
+consumes
+  ├─ pronunciation
+  │  ├─ pronunciations
+  │  ├─ pronouncement
+  │  └─ definitions
+  ├─ conserve
+  │  ├─ freethesaurus
+  │  ├─ reference
+  │  └─ economise
+  └─ contexts
+     ├─ interpretation
+     ├─ connection
+     └─ environment
+
+reality
+  ├─ inevitability
+  │  ├─ inexorability
+  │  ├─ probability
+  │  └─ unavoidable
+  ├─ unreality
+  │  ├─ classicthesaurus
+  │  ├─ irreality
+  │  └─ actuality
+  └─ materiality
+     ├─ authenticity
+     ├─ meanings
+     └─ corporeality
+
+AUTOPSY RESULT:
+  unavoidable classicthesaurus irreality actuality authenticity meanings corporeality pronunciations pronouncement
 ```
 
-Somewhere between paperwork-fang and velvet-megaphone, a tiny bureaucrat asked "why" and immediately received unpaid therapy plus a commemorative bile-flavored party hat. That's the punchline. You're welcome.
+Somewhere between "unenlightenment" and "corporeality," Nietzsche rolled over in his grave and asked his accountant to sue for trademark infringement. The accountant, being dead, declined. Reality remains unconsumed. Darkness persists. We've all learned nothing.
 
 ### The Three-Act Horror Show
 
@@ -129,14 +146,25 @@ AUTOPSY RESULT:
 
 ### Usage
 
-**Single prompt:**
+**Standard mode (classic autopsy):**
 ```bash
 python sorokin.py "fuck this sentence"
 ```
 
+**Bootstrap mode (learning autopsy with metrics):**
+```bash
+python sorokin.py --bootstrap "darkness consumes reality"
+```
+
+Bootstrap mode adds:
+- **RESONANCE METRICS**: ASCII progress bars showing phonetic diversity, structural echo, and mutation depth
+- **MEMORY ACCUMULATION**: Stats on learned mutations, bigrams, and total autopsies
+- **PATTERN LEARNING**: Every autopsy harvests successful mutation templates for future use
+- **SEED CORPUS**: Structural bigrams extracted from poetic descriptions of Sorokin's process
+
 **REPL mode (for the masochists):**
 ```bash
-python sorokin.py
+python sorokin.py --bootstrap  # or without --bootstrap for standard mode
 > your prompt here
 > another one
 > ^C
@@ -148,7 +176,12 @@ All autopsies are saved to `sorokin.sqlite`:
 - **autopsy table**: Full reports of each dissection
 - **word_memory table**: Cached word mutations for faster subsequent operations
 
-The database grows over time, becoming a lexical graveyard. Each run is recorded. Nothing is forgotten.
+**Bootstrap tables** (when using `--bootstrap` flag):
+- **mutation_templates**: Learned source→target word mutations with success counts and resonance scores
+- **corpse_bigrams**: Harvested word pairs from successful reassemblies, with frequency tracking
+- **autopsy_metrics**: Resonance scores (phonetic diversity, structural echo, mutation depth) for each autopsy
+
+The database grows over time, becoming a self-improving lexical graveyard. Each run is recorded. Patterns accumulate. Nothing is forgotten. The morgue learns.
 
 ### Why?
 
@@ -164,14 +197,21 @@ Or maybe it's just fun to watch language come apart at the seams.
 
 ### Technical Details (For the Nerds)
 
+**Core (~760 lines):**
 - **Pure Python 3**: No external dependencies except stdlib
-- **~760 lines**: Compact enough to understand, complex enough to surprise
 - **Recursive tree building**: Width × depth branching with global deduplication
 - **Phonetic fingerprinting**: Crude but effective
 - **DuckDuckGo scraping**: urllib + regex, the old way (DDG blocks bots less than Google)
 - **SQLite persistence**: Your words, forever
 - **Markov reassembly**: Bigram chains with fallbacks
 - **HTML artifact filtering**: Extensive blacklist to filter web scraping noise
+
+**Bootstrap extension (~570 lines):**
+- **SEED CORPUS**: Structural bigrams extracted from poetic text about Sorokin's process
+- **Pattern accumulation**: Mutation templates harvested from every successful autopsy
+- **Weighted reassembly**: Combines learned bigrams, seed bigrams, and local leaf bigrams
+- **Resonance metrics**: Phonetic diversity, structural echo, mutation depth (pure structure, no semantics!)
+- **Self-improvement loop**: Each autopsy feeds the next, patterns accumulate without intelligence
 
 ### Known Limitations
 
@@ -183,7 +223,19 @@ Or maybe it's just fun to watch language come apart at the seams.
 
 ### Recent Improvements
 
-**DuckDuckGo Web Scraping (Latest)**
+**Bootstrap Extension with Pattern Accumulation (Latest)**
+Sorokin now learns from every autopsy in bootstrap mode (`--bootstrap` flag):
+- **SEED CORPUS**: Embedded poetic text about dissection provides structural DNA
+- **Mutation templates**: Successful source→target word mutations are stored with success counts
+- **Corpse bigrams**: Word pairs from reassembled text are harvested and reused
+- **Resonance metrics**: ASCII progress bars showing phonetic diversity (1.000 = perfect), structural echo (overlap with seed corpus), and mutation depth (inverse of word length variance)
+- **Memory accumulation stats**: Real-time display of learned patterns, bigrams, and total autopsies
+- **Weighted reassembly**: Bigram selection combines learned patterns (3x weight), seed patterns (2x), and local patterns (1x) with chaos injection (square root weights) for unpredictability
+- **No intelligence, just accumulation**: Pure structural pattern matching without embeddings or semantic understanding
+
+Result: Each autopsy improves the next through ritual repetition, not reasoning. The morgue becomes smarter through sheer accumulation of corpses.
+
+**DuckDuckGo Web Scraping**
 Switched from Google to DuckDuckGo for synonym discovery. Google was blocking bot requests and returning garbage results (always the same words: "trouble", "within", "having"). DuckDuckGo is less aggressive with bot blocking and returns actual synonyms:
 - "destroy" → destruction, disintegrate, dismantle, obliteration, demolish
 - "evil" → villainy, villain, evildoing, depravity, wickedness

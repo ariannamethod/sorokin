@@ -86,6 +86,12 @@ HTML_ARTIFACTS = {
     "delete", "edit", "update", "cancel", "submit", "send", "receive",
     "google", "bing", "yahoo", "website", "sites", "site", "link", "links",
     "button", "buttons", "image", "images", "video", "videos", "view", "views",
+
+    # Thesaurus/dictionary site artifacts (pollute DDG results)
+    "collinsdictionary", "powerthesaurus", "freethesaurus", "classicthesaurus",
+    "wordreference", "pronunciation", "pronunciations", "pronouncement", "definitions",
+    "collocations", "collections", "international", "reference", "translations",
+    "meanings", "dictionary", "thesaurus", "synonyms", "antonyms", "examples",
 }
 
 
