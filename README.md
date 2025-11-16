@@ -20,49 +20,59 @@ Because Sorokin builds trees vertically like a linguo-necromancer performing ope
 darkness consumes reality
 
 darkness
-  ├─ collinsdictionary
-  │  ├─ international
-  │  ├─ collocations
-  │  └─ collections
-  ├─ ignorance
-  │  ├─ unenlightenment
-  │  ├─ example
-  │  └─ naïveté
-  └─ brilliance
-     ├─ powerthesaurus
-     ├─ greatness
-     └─ blackness
+  ├─ illuminated
+  │  ├─ illustrated
+  │  ├─ illustrate
+  │  └─ illuminate
+  ├─ brilliance
+  │  ├─ brilliancy
+  │  ├─ blackness
+  │  └─ greatness
+  └─ ignorance
+     ├─ naïveté
+     ├─ example
+     └─ unenlightenment
 
 consumes
-  ├─ pronunciation
-  │  ├─ pronunciations
-  │  ├─ pronouncement
-  │  └─ definitions
-  ├─ conserve
-  │  ├─ freethesaurus
-  │  ├─ reference
-  │  └─ economise
-  └─ contexts
-     ├─ interpretation
-     ├─ connection
-     └─ environment
+  ├─ consume
+  │  ├─ turkey
+  │  ├─ philippines
+  │  └─ vocabulary
+  ├─ contexts
+  │  ├─ context
+  │  ├─ environment
+  │  └─ connection
+  └─ conserve
+     ├─ economise
+     ├─ shelter
+     └─ greece
 
 reality
-  ├─ inevitability
-  │  ├─ inexorability
-  │  ├─ probability
-  │  └─ unavoidable
-  ├─ unreality
-  │  ├─ classicthesaurus
-  │  ├─ irreality
-  │  └─ actuality
-  └─ materiality
-     ├─ authenticity
-     ├─ meanings
-     └─ corporeality
+  ├─ realism
+  │  ├─ representationalism
+  │  ├─ literalism
+  │  └─ faithfulness
+  ├─ materiality
+  │  ├─ referentiality
+  │  ├─ corporeality
+  │  └─ temporality
+  └─ certainty
+     ├─ certain
+     ├─ ceremony
+     └─ uncertainty
 
 AUTOPSY RESULT:
-  unavoidable classicthesaurus irreality actuality authenticity meanings corporeality pronunciations pronouncement
+  connection economise shelter greece representationalism literalism faithfulness referentiality
+
+RESONANCE METRICS:
+  Phonetic Diversity: ██████████ 1.000
+  Structural Echo:    ░░░░░░░░░░ 0.000
+  Mutation Depth:     █░░░░░░░░░ 0.137
+
+MEMORY ACCUMULATION:
+  Known mutations: 36
+  Learned bigrams: 9
+  Total autopsies: 1
 ```
 
 Somewhere between "unenlightenment" and "corporeality," Nietzsche rolled over in his grave and asked his accountant to sue for trademark infringement. The accountant, being dead, declined. Reality remains unconsumed. Darkness persists. We've all learned nothing.
