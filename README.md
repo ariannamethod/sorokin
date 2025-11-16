@@ -393,6 +393,11 @@ No intelligence required. Just accumulation and resonance.
 
 ### Recent Improvements
 
+**The Pathologist's Evolution: From Selective Surgeon to Omnivorous Dissector**
+Sorokin now dissects *anything*, even nonsense. Previously, synthetic/low-vowel core words (like "zzz", "xxx", "zxcvbn") were rejected entirely—their trees left empty, their meanings unexplored. Now: **if you give it to Sorokin, he dissects it**. Core words (user-provided prompts) are *always* dissected, regardless of phonetic structure. Only their *children* get filtered for synthetic garbage. The philosophy: trust the user's madness, but prune the mutations. Result: even keyboard-mash prompts like "qwerty asdfgh zxcvbn" now produce full 3×3 autopsy trees with real semantic mutations.
+
+Additionally, thesaurus/dictionary site filtering became more aggressive—now filters are applied not just to web scraping, but also to cached memory and phonetic neighbor lookups. Sites like `yourdictionary`, `thefreedictionary`, `urbanthesaurus`, and `urbandictionary` are now globally blacklisted across all lookup stages. The morgue stays clean. The mutations stay real.
+
 **Bootstrap Extension with Pattern Accumulation**
 Added `--bootstrap` flag enabling self-improving autopsy ritual. See the dedicated Bootstrap section above for full details. TL;DR: the morgue now learns from every corpse through resonance metrics and pattern accumulation. No intelligence, just ritual repetition.
 
