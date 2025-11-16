@@ -91,8 +91,10 @@ HTML_ARTIFACTS = {
     "collinsdictionary", "powerthesaurus", "freethesaurus", "classicthesaurus",
     "wordreference", "wordhippo", "wordpanda", "wordthesauri", "snappywords",
     "opensynonym", "sinonimkata", "vocabdictionary", "webdictionary", "collins",
-    "relatedwords", "bighugelabs", "pronunciation", "pronunciations", "pronouncement",
-    "definitions", "collocations", "collections", "international", "reference",
+    "relatedwords", "bighugelabs", "thefrenchfocus", "writingbeginner", "grammartipshub",
+    "grammarpen", "lalanguefrancaise", "namediscoveries", "pronounceonline",
+    "differentsynonym", "overcrowdednycschools", "pronunciation", "pronunciations",
+    "pronouncement", "definitions", "collocations", "international", "reference",
     "translations", "meanings", "dictionary", "thesaurus", "synonyms", "antonyms",
     "examples", "dictionaries", "categories", "quotations", "alphabetically",
 }
