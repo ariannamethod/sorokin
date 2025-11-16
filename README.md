@@ -12,7 +12,7 @@ Named after Vladimir Sorokin, the Russian writer known for his transgressive and
 
 ### Exhibit: Maximum Autopsy Tree (Rated 912.2 on the Absurdity Scale)
 
-Because Sorokin builds trees vertically like a linguo-necromancer Christmas celebration, here's a full corpse-map straight from the shizo-Carpathian morgue. The phrase being exhumed is the exquisitely dumb "galactic spleen orchestra," chosen because it vibrates like a haunted accordion. Enjoy the joke; it tested at exactly **912.2 balov of sheer derangement** during user trials:
+Because Sorokin builds trees vertically like a linguo-necromancer Christmas celebration, here's a full corpse-map straight from the shizo-Carpathian morgue. The phrase being exhumed is the exquisitely dumb "galactic spleen orchestra," chosen because it vibrates like a haunted accordion. 
 
 ```
 galactic
