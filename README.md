@@ -71,6 +71,8 @@ MEMORY ACCUMULATION:
   Known mutations: 36
   Learned bigrams: 9
   Total autopsies: 1
+
+Sorokin.
 ```
 
 Somewhere between "unenlightenment" and "corporeality," Nietzsche rolled over in his grave and asked his accountant to sue for trademark infringement. The accountant, being dead, declined. Reality remains unconsumed. Darkness persists. We've all learned nothing.
