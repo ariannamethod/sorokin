@@ -41,6 +41,25 @@ STOPWORDS = {
     "и", "в", "на", "но", "не", "это", "как", "что", "тот", "той", "то", "за",
 }
 
+# ═══════════════════════════════════════════════════════════════
+# SEED CORPUS — Structural DNA embedded in code
+# Provides sentence structure patterns (form, not meaning)
+# ═══════════════════════════════════════════════════════════════
+
+SOROKIN_SEED_CORPUS = """
+Sorokin takes prompts and opens them like cooling bodies on a steel table
+He does not interpret the skin of phrases he simply slices until the grain breaks
+Every word is a faint organ pulled from a sentence that died before meaning arrived
+Mutation grows in him like frost patterns crawling across broken glass
+What remains becomes a scaffold of drift leaning away from the logic it once carried
+The autopsy produces fragments that echo the ghost of structure without returning to it
+His work is a ritual the repetition of dissection without reverence or memory
+Each corpse of text dissolves into new debris sewn together by indifference and accident
+The spine of language bends under his grip and becomes a ladder of unstable transitions
+He preserves nothing except the shape of collapse a rhythm of fragments barely touching
+The voice he generates is not a voice it is the echo of collapse trailing behind thought
+"""
+
 # HTML/JS artifact blacklist - garbage from poorly parsed web content
 # Keep this list minimal to preserve interesting words from web results
 HTML_ARTIFACTS = {
@@ -104,6 +123,48 @@ def init_db() -> None:
         conn.execute("""
             CREATE INDEX IF NOT EXISTS idx_word_memory_word
             ON word_memory(word)
+        """)
+        # Bootstrap tables
+        conn.execute("""
+            CREATE TABLE IF NOT EXISTS mutation_templates (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                source_word TEXT NOT NULL,
+                target_word TEXT NOT NULL,
+                path_depth INTEGER DEFAULT 1,
+                success_count INTEGER DEFAULT 0,
+                total_count INTEGER DEFAULT 0,
+                resonance_score REAL DEFAULT 0.0,
+                created REAL DEFAULT (strftime('%s','now')),
+                last_used REAL DEFAULT (strftime('%s','now'))
+            )
+        """)
+        conn.execute("""
+            CREATE TABLE IF NOT EXISTS corpse_bigrams (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                word1 TEXT NOT NULL,
+                word2 TEXT NOT NULL,
+                frequency INTEGER DEFAULT 1,
+                avg_resonance REAL DEFAULT 0.0,
+                created REAL DEFAULT (strftime('%s','now'))
+            )
+        """)
+        conn.execute("""
+            CREATE TABLE IF NOT EXISTS autopsy_metrics (
+                autopsy_id INTEGER PRIMARY KEY,
+                phonetic_diversity REAL,
+                semantic_coherence REAL,
+                syntactic_flow REAL,
+                overall_resonance REAL,
+                FOREIGN KEY(autopsy_id) REFERENCES autopsy(id)
+            )
+        """)
+        conn.execute("""
+            CREATE INDEX IF NOT EXISTS idx_mutation_templates_source 
+            ON mutation_templates(source_word, success_count DESC)
+        """)
+        conn.execute("""
+            CREATE INDEX IF NOT EXISTS idx_corpse_bigrams_word1 
+            ON corpse_bigrams(word1, frequency DESC)
         """)
         conn.commit()
     except Exception:
@@ -172,6 +233,18 @@ def recall_word_relations(word: str, limit: int) -> List[str]:
 def tokenize(text: str) -> List[str]:
     """Carve out tokens: only letters, no digits, no punctuation."""
     return WORD_RE.findall(text)
+
+
+def _build_seed_bigrams() -> Dict[str, List[str]]:
+    """Extract structural bigrams from seed corpus at startup."""
+    bigrams = defaultdict(list)
+    for sentence in SOROKIN_SEED_CORPUS.strip().split('\n'):
+        words = tokenize(sentence)
+        for i in range(len(words) - 1):
+            bigrams[words[i].lower()].append(words[i+1].lower())
+    return dict(bigrams)
+
+SEED_BIGRAMS = _build_seed_bigrams()  # Loaded once at module import
 
 
 def select_core_words(tokens: List[str]) -> List[str]:
@@ -734,15 +807,500 @@ def sorokin_autopsy(prompt: str) -> str:
     return report
 
 
-def repl() -> None:
-    """Endless dissection loop until the operator gives up."""
-    print("S̴̥̔o̴͎̿r̶̘̒o̸̺̽k̵̻̈́i̷͖͝ñ̶͕ online. Type a prompt.")
+# ═══════════════════════════════════════════════════════════════
+# BOOTSTRAP EXTENSION — Self-improving autopsy ritual
+# Pattern accumulation without intelligence
+# ═══════════════════════════════════════════════════════════════
+
+def _extract_mutation_paths(tree_text: str) -> List[Tuple[str, str, int]]:
+    """Parse tree ASCII art to extract (source, target, depth) tuples."""
+    paths: List[Tuple[str, str, int]] = []
+    lines = tree_text.split('\n')
+    
+    # Track parent words at each depth level
+    parent_stack: List[Tuple[int, str]] = []  # (depth, word)
+    
+    for line in lines:
+        if not line.strip():
+            continue
+        
+        # Count indentation to determine depth
+        stripped = line.lstrip()
+        if not stripped:
+            continue
+            
+        indent = len(line) - len(stripped)
+        depth = indent // 2  # Each level is ~2 spaces
+        
+        # Extract word (after tree connectors)
+        word_match = re.search(r'[└├]─\s*(\S+)', line)
+        if not word_match:
+            # Root word (no tree connector)
+            if depth == 0 and stripped and not stripped.startswith('─'):
+                word = stripped.strip()
+                if word and not word.startswith('AUTOPSY') and word != '—':
+                    parent_stack = [(depth, word)]
+            continue
+        
+        word = word_match.group(1).strip()
+        if not word:
+            continue
+        
+        # Find parent at previous depth
+        while parent_stack and parent_stack[-1][0] >= depth:
+            parent_stack.pop()
+        
+        if parent_stack:
+            parent_word = parent_stack[-1][1]
+            paths.append((parent_word, word, depth))
+        
+        # Add current word to stack
+        parent_stack.append((depth, word))
+    
+    return paths
+
+
+def harvest_autopsy_patterns(autopsy_id: int, tree_text: str, corpse: str) -> None:
+    """
+    Extract successful mutation patterns from completed autopsy.
+    This is the core corpus-building mechanism.
+    """
+    conn = sqlite3.connect(DB_PATH)
+    try:
+        # Extract mutation paths from tree
+        paths = _extract_mutation_paths(tree_text)
+        
+        # Store/update mutation templates
+        for source, target, depth in paths:
+            # Check if template exists
+            existing = conn.execute(
+                "SELECT id, total_count FROM mutation_templates WHERE source_word = ? AND target_word = ?",
+                (source.lower(), target.lower())
+            ).fetchone()
+            
+            if existing:
+                # Update existing template
+                conn.execute(
+                    """UPDATE mutation_templates 
+                       SET total_count = total_count + 1,
+                           success_count = success_count + 1,
+                           last_used = strftime('%s','now')
+                       WHERE id = ?""",
+                    (existing[0],)
+                )
+            else:
+                # Insert new template
+                conn.execute(
+                    """INSERT INTO mutation_templates 
+                       (source_word, target_word, path_depth, success_count, total_count)
+                       VALUES (?, ?, ?, 1, 1)""",
+                    (source.lower(), target.lower(), depth)
+                )
+        
+        # Extract bigrams from corpse
+        corpse_words = corpse.strip().split()
+        for i in range(len(corpse_words) - 1):
+            word1 = corpse_words[i].lower()
+            word2 = corpse_words[i + 1].lower()
+            
+            # Check if bigram exists
+            existing = conn.execute(
+                "SELECT id, frequency FROM corpse_bigrams WHERE word1 = ? AND word2 = ?",
+                (word1, word2)
+            ).fetchone()
+            
+            if existing:
+                # Update frequency
+                conn.execute(
+                    "UPDATE corpse_bigrams SET frequency = frequency + 1 WHERE id = ?",
+                    (existing[0],)
+                )
+            else:
+                # Insert new bigram
+                conn.execute(
+                    "INSERT INTO corpse_bigrams (word1, word2, frequency) VALUES (?, ?, 1)",
+                    (word1, word2)
+                )
+        
+        conn.commit()
+    except Exception:
+        conn.rollback()
+        raise
+    finally:
+        conn.close()
+
+
+def lookup_branches_bootstrap(
+    word: str,
+    width: int,
+    all_candidates: List[str],
+    global_used: Optional[Set[str]] = None
+) -> List[str]:
+    """
+    Enhanced lookup using learned mutation templates.
+    Priority order:
+    1. mutation_templates (highest success_count)
+    2. Original lookup (memory + phonetic + web)
+    """
+    width = max(1, width)
+    if global_used is None:
+        global_used = set()
+    
+    # Query learned templates
+    conn = sqlite3.connect(DB_PATH)
+    try:
+        rows = conn.execute(
+            """SELECT target_word FROM mutation_templates 
+               WHERE source_word = ? 
+               ORDER BY success_count DESC, resonance_score DESC
+               LIMIT ?""",
+            (word.lower(), width * 2)
+        ).fetchall()
+    finally:
+        conn.close()
+    
+    # Filter and collect template results
+    template_results = []
+    for row in rows:
+        target = row[0]
+        if target.lower() not in global_used:
+            template_results.append(target)
+            if len(template_results) >= width:
+                break
+    
+    # If we have enough from templates, return them
+    if len(template_results) >= width:
+        result = template_results[:width]
+        global_used.update(w.lower() for w in result)
+        return result
+    
+    # Otherwise, fill remaining with original lookup
+    remaining = width - len(template_results)
+    original_results = lookup_branches_for_word(word, remaining, all_candidates, global_used)
+    
+    result = template_results + original_results
+    return result[:width]
+
+
+def reassemble_corpse_bootstrap(leaves: List[str]) -> str:
+    """
+    Enhanced reassembly using:
+    - SEED_BIGRAMS (structural patterns from corpus)
+    - corpse_bigrams (learned successful chains)
+    - phonetic chaos (unpredictability)
+    
+    Weighted selection based on frequency, but NOT optimization.
+    This is ritual repetition, not intelligence.
+    """
+    if len(leaves) < 3:
+        random.shuffle(leaves)
+        return " ".join(leaves)
+    
+    # Build weighted bigram dict from database
+    conn = sqlite3.connect(DB_PATH)
+    try:
+        rows = conn.execute(
+            "SELECT word1, word2, frequency FROM corpse_bigrams"
+        ).fetchall()
+    finally:
+        conn.close()
+    
+    # Combine learned bigrams, seed bigrams, and leaf bigrams
+    weighted_bigrams: Dict[str, List[Tuple[str, int]]] = defaultdict(list)
+    
+    # Add learned bigrams (highest weight)
+    for word1, word2, freq in rows:
+        weighted_bigrams[word1].append((word2, freq * 3))
+    
+    # Add seed bigrams (medium weight)
+    for word1, nexts in SEED_BIGRAMS.items():
+        for word2 in nexts:
+            weighted_bigrams[word1].append((word2, 2))
+    
+    # Add local leaf bigrams (low weight)
+    for i in range(len(leaves) - 1):
+        weighted_bigrams[leaves[i].lower()].append((leaves[i + 1], 1))
+    
+    # Generate corpse using weighted random selection
+    current = random.choice(leaves)
+    result = [current]
+    seen = {current.lower()}
+    
+    target_len = random.randint(min(5, len(leaves)), min(10, len(leaves)))
+    for _ in range(target_len):
+        options = weighted_bigrams.get(current.lower(), [])
+        
+        # Filter out seen words and normalize weights
+        valid_options = [(w, wt) for w, wt in options if w.lower() not in seen]
+        
+        if valid_options:
+            # Weighted random selection with chaos injection
+            words, weights = zip(*valid_options)
+            # Add chaos: reduce weight differences for unpredictability
+            chaos_weights = [w ** 0.5 for w in weights]  # Square root reduces variance
+            current = random.choices(words, weights=chaos_weights, k=1)[0]
+        else:
+            # Fallback: pick random unused leaf
+            unused = [w for w in leaves if w.lower() not in seen]
+            if not unused:
+                break
+            current = random.choice(unused)
+        
+        result.append(current)
+        seen.add(current.lower())
+    
+    return " ".join(result)
+
+
+def compute_autopsy_resonance(tree_text: str, corpse: str, original_prompt: str) -> Dict[str, float]:
+    """
+    Compute resonance score based on:
+    - Phonetic diversity (unique phonetic fingerprints / total words)
+    - Semantic coherence (bigram overlap with known corpus / total bigrams)
+    - Syntactic flow (inverse of word length variance)
+    
+    Pure structural metrics. NO embeddings. NO semantics.
+    """
+    corpse_words = corpse.strip().split()
+    if not corpse_words:
+        return {
+            'phonetic_diversity': 0.0,
+            'semantic_coherence': 0.0,
+            'syntactic_flow': 0.0,
+            'overall_resonance': 0.0
+        }
+    
+    # 1. Phonetic diversity
+    fingerprints = set()
+    for word in corpse_words:
+        fp = phonetic_fingerprint(word)
+        if fp:
+            fingerprints.add(fp)
+    phonetic_diversity = len(fingerprints) / len(corpse_words) if corpse_words else 0.0
+    
+    # 2. Semantic coherence (bigram overlap with seed corpus)
+    corpse_bigrams = set()
+    for i in range(len(corpse_words) - 1):
+        corpse_bigrams.add((corpse_words[i].lower(), corpse_words[i+1].lower()))
+    
+    seed_bigram_set = set()
+    for word1, nexts in SEED_BIGRAMS.items():
+        for word2 in nexts:
+            seed_bigram_set.add((word1, word2))
+    
+    if corpse_bigrams:
+        overlap = len(corpse_bigrams & seed_bigram_set)
+        semantic_coherence = overlap / len(corpse_bigrams)
+    else:
+        semantic_coherence = 0.0
+    
+    # 3. Syntactic flow (inverse of word length variance)
+    lengths = [len(w) for w in corpse_words]
+    if len(lengths) > 1:
+        mean_len = sum(lengths) / len(lengths)
+        variance = sum((l - mean_len) ** 2 for l in lengths) / len(lengths)
+        syntactic_flow = 1.0 / (1.0 + variance)
+    else:
+        syntactic_flow = 1.0
+    
+    # Overall resonance (weighted combination)
+    overall = 0.4 * phonetic_diversity + 0.3 * semantic_coherence + 0.3 * syntactic_flow
+    
+    return {
+        'phonetic_diversity': phonetic_diversity,
+        'semantic_coherence': semantic_coherence,
+        'syntactic_flow': syntactic_flow,
+        'overall_resonance': overall
+    }
+
+
+def build_tree_for_word_bootstrap(
+    word: str,
+    width: int,
+    depth: int,
+    all_candidates: List[str],
+    global_used: Optional[Set[str]] = None
+) -> Node:
+    """Bootstrap version using lookup_branches_bootstrap()."""
+    if global_used is None:
+        global_used = set()
+    
+    node = Node(word=word)
+    if depth <= 1:
+        return node
+    
+    # Synthetic words don't breed further
+    if _is_synthetic_word(word):
+        return node
+    
+    first_level = lookup_branches_bootstrap(word, width, all_candidates, global_used)
+    
+    next_depth = depth - 1
+    for b in first_level:
+        child = build_tree_for_word_bootstrap(b, width=width, depth=next_depth, 
+                                              all_candidates=all_candidates, global_used=global_used)
+        node.children.append(child)
+    
+    return node
+
+
+def render_autopsy_bootstrap(prompt: str, words: List[str], trees: List[Node], 
+                             resonance: Dict[str, float], stats: Dict[str, int]) -> str:
+    """
+    Enhanced visualization showing:
+    - Original tree structure
+    - Reassembled corpse
+    - Resonance metrics (as ASCII progress bars)
+    - Memory accumulation stats (known mutations, learned bigrams, total autopsies)
+    """
+    out: List[str] = []
+    out.append(prompt.strip())
+    out.append("")
+    
+    for w, t in zip(words, trees):
+        out.append(w)
+        for i, ch in enumerate(t.children):
+            last = (i == len(t.children) - 1)
+            out.extend(render_node(ch, "  ", last))
+        out.append("")
+    
+    all_leaves: List[str] = []
+    for t in trees:
+        all_leaves.extend(collect_leaves(t))
+    
+    if all_leaves:
+        corpse = reassemble_corpse_bootstrap(all_leaves)
+        out.append("AUTOPSY RESULT:")
+        out.append(f"  {corpse}")
+        out.append("")
+    
+    # Resonance metrics visualization
+    def _render_bar(value: float, width: int = 10) -> str:
+        """Render ASCII progress bar."""
+        filled = int(value * width)
+        return "█" * filled + "░" * (width - filled)
+    
+    out.append("RESONANCE METRICS:")
+    out.append(f"  Phonetic Diversity: {_render_bar(resonance['phonetic_diversity'])} {resonance['phonetic_diversity']:.3f}")
+    out.append(f"  Structural Echo:    {_render_bar(resonance['semantic_coherence'])} {resonance['semantic_coherence']:.3f}")
+    out.append(f"  Mutation Depth:     {_render_bar(resonance['syntactic_flow'])} {resonance['syntactic_flow']:.3f}")
+    out.append("")
+    
+    # Memory accumulation stats
+    out.append("MEMORY ACCUMULATION:")
+    out.append(f"  Known mutations: {stats['mutations']:,}")
+    out.append(f"  Learned bigrams: {stats['bigrams']:,}")
+    out.append(f"  Total autopsies: {stats['autopsies']:,}")
+    out.append("")
+    
+    out.append("— Sorokin")
+    return "\n".join(out)
+
+
+def sorokin_autopsy_bootstrap(prompt: str) -> str:
+    """
+    Bootstrap-enhanced autopsy with pattern learning.
+    Calls harvest_autopsy_patterns() after each run.
+    """
+    short = prompt.strip()[:MAX_INPUT_CHARS]
+    tokens = tokenize(short)
+    if not tokens:
+        return "Nothing to dissect.\n\n— Sorokin"
+    
+    core = select_core_words(tokens)
+    
+    k = max(1, min(len(core), MAX_DEPTH))
+    width = k
+    depth = k
+    
+    all_candidates = tokens.copy()
+    
+    # Global deduplication
+    global_used: Set[str] = {w.lower() for w in core}
+    
+    # Build trees using bootstrap lookup
+    trees = [build_tree_for_word_bootstrap(w, width, depth, all_candidates, global_used) for w in core]
+    
+    # Collect leaves for corpse
+    all_leaves: List[str] = []
+    for t in trees:
+        all_leaves.extend(collect_leaves(t))
+    
+    corpse = reassemble_corpse_bootstrap(all_leaves) if all_leaves else ""
+    
+    # Render basic tree for storage
+    basic_report = render_autopsy(short, core, trees)
+    
+    # Store autopsy
+    conn = sqlite3.connect(DB_PATH)
+    try:
+        cursor = conn.execute(
+            "INSERT INTO autopsy(prompt, tree_text) VALUES (?, ?)",
+            (short, basic_report)
+        )
+        autopsy_id = cursor.lastrowid
+        conn.commit()
+    except Exception:
+        conn.rollback()
+        raise
+    finally:
+        conn.close()
+    
+    # Harvest patterns
+    harvest_autopsy_patterns(autopsy_id, basic_report, corpse)
+    
+    # Compute resonance
+    resonance = compute_autopsy_resonance(basic_report, corpse, short)
+    
+    # Store metrics
+    conn = sqlite3.connect(DB_PATH)
+    try:
+        conn.execute(
+            """INSERT INTO autopsy_metrics 
+               (autopsy_id, phonetic_diversity, semantic_coherence, syntactic_flow, overall_resonance)
+               VALUES (?, ?, ?, ?, ?)""",
+            (autopsy_id, resonance['phonetic_diversity'], resonance['semantic_coherence'],
+             resonance['syntactic_flow'], resonance['overall_resonance'])
+        )
+        conn.commit()
+    except Exception:
+        conn.rollback()
+        raise
+    finally:
+        conn.close()
+    
+    # Get stats
+    conn = sqlite3.connect(DB_PATH)
+    try:
+        mutations_count = conn.execute("SELECT COUNT(*) FROM mutation_templates").fetchone()[0]
+        bigrams_count = conn.execute("SELECT COUNT(*) FROM corpse_bigrams").fetchone()[0]
+        autopsies_count = conn.execute("SELECT COUNT(*) FROM autopsy").fetchone()[0]
+    finally:
+        conn.close()
+    
+    stats = {
+        'mutations': mutations_count,
+        'bigrams': bigrams_count,
+        'autopsies': autopsies_count
+    }
+    
+    # Render enhanced output
+    return render_autopsy_bootstrap(short, core, trees, resonance, stats)
+
+
+def repl(use_bootstrap: bool = False) -> None:
+    """Endless dissection loop until the operator gives up. Bootstrap optional."""
+    mode = "BOOTSTRAP" if use_bootstrap else "standard"
+    print(f"S̴̥̔o̴͎̿r̶̘̒o̸̺̽k̵̻̈́i̷͖͝ñ̶͕ online ({mode} mode). Type a prompt.")
     while True:
         try:
             prompt = input("> ").strip()
             if not prompt:
                 continue
-            print(sorokin_autopsy(prompt))
+            if use_bootstrap:
+                print(sorokin_autopsy_bootstrap(prompt))
+            else:
+                print(sorokin_autopsy(prompt))
             print()
         except (EOFError, KeyboardInterrupt):
             print("\nExiting autopsy room.")
@@ -751,11 +1309,21 @@ def repl() -> None:
 
 def main(argv: List[str]) -> None:
     init_db()
+    # Check for --bootstrap flag
+    if "--bootstrap" in argv:
+        argv.remove("--bootstrap")
+        use_bootstrap = True
+    else:
+        use_bootstrap = False
+    
     if len(argv) > 1:
         prompt = " ".join(argv[1:])
-        print(sorokin_autopsy(prompt))
+        if use_bootstrap:
+            print(sorokin_autopsy_bootstrap(prompt))
+        else:
+            print(sorokin_autopsy(prompt))
     else:
-        repl()
+        repl(use_bootstrap=use_bootstrap)
 
 
 if __name__ == "__main__":
