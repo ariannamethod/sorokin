@@ -88,11 +88,11 @@ Generate a "phonetic fingerprint" (consonant skeleton + vowel pattern) and find 
 ['hat', 'bat', 'car']  # dog doesn't rhyme with anything
 ```
 
-**Step 3: Internet Dumpster Diving**  
-When all else fails, scrape Google search results for the word + "synonym". Extract candidate words from the HTML garbage. Dignity? Never heard of her.
+**Step 3: Internet Dumpster Diving**
+When all else fails, scrape DuckDuckGo search results for the word + "synonym". DDG blocks bots less aggressively than Google. Extract candidate words from the HTML garbage. Dignity? Never heard of her.
 
-**Step 4: Synthetic Placeholders**  
-If even Google fails you (impressive), generate synthetic mutations like `word_x1`, `word_x2`. The show must go on.
+**Step 4: Fallback to All Candidates**
+If even DuckDuckGo fails you, fall back to other words from the prompt. The show must go on.
 
 The result is a tree where each word branches into `width` children, recursively, up to `depth` levels. It looks like this:
 
@@ -165,17 +165,17 @@ Or maybe it's just fun to watch language come apart at the seams.
 ### Technical Details (For the Nerds)
 
 - **Pure Python 3**: No external dependencies except stdlib
-- **~700 lines**: Compact enough to understand, complex enough to surprise
+- **~760 lines**: Compact enough to understand, complex enough to surprise
 - **Recursive tree building**: Width × depth branching with global deduplication
 - **Phonetic fingerprinting**: Crude but effective
-- **Web scraping**: urllib + regex, the old way
+- **DuckDuckGo scraping**: urllib + regex, the old way (DDG blocks bots less than Google)
 - **SQLite persistence**: Your words, forever
 - **Markov reassembly**: Bigram chains with fallbacks
 - **HTML artifact filtering**: Extensive blacklist to filter web scraping noise
 
 ### Known Limitations
 
-- **Google rate limiting**: If you run this too much, Google will notice
+- **DuckDuckGo rate limiting**: If you run this too much, DDG might notice (but less aggressive than Google)
 - **No semantic understanding**: This is pure pattern matching
 - **Phonetic fingerprinting is crude**: It's not actual phonetics, just vibes
 - **Reassembly can be janky**: Sometimes the corpse doesn't stitch well
@@ -183,13 +183,20 @@ Or maybe it's just fun to watch language come apart at the seams.
 
 ### Recent Improvements
 
-**Synthetic Mutation Purge (Latest)**
+**DuckDuckGo Web Scraping (Latest)**
+Switched from Google to DuckDuckGo for synonym discovery. Google was blocking bot requests and returning garbage results (always the same words: "trouble", "within", "having"). DuckDuckGo is less aggressive with bot blocking and returns actual synonyms:
+- "destroy" → destruction, disintegrate, dismantle, obliteration, demolish
+- "evil" → villainy, villain, evildoing, depravity, wickedness
+- "machines" → automobile, equipment, mechanical, apparatus
+Result: Real semantic resonance instead of random HTML artifacts.
+
+**Synthetic Mutation Purge**
 Removed `_generate_phonetic_variants` entirely because it was creating garbage that polluted the autopsy:
 - Reversed words ("elpmis", "etaerc") bred recursively into unreadable noise
 - Suffix mutations ("createded" → "creatededed" → "createedededed") were pure madness
-- Now uses minimal fallback: only real Google synonyms + phonetic neighbors
+- Now uses minimal fallback: only real web-scraped synonyms + phonetic neighbors
 - Synthetic word detection prevents breeding of low-vowel/repeated-letter mutations
-- Result: Clean autopsy output like "trouble within having fuck" instead of "creatededed elpmisss tttrouble"
+- Result: Clean autopsy output instead of synthetic garbage like "creatededed elpmisss tttrouble"
 
 **Global Deduplication**
 Implemented cross-tree word deduplication to prevent the same mutations from appearing in different core word branches. Each tree now gets unique mutations, resulting in more diverse and interesting autopsies.

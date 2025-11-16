@@ -294,22 +294,22 @@ class TestIntegration(unittest.TestCase):
         except:
             pass
 
-    @patch('sorokin._fetch_google_snippets')
+    @patch('sorokin._fetch_web_synonyms')
     def test_full_autopsy_short_prompt(self, mock_fetch):
         # Mock the web scraping to avoid actual HTTP requests
         mock_fetch.return_value = "<html>test words here</html>"
-        
+
         result = sorokin_autopsy("test prompt")
         self.assertIsInstance(result, str)
         self.assertIn("— Sorokin", result)
 
-    @patch('sorokin._fetch_google_snippets')
+    @patch('sorokin._fetch_web_synonyms')
     def test_full_autopsy_empty_prompt(self, mock_fetch):
         mock_fetch.return_value = ""
         result = sorokin_autopsy("")
         self.assertIn("Nothing to dissect", result)
 
-    @patch('sorokin._fetch_google_snippets')
+    @patch('sorokin._fetch_web_synonyms')
     def test_full_autopsy_long_prompt(self, mock_fetch):
         mock_fetch.return_value = "<html>test words here</html>"
         # Create a prompt longer than MAX_INPUT_CHARS
@@ -318,7 +318,7 @@ class TestIntegration(unittest.TestCase):
         self.assertIsInstance(result, str)
         self.assertIn("— Sorokin", result)
 
-    @patch('sorokin._fetch_google_snippets')
+    @patch('sorokin._fetch_web_synonyms')
     def test_full_autopsy_cyrillic(self, mock_fetch):
         mock_fetch.return_value = "<html>тест слова здесь</html>"
         result = sorokin_autopsy("привет мир")

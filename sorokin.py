@@ -315,16 +315,17 @@ def find_phonetic_neighbors(word: str, candidate_pool: List[str], limit: int) ->
 _html_cache: Dict[str, str] = {}
 
 
-def _fetch_google_snippets(query: str) -> str:
+def _fetch_web_synonyms(query: str) -> str:
     """
-    Scrapes the web like a raccoon in a trash can.
+    Scrapes DuckDuckGo like a raccoon in a trash can.
+    DDG blocks bots less aggressively than Google.
     Meaning is irrelevant. Resonance is king.
     """
     if query in _html_cache:
         return _html_cache[query]
 
     try:
-        url = f"https://www.google.com/search?q={urllib.parse.quote(query)}&num=3"
+        url = f"https://duckduckgo.com/html/?q={urllib.parse.quote(query)}"
         req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
         with urllib.request.urlopen(req, timeout=6) as resp:
             html_text = resp.read().decode("utf-8", "ignore")
@@ -426,8 +427,8 @@ def lookup_branches_for_word(
     Order of preference:
       1) previous mutations from SQLite
       2) phonetic neighbors from candidate pool
-      3) fresh trash from Google
-      4) synthetic placeholders if all else fails
+      3) fresh trash from DuckDuckGo
+      4) fallback to all_candidates if needed
 
     global_used: set of already-used words across all trees (for deduplication)
     """
@@ -455,7 +456,7 @@ def lookup_branches_for_word(
         global_used.update(w.lower() for w in result)
         return result
 
-    # 3) Google synonyms
+    # 3) Web synonyms from DuckDuckGo
     # Try multiple search strategies: with synonym suffix, plain word, and related terms
     search_queries = [
         f"{word} synonym",
@@ -466,7 +467,7 @@ def lookup_branches_for_word(
 
     candidates = []
     for query in search_queries:
-        html_text = _fetch_google_snippets(query)
+        html_text = _fetch_web_synonyms(query)
         candidates = _extract_candidate_words(html_text)
         if candidates:
             break  # Stop on first successful extraction
