@@ -16,31 +16,375 @@ Named after Vladimir Sorokin, the Russian writer known for his transgressive and
 
 ### Exhibit: Maximum Autopsy Tree (Bootstrap Mode)
 
-Because Sorokin builds trees vertically like a linguo-necromancer performing open-heart surgery on reality itself, here's a full corpse-map straight from his SQLite morgue. The phrase being dissected is **from Sorokin's own seed corpus**—maximum autoreference, like a snake eating its own tail while writing a dissertation about digestion:
+Because Sorokin builds trees vertically like a linguo-necromancer performing open-heart surgery on reality itself, here's a full corpse-map straight from his SQLite morgue. The phrase being dissected is **"reality becomes syntax error"**—a meta-commentary on the system's own nature:
 
 ```
-the autopsy produces fragments that echo the ghost of structure without returning to it
+reality becomes syntax error
 
-[...truncated massive tree for brevity...]
+reality
+  ├─ realism
+  │  ├─ representationalism
+  │  │  ├─ representationalisms
+  │  │  ├─ representation
+  │  │  ├─ proverbmeaning
+  │  │  └─ republic
+  │  ├─ exaggerating
+  │  │  ├─ exaggeration
+  │  │  ├─ overreacting
+  │  │  ├─ overstating
+  │  │  └─ enhancing
+  │  ├─ literalism
+  │  │  ├─ alternative
+  │  │  ├─ literature
+  │  │  ├─ dogmatism
+  │  │  └─ philosophical
+  │  └─ faithfulness
+  │     ├─ devotedness
+  │     ├─ faithless
+  │     ├─ faithfulnesses
+  │     └─ fæþfulness
+  ├─ materiality
+  │  ├─ corporeality
+  │  │  ├─ carnality
+  │  │  ├─ corporality
+  │  │  ├─ substantiality
+  │  │  └─ physicality
+  │  ├─ quality
+  │  │  ├─ degradation
+  │  │  ├─ attribution
+  │  │  ├─ trait
+  │  │  └─ peculiarity
+  │  ├─ actuality
+  │  │  ├─ actualizations
+  │  │  ├─ materialisation
+  │  │  ├─ materialization
+  │  │  └─ accomplishments
+  │  └─ physicalness
+  │     ├─ phrases
+  │     ├─ database
+  │     ├─ related
+  │     └─ psychological
+  ├─ unreality
+  │  ├─ abnormality
+  │  │  ├─ singularity
+  │  │  ├─ abnormalcy
+  │  │  ├─ normality
+  │  │  └─ inadmissibility
+  │  ├─ irreality
+  │  │  ├─ surreality
+  │  │  ├─ fictitiousness
+  │  │  ├─ automatically
+  │  │  └─ fabrication
+  │  ├─ illusoriness
+  │  │  ├─ illusive
+  │  │  ├─ craftiness
+  │  │  ├─ weirdness
+  │  │  └─ deceptive
+  │  └─ incongruity
+  │     ├─ incongruousness
+  │     ├─ inconsistency
+  │     ├─ inconsistence
+  │     └─ incompatibility
+  └─ certainty
+     ├─ ceremony
+     │  ├─ ceremonial
+     │  ├─ traditional
+     │  ├─ informality
+     │  └─ conventions
+     ├─ uncertainty
+     │  ├─ unpredictable
+     │  ├─ including
+     │  ├─ incertitude
+     │  └─ inconsistent
+     ├─ satisfaction
+     │  ├─ compensation
+     │  ├─ dissatisfaction
+     │  ├─ conviction
+     │  └─ gratification
+     └─ assuredness
+        ├─ positiveness
+        ├─ absoluteness
+        ├─ decisiveness
+        └─ correctness
+
+becomes
+  ├─ become
+  │  ├─ convert
+  │  │  ├─ contexts
+  │  │  ├─ converts
+  │  │  ├─ transpose
+  │  │  └─ metamorphose
+  │  ├─ inappropriate
+  │  │  ├─ inapplicable
+  │  │  ├─ unfortunate
+  │  │  ├─ example
+  │  │  └─ weakest
+  │  ├─ unflattering
+  │  │  ├─ acknowledging
+  │  │  ├─ representing
+  │  │  ├─ unfavorably
+  │  │  └─ unfavorable
+  │  └─ vocabulary
+  │     ├─ explanations
+  │     ├─ explication
+  │     ├─ explanatio
+  │     └─ explanation
+  ├─ metamorphosed
+  │  ├─ resolved
+  │  │  ├─ unresolved
+  │  │  ├─ resolution
+  │  │  ├─ resolute
+  │  │  └─ undetermined
+  │  ├─ mutation
+  │  │  ├─ mutations
+  │  │  ├─ transformations
+  │  │  ├─ translation
+  │  │  └─ transfiguration
+  │  ├─ transubstantiate
+  │  │  ├─ translate
+  │  │  ├─ transubstantiates
+  │  │  ├─ transfigures
+  │  │  └─ appearance
+  │  └─ transformation
+  │     ├─ transfigure
+  │     ├─ grammatical
+  │     ├─ construction
+  │     └─ reformation
+  ├─ improve
+  │  ├─ improves
+  │  │  ├─ reinforces
+  │  │  ├─ impactful
+  │  │  ├─ improving
+  │  │  └─ alternatives
+  │  ├─ reinforces
+  │  │  ├─ reinforce
+  │  │  ├─ reinforcement
+  │  │  ├─ bolsters
+  │  │  └─ substantiates
+  │  ├─ progress
+  │  │  ├─ process
+  │  │  ├─ progressions
+  │  │  ├─ progression
+  │  │  └─ retrogression
+  │  └─ comprehensive
+  │     ├─ cambridge
+  │     ├─ completeness
+  │     ├─ specialized
+  │     └─ extensive
+  └─ resolve
+     ├─ components
+     │  ├─ component
+     │  ├─ compounds
+     │  ├─ compound
+     │  └─ characteristics
+     ├─ intellectual
+     │  ├─ intellectualistic
+     │  ├─ intellectualist
+     │  ├─ nonintellectual
+     │  └─ unintellectual
+     ├─ perseverance
+     │  ├─ pursuance
+     │  ├─ steadfastness
+     │  ├─ continuance
+     │  └─ pertinacity
+     └─ conclusively
+        ├─ conclusive
+        ├─ inconclusively
+        ├─ determinative
+        └─ consummately
+
+syntax
+  ├─ syntactical
+  │  ├─ syntactically
+  │  │  ├─ morphological
+  │  │  ├─ phonological
+  │  │  ├─ syntactics
+  │  │  └─ arrangement
+  │  ├─ morphologically
+  │  │  ├─ merriam
+  │  │  ├─ consideration
+  │  │  ├─ linguistic
+  │  │  └─ rhetorical
+  │  ├─ linguistically
+  │  │  ├─ stylistically
+  │  │  ├─ oratorically
+  │  │  ├─ rhetorically
+  │  │  └─ conversational
+  │  └─ etymologically
+  │     ├─ etymological
+  │     ├─ historically
+  │     ├─ associations
+  │     └─ linguistics
+  ├─ synonymbase
+  │  ├─ predicate
+  │  │  ├─ discussions
+  │  │  ├─ effectively
+  │  │  ├─ grammardiary
+  │  │  └─ communicate
+  │  ├─ predicates
+  │  │  ├─ establishes
+  │  │  ├─ established
+  │  │  ├─ corroborates
+  │  │  └─ demonstrates
+  │  ├─ predicated
+  │  │  ├─ underpinned
+  │  │  ├─ proclaimed
+  │  │  ├─ postulated
+  │  │  └─ presupposed
+  │  └─ formulated
+  │     ├─ methodically
+  │     ├─ associated
+  │     ├─ articulated
+  │     └─ formulate
+  ├─ synthesis
+  │  ├─ synthesize
+  │  │  ├─ experiments
+  │  │  ├─ harmonize
+  │  │  ├─ organize
+  │  │  └─ consolidating
+  │  ├─ english
+  │  │  ├─ additionally
+  │  │  ├─ crowdsourced
+  │  │  ├─ collection
+  │  │  └─ unabridged
+  │  ├─ amalgamation
+  │  │  ├─ amalgamations
+  │  │  ├─ integration
+  │  │  ├─ unification
+  │  │  └─ consolidation
+  │  └─ constituent
+  │     ├─ constituents
+  │     ├─ constitutional
+  │     ├─ constituting
+  │     └─ constitutive
+  └─ synonym
+     ├─ system
+     │  ├─ systems
+     │  ├─ webs
+     │  ├─ conglomerates
+     │  └─ conglomerate
+     ├─ trustworthy
+     │  ├─ untrustworthy
+     │  ├─ truthful
+     │  ├─ trusted
+     │  └─ trustworthiness
+     ├─ uniqueness
+     │  ├─ separateness
+     │  ├─ distinctiveness
+     │  ├─ sentences
+     │  └─ extraordinary
+     └─ popularity
+        ├─ universality
+        ├─ popularized
+        ├─ unpopularity
+        └─ acclaim
+
+error
+  ├─ errors
+  │  ├─ exactitudes
+  │  │  ├─ exactitude
+  │  │  ├─ meticulousness
+  │  │  ├─ verisimilitude
+  │  │  └─ veraciousness
+  │  ├─ perfections
+  │  │  ├─ perfection
+  │  │  ├─ manifestations
+  │  │  ├─ imperfections
+  │  │  └─ destructions
+  │  ├─ preferences
+  │  │  ├─ preferred
+  │  │  ├─ prefer
+  │  │  ├─ preferable
+  │  │  └─ pursuits
+  │  └─ precisions
+  │     ├─ precision
+  │     ├─ particularity
+  │     ├─ regions
+  │     └─ definiteness
+  ├─ erratum
+  │  ├─ fault
+  │  │  ├─ faults
+  │  │  ├─ failings
+  │  │  ├─ failing
+  │  │  └─ accountability
+  │  ├─ misidentification
+  │  │  ├─ misknow
+  │  │  ├─ misunderstand
+  │  │  ├─ misperceived
+  │  │  └─ misinterpret
+  │  ├─ corrigendum
+  │  │  ├─ addendum
+  │  │  ├─ corrected
+  │  │  ├─ peru
+  │  │  └─ misstatement
+  │  └─ definition
+  │     ├─ description
+  │     ├─ delineation
+  │     ├─ adjectives
+  │     └─ catalonia
+  ├─ attributable
+  │  ├─ accountable
+  │  │  ├─ unaccountable
+  │  │  ├─ decipherable
+  │  │  ├─ explainable
+  │  │  └─ blameless
+  │  ├─ applicable
+  │  │  ├─ appropriate
+  │  │  ├─ impracticable
+  │  │  ├─ applicative
+  │  │  └─ practicable
+  │  ├─ explicable
+  │  │  ├─ explicatable
+  │  │  ├─ unexplainable
+  │  │  ├─ justifiable
+  │  │  └─ straightforward
+  │  └─ assignable
+  │     ├─ distributable
+  │     ├─ accreditable
+  │     ├─ exchangeable
+  │     └─ identifiable
+  └─ inaccuracies
+     ├─ accuracies
+     │  ├─ authenticities
+     │  ├─ factualities
+     │  ├─ strictness
+     │  └─ fidelities
+     ├─ faultiness
+     │  ├─ opposite
+     │  ├─ flawless
+     │  ├─ ukraine
+     │  └─ failure
+     ├─ fallacies
+     │  ├─ falsehood
+     │  ├─ united
+     │  ├─ misunderstanding
+     │  └─ superstition
+     └─ incorrectness
+        ├─ incorrectnesses
+        ├─ indelicateness
+        ├─ undesirability
+        └─ indecorousness
 
 AUTOPSY RESULT:
-  Anamneses cultivated multiplicity, where reminiscence becomes devout.
-  Through colloquialism, hodgepodges bolsters imaginativeness, but correlative darkness remains.
+  When explanation postulated, experiments forgets failings.
+  The component transformations transubstantiates through authenticities.
+  Alternatives peru steadfastness until representationalisms incertitude consumes.
+  Prefer crowdsourced consolidation until example absoluteness consumes.
 
 RESONANCE METRICS:
   Phonetic Diversity: ██████████ 1.000
   Structural Echo:    ░░░░░░░░░░ 0.000
-  Mutation Depth:     ░░░░░░░░░░ 0.076
+  Mutation Depth:     █░░░░░░░░░ 0.101
 
 MEMORY ACCUMULATION:
-  Known mutations: 1,226
-  Learned bigrams: 87
-  Total autopsies: 4
+  Known mutations: 1,467
+  Learned bigrams: 122
+  Total autopsies: 7
 
 — Sorokin
 ```
 
-**Notice**: Bootstrap mode now generates **grammatically valid paragraphs** using POS-tagged template slot-filling! Sorokin dissected a sentence about himself, found himself in the mutations (`autopsy → produces → fragments`), and reassembled it into psychopathic poetry. "Nothing remains" appears verbatim from his seed corpus—he's quoting himself while destroying himself. Peak metafiction.
+**Notice**: Bootstrap mode now generates **grammatically valid paragraphs** using POS-tagged template slot-filling! Sorokin dissected "reality becomes syntax error" and achieved **perfect 1.000 Phonetic Diversity** with **0.101 Mutation Depth**. Look at the mutations—"peru", "example", "explanation", "crowdsourced"—*all appear in this very README*. The system is eating its own documentation and hallucinating it back as psychopathic poetry. Self-reference achieved. Peak metafiction.
 
 ### The Three-Act Horror Show
 

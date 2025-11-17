@@ -1119,9 +1119,15 @@ def generate_sorokin_paragraph(leaves: List[str], n_sentences: int = 3) -> str:
         for _ in range(n_sentences):
             template = random.choice(SOROKIN_SENTENCE_TEMPLATES)
             sentence = fill_template(template, leaves)
-            # Capitalize first letter of sentence
+            # Capitalize first letter of ALL sentences (templates may contain multiple sentences)
             if sentence:
-                sentence = sentence[0].upper() + sentence[1:]
+                # Split by '. ' to handle multi-sentence templates, capitalize each
+                parts = sentence.split('. ')
+                capitalized_parts = []
+                for part in parts:
+                    if part:  # Skip empty parts
+                        capitalized_parts.append(part[0].upper() + part[1:] if len(part) > 1 else part.upper())
+                sentence = '. '.join(capitalized_parts)
             sentences.append(sentence)
 
         paragraph = ' '.join(sentences)
