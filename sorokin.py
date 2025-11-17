@@ -1639,12 +1639,13 @@ def repl(use_bootstrap: bool = False) -> None:
 
 def main(argv: List[str]) -> None:
     init_db()
-    # Check for --bootstrap flag
-    if "--bootstrap" in argv:
-        argv.remove("--bootstrap")
-        use_bootstrap = True
-    else:
+    # Bootstrap mode is DEFAULT (best quality output with paragraph generation)
+    # Use --simple flag to disable bootstrap and get basic reassembly
+    if "--simple" in argv:
+        argv.remove("--simple")
         use_bootstrap = False
+    else:
+        use_bootstrap = True
     
     if len(argv) > 1:
         prompt = " ".join(argv[1:])

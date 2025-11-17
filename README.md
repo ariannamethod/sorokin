@@ -24,19 +24,18 @@ the autopsy produces fragments that echo the ghost of structure without returnin
 [...truncated massive tree for brevity...]
 
 AUTOPSY RESULT:
-  dispensations is mixture. declassification example. Nothing remains.
-  fetch replica inquire until available generates consumes.
-  The dissociates griffonage silenced through associations.
+  Anamneses cultivated multiplicity, where reminiscence becomes devout.
+  Through colloquialism, hodgepodges bolsters imaginativeness, but correlative darkness remains.
 
 RESONANCE METRICS:
-  Phonetic Diversity: █████████░ 0.952
+  Phonetic Diversity: ██████████ 1.000
   Structural Echo:    ░░░░░░░░░░ 0.000
-  Mutation Depth:     ░░░░░░░░░░ 0.073
+  Mutation Depth:     ░░░░░░░░░░ 0.076
 
 MEMORY ACCUMULATION:
-  Known mutations: 870
-  Learned bigrams: 71
-  Total autopsies: 3
+  Known mutations: 1,226
+  Learned bigrams: 87
+  Total autopsies: 4
 
 — Sorokin
 ```
