@@ -227,6 +227,10 @@ def init_db() -> None:
             CREATE INDEX IF NOT EXISTS idx_readme_bigrams_word1
             ON readme_bigrams(word1)
         """)
+        conn.execute("""
+            CREATE UNIQUE INDEX IF NOT EXISTS idx_readme_bigrams_unique
+            ON readme_bigrams(word1, word2)
+        """)
         conn.commit()
     except Exception:
         conn.rollback()
@@ -314,19 +318,20 @@ def _build_readme_bigrams() -> Dict[str, List[str]]:
     if not readme_path.exists():
         return {}
 
+    # Get README mtime before opening DB
+    readme_mtime = readme_path.stat().st_mtime
+
     # Check cache validity
     conn = sqlite3.connect(DB_PATH)
     try:
-        # Get README mtime
-        readme_mtime = readme_path.stat().st_mtime
-
         # Check cached version (may fail on first run before init_db)
         try:
             cached = conn.execute(
                 "SELECT mtime FROM readme_cache WHERE id = 1"
             ).fetchone()
 
-            if cached and abs(cached[0] - readme_mtime) < 0.001:  # Float comparison tolerance
+            # Use 1.0 second tolerance for coarse filesystem timestamp granularity (FAT32, network FS)
+            if cached and abs(cached[0] - readme_mtime) < 1.0:
                 # Load from cache
                 rows = conn.execute(
                     "SELECT word1, word2 FROM readme_bigrams"
@@ -364,13 +369,12 @@ def _build_readme_bigrams() -> Dict[str, List[str]]:
     # Save to cache (may fail on first run before init_db)
     conn = sqlite3.connect(DB_PATH)
     try:
-        # Clear old cache
-        conn.execute("DELETE FROM readme_cache")
+        # Clear old bigrams cache
         conn.execute("DELETE FROM readme_bigrams")
 
-        # Store new mtime
+        # Store new mtime (replace or insert)
         conn.execute(
-            "INSERT INTO readme_cache (id, mtime) VALUES (1, ?)",
+            "REPLACE INTO readme_cache (id, mtime) VALUES (1, ?)",
             (readme_mtime,)
         )
 
