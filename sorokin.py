@@ -110,6 +110,25 @@ HTML_ARTIFACTS = {
     "translations", "meanings", "dictionary", "thesaurus", "synonyms", "antonyms",
     "examples", "dictionaries", "categories", "quotations", "alphabetically",
     "yourdictionary", "thefreedictionary", "urbanthesaurus", "urbandictionary",
+
+    # Geographic names that pollute DDG results (countries, cities, etc.)
+    "singapore", "philippines", "colombia", "argentina", "australia", "austria",
+    "netherlands", "switzerland", "denmark", "iceland", "sweden", "norway",
+    "finland", "poland", "portugal", "spain", "france", "germany", "italy",
+    "greece", "turkey", "brazil", "mexico", "canada", "russia", "china",
+    "japan", "korea", "india", "thailand", "vietnam", "indonesia", "malaysia",
+    "africa", "asia", "europe", "america", "oceania",
+    "lithuania", "latvia", "estonia", "bulgaria", "romania", "croatia",
+    "montenegro", "macedonia", "slovenia", "slovakia", "czech",
+    "ireland", "scotland", "wales", "england", "britain",
+
+    # Language/dictionary metadata
+    "spanish", "french", "german", "italian", "portuguese", "russian",
+    "chinese", "japanese", "korean", "arabic", "hindi", "turkish",
+    "tellmeinspanish", "frenchdictionary", "spanishdict", "reversedict",
+    "reversethesaurus", "lawlessfrench", "frenchtogether",
+    "singaporean", "singaporeans", "singlish", "singlishdict",
+    "colombian", "argentinian", "brazilian", "mexican", "canadian",
 }
 
 
@@ -187,8 +206,26 @@ def init_db() -> None:
             ON mutation_templates(source_word, success_count DESC)
         """)
         conn.execute("""
-            CREATE INDEX IF NOT EXISTS idx_corpse_bigrams_word1 
+            CREATE INDEX IF NOT EXISTS idx_corpse_bigrams_word1
             ON corpse_bigrams(word1, frequency DESC)
+        """)
+        # README cache tables
+        conn.execute("""
+            CREATE TABLE IF NOT EXISTS readme_cache (
+                id INTEGER PRIMARY KEY DEFAULT 1,
+                mtime REAL NOT NULL,
+                CHECK (id = 1)
+            )
+        """)
+        conn.execute("""
+            CREATE TABLE IF NOT EXISTS readme_bigrams (
+                word1 TEXT NOT NULL,
+                word2 TEXT NOT NULL
+            )
+        """)
+        conn.execute("""
+            CREATE INDEX IF NOT EXISTS idx_readme_bigrams_word1
+            ON readme_bigrams(word1)
         """)
         conn.commit()
     except Exception:
@@ -272,11 +309,39 @@ SEED_BIGRAMS = _build_seed_bigrams()  # Loaded once at module import
 
 
 def _build_readme_bigrams() -> Dict[str, List[str]]:
-    """Extract structural bigrams from README.md if it exists."""
+    """Extract structural bigrams from README.md with SQLite caching."""
     readme_path = Path("README.md")
     if not readme_path.exists():
         return {}
 
+    # Check cache validity
+    conn = sqlite3.connect(DB_PATH)
+    try:
+        # Get README mtime
+        readme_mtime = readme_path.stat().st_mtime
+
+        # Check cached version (may fail on first run before init_db)
+        try:
+            cached = conn.execute(
+                "SELECT mtime FROM readme_cache WHERE id = 1"
+            ).fetchone()
+
+            if cached and abs(cached[0] - readme_mtime) < 0.001:  # Float comparison tolerance
+                # Load from cache
+                rows = conn.execute(
+                    "SELECT word1, word2 FROM readme_bigrams"
+                ).fetchall()
+                bigrams = defaultdict(list)
+                for w1, w2 in rows:
+                    bigrams[w1].append(w2)
+                return dict(bigrams)
+        except sqlite3.OperationalError:
+            # Tables don't exist yet (first run before init_db)
+            pass
+    finally:
+        conn.close()
+
+    # Parse README (cache miss or stale)
     bigrams = defaultdict(list)
     try:
         text = readme_path.read_text(encoding='utf-8')
@@ -295,6 +360,40 @@ def _build_readme_bigrams() -> Dict[str, List[str]]:
                 bigrams[words[i].lower()].append(words[i+1].lower())
     except Exception:
         pass  # If README parsing fails, just skip it
+
+    # Save to cache (may fail on first run before init_db)
+    conn = sqlite3.connect(DB_PATH)
+    try:
+        # Clear old cache
+        conn.execute("DELETE FROM readme_cache")
+        conn.execute("DELETE FROM readme_bigrams")
+
+        # Store new mtime
+        conn.execute(
+            "INSERT INTO readme_cache (id, mtime) VALUES (1, ?)",
+            (readme_mtime,)
+        )
+
+        # Store bigrams
+        bigram_rows = []
+        for word1, nexts in bigrams.items():
+            for word2 in nexts:
+                bigram_rows.append((word1, word2))
+
+        if bigram_rows:
+            conn.executemany(
+                "INSERT INTO readme_bigrams (word1, word2) VALUES (?, ?)",
+                bigram_rows
+            )
+
+        conn.commit()
+    except sqlite3.OperationalError:
+        # Tables don't exist yet (first run before init_db), skip caching
+        conn.rollback()
+    except Exception:
+        conn.rollback()
+    finally:
+        conn.close()
 
     return dict(bigrams)
 
