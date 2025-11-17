@@ -14,72 +14,34 @@
 
 Named after Vladimir Sorokin, the Russian writer known for his transgressive and experimental style, sorokin embodies the same spirit of literary dissection and reconstruction. It's not here to help you. It's here to show you what your words *could have been*.
 
-### Exhibit: Maximum Autopsy Tree
+### Exhibit: Maximum Autopsy Tree (Bootstrap Mode)
 
-Because Sorokin builds trees vertically like a linguo-necromancer performing open-heart surgery on reality itself, here's a full corpse-map straight from his SQLite morgue. The phrase being dissected is "darkness consumes reality," chosen because it sounds like a rejected Nietzsche tweet:
+Because Sorokin builds trees vertically like a linguo-necromancer performing open-heart surgery on reality itself, here's a full corpse-map straight from his SQLite morgue. The phrase being dissected is **from Sorokin's own seed corpus**—maximum autoreference, like a snake eating its own tail while writing a dissertation about digestion:
 
 ```
-darkness consumes reality
+the autopsy produces fragments that echo the ghost of structure without returning to it
 
-darkness
-  ├─ illuminated
-  │  ├─ illustrated
-  │  ├─ illustrate
-  │  └─ illuminate
-  ├─ brilliance
-  │  ├─ brilliancy
-  │  ├─ blackness
-  │  └─ greatness
-  └─ ignorance
-     ├─ naïveté
-     ├─ example
-     └─ unenlightenment
-
-consumes
-  ├─ consume
-  │  ├─ turkey
-  │  ├─ philippines
-  │  └─ vocabulary
-  ├─ contexts
-  │  ├─ context
-  │  ├─ environment
-  │  └─ connection
-  └─ conserve
-     ├─ economise
-     ├─ shelter
-     └─ greece
-
-reality
-  ├─ realism
-  │  ├─ representationalism
-  │  ├─ literalism
-  │  └─ faithfulness
-  ├─ materiality
-  │  ├─ referentiality
-  │  ├─ corporeality
-  │  └─ temporality
-  └─ certainty
-     ├─ certain
-     ├─ ceremony
-     └─ uncertainty
+[...truncated massive tree for brevity...]
 
 AUTOPSY RESULT:
-  connection economise shelter greece representationalism literalism faithfulness referentiality
+  dispensations is mixture. declassification example. Nothing remains.
+  fetch replica inquire until available generates consumes.
+  The dissociates griffonage silenced through associations.
 
 RESONANCE METRICS:
-  Phonetic Diversity: ██████████ 1.000
+  Phonetic Diversity: █████████░ 0.952
   Structural Echo:    ░░░░░░░░░░ 0.000
-  Mutation Depth:     █░░░░░░░░░ 0.137
+  Mutation Depth:     ░░░░░░░░░░ 0.073
 
 MEMORY ACCUMULATION:
-  Known mutations: 36
-  Learned bigrams: 9
-  Total autopsies: 1
+  Known mutations: 870
+  Learned bigrams: 71
+  Total autopsies: 3
 
-Sorokin.
+— Sorokin
 ```
 
-Somewhere between "unenlightenment" and "corporeality," Nietzsche rolled over in his grave and asked his accountant to sue for trademark infringement. The accountant, being dead, declined. Reality remains unconsumed. Darkness persists. We've all learned nothing.
+**Notice**: Bootstrap mode now generates **grammatically valid paragraphs** using POS-tagged template slot-filling! Sorokin dissected a sentence about himself, found himself in the mutations (`autopsy → produces → fragments`), and reassembled it into psychopathic poetry. "Nothing remains" appears verbatim from his seed corpus—he's quoting himself while destroying himself. Peak metafiction.
 
 ### The Three-Act Horror Show
 
