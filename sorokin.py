@@ -1100,6 +1100,7 @@ def generate_sorokin_paragraph(leaves: List[str], n_sentences: int = 3) -> str:
     - Syntactic templates (Sorokin-style)
     - POS-based slot filling
     - Punctuation (commas, periods)
+    - Proper capitalization (first letter of each sentence)
     - Maximum resonance selection (generate 20 candidates, pick best)
 
     Returns a grammatically valid but semantically absurd paragraph.
@@ -1114,6 +1115,9 @@ def generate_sorokin_paragraph(leaves: List[str], n_sentences: int = 3) -> str:
         for _ in range(n_sentences):
             template = random.choice(SOROKIN_SENTENCE_TEMPLATES)
             sentence = fill_template(template, leaves)
+            # Capitalize first letter of sentence
+            if sentence:
+                sentence = sentence[0].upper() + sentence[1:]
             sentences.append(sentence)
 
         paragraph = ' '.join(sentences)
