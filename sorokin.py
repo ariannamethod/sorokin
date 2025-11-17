@@ -386,7 +386,7 @@ def _build_readme_bigrams() -> Dict[str, List[str]]:
 
         if bigram_rows:
             conn.executemany(
-                "INSERT INTO readme_bigrams (word1, word2) VALUES (?, ?)",
+                "INSERT OR IGNORE INTO readme_bigrams (word1, word2) VALUES (?, ?)",
                 bigram_rows
             )
 
