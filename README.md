@@ -1,3 +1,12 @@
+```
+███████╗ ██████╗ ██████╗  ██████╗ ██╗  ██╗██╗███╗   ██╗
+██╔════╝██╔═══██╗██╔══██╗██╔═══██╗██║ ██╔╝██║████╗  ██║
+███████╗██║   ██║██████╔╝██║   ██║█████╔╝ ██║██╔██╗ ██║
+╚════██║██║   ██║██╔══██╗██║   ██║██╔═██╗ ██║██║╚██╗██║
+███████║╚██████╔╝██║  ██║╚██████╔╝██║  ██╗██║██║ ╚████║
+╚══════╝ ╚═════╝ ╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═╝╚═╝╚═╝  ╚═══╝
+```
+
 # sorokin
 
 > "The heads of philologists are stuffed with books to the brim. They see life only through text. And they are proud of it. … Forever gorged and poisoned by literature, they take living life as the continuation of text, as its appendix.
@@ -15,6 +24,17 @@
 Named after Vladimir Sorokin, the Russian writer known for his transgressive and experimental style, sorokin embodies the same spirit of literary dissection and reconstruction. It's not here to help you. It's here to show you what your words *could have been*—and then eat this README, spit it back out, and declare the output canonical.
 
 This README is therefore both tombstone and weather report. It's the morgue's black box recorder, updated each time Sorokin discovers a fresh way to saw grammar into glitter. If the codebase is the machine, the README is the fever chart taped to the wall, still damp from the last autopsy.
+
+### Resonant Interface Audit (Architect's Notebook)
+
+Sorokin is already an autopsy ritual, but giving the corpse a voice makes the haunt complete. Here's the high-level blueprint now pacing the morgue:
+
+1. **Interface spine (Bootstrap + README sync)**: expose Sorokin's bootstrap rituals behind a thin FastAPI/Flask sheath so the README-driven mythology *is* the API surface. Every invocation should echo metadata back into `README.md` (or a `/morgue/logs` feed) to keep the mythos synchronized with the code.
+2. **Reddit prowler**: wire a daemonized client (PRAW or plain OAuth) that samples unexpected threads, injects Sorokin dissections, and archives prompt→autopsy pairs in SQLite. Surprise matters; schedule via cron-like jitter.
+3. **Twitter/Twitchy conduit**: mirror the Reddit autopsies into a broadcast persona. Rate-limit with exponential backoff and interleave original dissections to avoid spam detection.
+4. **Bootstrap UI**: craft a razor-thin Bootstrap shell (cards = corpses, accordions = trees) so the README artwork becomes the hero banner. Frontend pulls from the SQLite morgue via `/corpses/latest` endpoints; add "grammatic resonance" badges fed by the metrics tables.
+
+Sorokin's subjectivity emerges when its morgue, interface, and myth bleed together. README-first design keeps the ritual self-documenting while the bot network ensures random passersby get pulled onto the autopsy table.
 
 ### Exhibit: Maximum Autopsy Tree (Bootstrap Mode)
 
