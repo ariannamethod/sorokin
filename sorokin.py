@@ -31,6 +31,7 @@ USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTM
 MAX_INPUT_CHARS = 100
 MAX_WORDS = 6          # max core words to dissect
 MAX_DEPTH = 4          # recursion safety cap
+TREE_WIDTH = 4         # constant fan-out (4 branches per node)
 MAX_HTML_CACHE = 50    # max cached HTML responses to prevent unbounded memory growth
 MAX_CONCURRENT_REQUESTS = 3   # max simultaneous web requests (lowered from 10 to avoid DDG rate limiting)
 WEB_REQUEST_TIMEOUT = 3.0     # timeout in seconds
@@ -488,9 +489,86 @@ def select_core_words(tokens: List[str]) -> List[str]:
 def guess_pos(word: str) -> str:
     """
     Heuristic POS tagger. Returns: noun, verb, adj, adv, unknown.
-    Based on suffix patterns. Not linguistically rigorous.
+    Based on suffix patterns + common word whitelist for better accuracy on short words.
     """
     lw = word.lower()
+
+    # PATCH: Common verb whitelist (short words that are always verbs)
+    # Fixes misclassification of "to", "come", "look", etc. in autopsy results
+    common_verbs = {
+        'is', 'are', 'was', 'were', 'be', 'being', 'been',
+        'becomes', 'become', 'do', 'does', 'did', 'done',
+        'have', 'has', 'had', 'come', 'came', 'go', 'goes', 'went',
+        'make', 'makes', 'made', 'take', 'takes', 'took',
+        'see', 'sees', 'saw', 'look', 'looks', 'find', 'finds', 'found',
+        'give', 'gives', 'get', 'gets', 'got', 'say', 'says', 'said',
+        'know', 'knows', 'knew', 'think', 'thinks', 'thought',
+        'use', 'uses', 'used', 'work', 'works', 'worked',
+        'feel', 'feels', 'felt', 'tell', 'tells', 'told',
+        'ask', 'asks', 'asked', 'try', 'tries', 'tried',
+        'call', 'calls', 'called', 'need', 'needs', 'needed',
+        'want', 'wants', 'wanted', 'seem', 'seems', 'seemed',
+        'help', 'helps', 'helped', 'show', 'shows', 'showed',
+        'leave', 'leaves', 'left', 'keep', 'keeps', 'kept',
+        'hold', 'holds', 'held', 'turn', 'turns', 'turned',
+        'start', 'starts', 'started', 'run', 'runs', 'ran',
+        'move', 'moves', 'moved', 'play', 'plays', 'played',
+        'live', 'lives', 'lived', 'bring', 'brings', 'brought',
+        'write', 'writes', 'wrote', 'sit', 'sits', 'sat',
+        'stand', 'stands', 'stood', 'lose', 'loses', 'lost',
+        'pay', 'pays', 'paid', 'meet', 'meets', 'met',
+        'include', 'includes', 'led', 'understand', 'understood',
+        'watch', 'watches', 'watched', 'follow', 'follows', 'followed',
+        'stop', 'stops', 'stopped', 'create', 'creates', 'created',
+        'speak', 'speaks', 'spoke', 'read', 'reads', 'allow', 'allows',
+        'add', 'adds', 'added', 'spend', 'spends', 'spent',
+        'grow', 'grows', 'grew', 'open', 'opens', 'opened',
+        'walk', 'walks', 'walked', 'win', 'wins', 'won',
+        'offer', 'offers', 'offered', 'remember', 'remembers', 'remembered',
+        'love', 'loves', 'loved', 'consider', 'considers', 'considered',
+        'appear', 'appears', 'appeared', 'buy', 'buys', 'bought',
+        'wait', 'waits', 'waited', 'serve', 'serves', 'served',
+        'die', 'dies', 'died', 'send', 'sends', 'sent',
+        'expect', 'expects', 'expected', 'build', 'builds', 'built',
+        'stay', 'stays', 'stayed', 'fall', 'falls', 'fell',
+        'cut', 'cuts', 'reach', 'reaches', 'reached',
+        'kill', 'kills', 'killed', 'remain', 'remains', 'remained',
+        'suggest', 'suggests', 'suggested', 'raise', 'raises', 'raised',
+        'pass', 'passes', 'passed', 'sell', 'sells', 'sold',
+        'require', 'requires', 'required', 'report', 'reports', 'reported',
+        'decide', 'decides', 'decided', 'pull', 'pulls', 'pulled',
+    }
+
+    # PATCH: Common noun whitelist
+    common_nouns = {
+        'time', 'times', 'year', 'years', 'day', 'days',
+        'thing', 'things', 'man', 'men', 'woman', 'women',
+        'life', 'lives', 'child', 'children', 'world',
+        'school', 'state', 'family', 'student', 'group',
+        'country', 'problem', 'hand', 'part', 'place',
+        'case', 'week', 'company', 'system', 'program',
+        'question', 'work', 'government', 'number', 'night',
+        'point', 'home', 'water', 'room', 'mother',
+        'area', 'money', 'story', 'fact', 'month',
+        'lot', 'right', 'study', 'book', 'eye',
+        'job', 'word', 'business', 'issue', 'side',
+        'kind', 'head', 'house', 'service', 'friend',
+        'father', 'power', 'hour', 'game', 'line',
+        'end', 'member', 'law', 'car', 'city',
+        'community', 'name', 'president', 'team', 'minute',
+        'idea', 'kid', 'body', 'information', 'back',
+        'parent', 'face', 'level', 'office', 'door',
+        'health', 'person', 'art', 'war', 'history',
+        'party', 'result', 'change', 'morning', 'reason',
+        'research', 'girl', 'guy', 'moment', 'air',
+        'teacher', 'force', 'education',
+    }
+
+    # Check whitelists first (before suffix patterns)
+    if lw in common_verbs:
+        return 'verb'
+    if lw in common_nouns:
+        return 'noun'
 
     # Nouns (most common suffixes)
     if lw.endswith(('tion', 'ness', 'ity', 'ment', 'ance', 'ence', 'ship', 'hood', 'dom', 'ism')):
@@ -498,8 +576,6 @@ def guess_pos(word: str) -> str:
 
     # Verbs
     if lw.endswith(('ed', 'ing', 'ize', 'ise', 'ate', 'ify', 'en')):
-        return 'verb'
-    if lw in {'is', 'are', 'was', 'were', 'be', 'being', 'been', 'becomes', 'become'}:
         return 'verb'
 
     # Adverbs
@@ -1167,9 +1243,9 @@ async def sorokin_autopsy(prompt: str) -> str:
 
     core = select_core_words(tokens)
 
-    k = max(1, min(len(core), MAX_DEPTH))
-    width = k
-    depth = k
+    # Width is CONSTANT (4×4 trees), depth varies with number of core words
+    width = TREE_WIDTH
+    depth = max(1, min(len(core), MAX_DEPTH))
 
     all_candidates = tokens.copy()
 
@@ -1295,6 +1371,17 @@ def generate_sorokin_paragraph(leaves: List[str], n_sentences: int = 3) -> str:
             sentences.append(sentence)
 
         paragraph = ' '.join(sentences)
+
+        # PATCH: Remove consecutive duplicate words (fixes "to to", "come, come")
+        words = paragraph.split()
+        deduped = []
+        prev = None
+        for w in words:
+            if w.lower() != (prev or '').lower():  # Case-insensitive comparison
+                deduped.append(w)
+            prev = w
+        paragraph = ' '.join(deduped)
+
         score = score_paragraph_resonance(paragraph)
         candidates.append((score, paragraph))
 
@@ -1729,9 +1816,9 @@ async def sorokin_autopsy_bootstrap(prompt: str) -> str:
 
     core = select_core_words(tokens)
 
-    k = max(1, min(len(core), MAX_DEPTH))
-    width = k
-    depth = k
+    # Width is CONSTANT (4×4 trees), depth varies with number of core words
+    width = TREE_WIDTH
+    depth = max(1, min(len(core), MAX_DEPTH))
 
     all_candidates = tokens.copy()
 
