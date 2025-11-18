@@ -439,37 +439,313 @@ shakespeare
   │  │  ├─ knowledgeable
   │  │  ├─ phrases
   │  │  └─ writing
+  │  ├─ table
+  │  │  ├─ full
+  │  │  ├─ cached
+  │  │  └─ tables
   │  └─ demonstrate
-  │     └─ that
+  │     ├─ that
+  │     └─ stable
   ├─ unbelievable
   │  ├─ enabled
   │  │  └─ follow
   │  ├─ aware
   │  │  ├─ knowledgeable
-  │  │  └─ stable
+  │  │  ├─ ware
+  │  │  ├─ stable
+  │  │  └─ but
+  │  ├─ table
+  │  │  ├─ full
+  │  │  ├─ tables
+  │  │  └─ cached
   │  └─ demonstrate
-  │     └─ that
+  │     ├─ that
+  │     └─ stable
+  ├─ relevance
+  │  ├─ aware
+  │  │  ├─ ware
+  │  │  ├─ knowledgeable
+  │  │  ├─ writing
+  │  │  └─ phrases
+  │  ├─ table
+  │  │  ├─ full
+  │  │  ├─ tables
+  │  │  └─ cached
+  │  ├─ demonstrate
+  │  │  └─ that
+  │  └─ stable
+  │     ├─ web
+  │     ├─ stages
+  │     ├─ stenographer
+  │     └─ staple
+  └─ celebrate
+     ├─ collapse
+     │  └─ into
+     ├─ cleanup
+     │  ├─ proper
+     │  ├─ httpx
+     │  ├─ haunt
+     │  └─ oauth
+     ├─ aware
+     │  ├─ knowledgeable
+     │  ├─ ware
+     │  └─ but
+     └─ table
+        ├─ full
+        ├─ cached
+        └─ tables
 
-[... massive trees for bootstrap, karpathy, nanogpt, trains ...]
+bootstrap
+  ├─ valid
+  │  ├─ evildoing
+  │  │  ├─ depravity
+  │  │  ├─ avoid
+  │  │  ├─ chaotic
+  │  │  └─ worrying
+  │  ├─ villainy
+  │  │  ├─ teaching
+  │  │  └─ organism
+  │  ├─ villain
+  │  │  ├─ teaching
+  │  │  └─ organism
+  │  └─ paragraphs
+  │     ├─ using
+  │     ├─ apart
+  │     ├─ hazmat
+  │     └─ proper
+  ├─ coat
+  │  ├─ actual
+  │  │  ├─ phonetics
+  │  │  └─ contextual
+  │  └─ cut
+  │     ├─ cuts
+  │     └─ but
+  ├─ jams
+  │  ├─ a
+  │  │  ├─ psychopathic
+  │  │  ├─ python
+  │  │  ├─ prompt
+  │  │  └─ line
+  │  ├─ glass
+  │  │  ├─ globally
+  │  │  └─ bars
+  │  ├─ crash
+  │  │  ├─ in
+  │  │  ├─ created
+  │  │  ├─ circus
+  │  │  └─ crude
+  │  └─ asks
+  │     ├─ if
+  │     └─ skeleton
+  └─ act
+     ├─ horror
+     │  ├─ philosophy
+     │  ├─ hard
+     │  ├─ books
+     │  └─ school
+     ├─ i
+     │  ├─ learned
+     │  ├─ the
+     │  └─ m
+     ├─ ii
+     │  ├─ the
+     │  ├─ mixing
+     │  └─ subjectivity
+     └─ iii
 
 karpathy
   ├─ bootstrapper
   │  ├─ to
-  │  │  └─ avoid
+  │  │  ├─ avoid
+  │  │  ├─ keep
+  │  │  ├─ saw
+  │  │  └─ stop
   │  ├─ via
-  │  │  └─ phonetic
-  │  └─ aware
-  │     └─ demonstrate
+  │  │  ├─ cron
+  │  │  ├─ corpses
+  │  │  ├─ phonetic
+  │  │  └─ vertically
+  │  ├─ aware
+  │  │  ├─ but
+  │  │  ├─ demonstrate
+  │  │  └─ stable
+  │  └─ table
+  │     ├─ full
+  │     ├─ cached
+  │     └─ tables
   ├─ would
   │  ├─ approve
-  │  │  └─ of
-  │  └─ fail
-  │     └─ organism
+  │  │  ├─ of
+  │  │  ├─ disembowel
+  │  │  └─ become
+  │  ├─ fail
+  │  │  ├─ if
+  │  │  ├─ fails
+  │  │  ├─ teaching
+  │  │  └─ organism
+  │  ├─ lookup
+  │  │  ├─ branches
+  │  │  ├─ stages
+  │  │  └─ obvious
+  │  └─ lookups
+  │     ├─ obvious
+  │     ├─ like
+  │     └─ unconsciously
+  ├─ phonetically
+  │  ├─ just
+  │  │  ├─ vibes
+  │  │  ├─ in
+  │  │  ├─ markov
+  │  │  └─ fun
+  │  ├─ if
+  │  │  ├─ the
+  │  │  ├─ even
+  │  │  ├─ standard
+  │  │  └─ it
+  │  ├─ philosophy
+  │  │  ├─ of
+  │  │  ├─ trust
+  │  │  ├─ books
+  │  │  └─ school
+  │  └─ vertically
+  │     ├─ like
+  │     ├─ variants
+  │     ├─ overlap
+  │     └─ artifacts
   └─ kardashyan  ← YES, THE SYSTEM PHONETICALLY MATCHED KARPATHY TO KARDASHIAN
      ├─ finds
-     │  └─ findsclothing
+     │  ├─ find
+     │  ├─ findsclothing
+     │  ├─ chamberofcommerce
+     │  └─ fabfindsconsign
+     ├─ to
+     │  ├─ avoid
+     │  ├─ keep
+     │  ├─ the
+     │  └─ stop
      └─ hazmat
-        └─ mainelabpack
+        ├─ hazard
+        ├─ mainelabpack
+        ├─ zealand
+        └─ iata
+
+nanogpt
+  ├─ brainstem
+  │  ├─ onto
+  │  │  ├─ the
+  │  │  ├─ notebook
+  │  │  └─ books
+  │  ├─ tries
+  │  │  ├─ transgressive
+  │  │  └─ archive
+  │  ├─ breeding
+  │  │  ├─ of
+  │  │  └─ synthetic
+  │  └─ twitches
+  │     ├─ like
+  │     └─ twitter
+  ├─ asyncmock
+  │  ├─ all
+  │  │  ├─ appear
+  │  │  ├─ dignity
+  │  │  ├─ else
+  │  │  └─ candidates
+  │  ├─ synthetic
+  │  │  ├─ low
+  │  │  ├─ garbage
+  │  │  ├─ mutation
+  │  │  └─ word
+  │  └─ artwork
+  │     ├─ becomes
+  │     └─ artifacts
+  ├─ none
+  │  ├─ phonetic
+  │  │  ├─ phonectic
+  │  │  ├─ phonetics
+  │  │  ├─ phonectically
+  │  │  └─ phonotactic
+  │  ├─ every
+  │  │  ├─ invocation
+  │  │  ├─ time
+  │  │  ├─ successful
+  │  │  └─ word
+  │  ├─ innocent
+  │  │  ├─ prompts
+  │  │  └─ become
+  │  └─ disembowel
+  │     ├─ four
+  │     ├─ discovery
+  │     ├─ does
+  │     └─ discovers
+  └─ chaos
+     ├─ random
+     │  ├─ passersby
+     │  ├─ jitter
+     │  ├─ leaf
+     │  └─ unvisited
+     ├─ injection
+     │  ├─ square
+     │  ├─ construction
+     │  ├─ position
+     │  └─ mutations
+     └─ chain
+        ├─ word
+        ├─ with
+        ├─ chains
+        └─ teaching
+
+trains
+  ├─ trail
+  │  ├─ tracking
+  │  ├─ teaching
+  │  │  ├─ someone
+  │  │  └─ screaming
+  │  └─ organism
+  │     ├─ that
+  │     └─ screaming
+  ├─ train
+  │  ├─ it
+  │  │  ├─ forever
+  │  │  ├─ takes
+  │  │  ├─ s
+  │  │  └─ through
+  │  ├─ tracking
+  │  ├─ teaching
+  │  │  ├─ someone
+  │  │  └─ screaming
+  │  └─ organism
+  │     ├─ that
+  │     └─ screaming
+  ├─ monorail
+  │  ├─ meaning
+  │  │  ├─ is
+  │  │  ├─ he
+  │  │  ├─ free
+  │  │  └─ where
+  │  ├─ maintain
+  │  │  └─ novelty
+  │  └─ teaching
+  │     ├─ screaming
+  │     └─ someone
+  └─ training
+     ├─ data
+     │  ├─ readme
+     │  ├─ not
+     │  ├─ that
+     │  └─ the
+     ├─ a
+     │  ├─ psychopathic
+     │  ├─ python
+     │  ├─ prompt
+     │  └─ line
+     ├─ tries
+     │  ├─ transgressive
+     │  └─ archive
+     └─ mixing
+        ├─ the
+        ├─ maximum
+        ├─ subjectivity
+        └─ within
 
 AUTOPSY RESULT:
   Within is zealand. Forever prompt. Nothing remains. The square subjectivity cuts through chamberofcommerce. Oauth is not. Where with. Nothing remains.
