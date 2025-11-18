@@ -12,6 +12,7 @@
 
 from __future__ import annotations
 
+import asyncio
 import html
 import random
 import re
@@ -22,7 +23,8 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import List, Dict, Tuple, Set, Optional
 import urllib.parse
-import urllib.request
+
+import httpx
 
 DB_PATH = Path("sorokin.sqlite")
 USER_AGENT = "Mozilla/5.0 (compatible; SorokinAutopsy/1.0)"
@@ -30,6 +32,8 @@ MAX_INPUT_CHARS = 100
 MAX_WORDS = 6          # max core words to dissect
 MAX_DEPTH = 4          # recursion safety cap
 MAX_HTML_CACHE = 50    # max cached HTML responses to prevent unbounded memory growth
+MAX_CONCURRENT_REQUESTS = 10  # max simultaneous web requests
+WEB_REQUEST_TIMEOUT = 2.0     # timeout in seconds (reduced from 6s)
 
 # Latin + extended + Cyrillic
 WORD_RE = re.compile(r"[A-Za-zÀ-ÖØ-öø-ÿА-Яа-яЁё]+")
@@ -611,24 +615,48 @@ def find_phonetic_neighbors(word: str, candidate_pool: List[str], limit: int) ->
 # ───────────────────────────
 
 _html_cache: Dict[str, str] = {}
+_request_semaphore: Optional[asyncio.Semaphore] = None  # Initialized on first use
+_httpx_client: Optional[httpx.AsyncClient] = None  # Shared async client
 
 
-def _fetch_web_synonyms(query: str) -> str:
+async def _fetch_web_synonyms(query: str) -> str:
     """
-    Scrapes DuckDuckGo like a raccoon in a trash can.
+    Scrapes DuckDuckGo like a raccoon in a trash can (async edition).
     DDG blocks bots less aggressively than Google.
     Meaning is irrelevant. Resonance is king.
+
+    Now with:
+    - Async HTTP requests (httpx - works everywhere including Termux)
+    - 2s timeout instead of 6s
+    - Semaphore limiting concurrent requests to 10
     """
+    global _request_semaphore, _httpx_client
+
+    # Lazy init semaphore
+    if _request_semaphore is None:
+        _request_semaphore = asyncio.Semaphore(MAX_CONCURRENT_REQUESTS)
+
+    # Check cache first (synchronous, fast)
     if query in _html_cache:
         return _html_cache[query]
 
-    try:
-        url = f"https://duckduckgo.com/html/?q={urllib.parse.quote(query)}"
-        req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
-        with urllib.request.urlopen(req, timeout=6) as resp:
-            html_text = resp.read().decode("utf-8", "ignore")
-    except Exception:
-        html_text = ""
+    # Create async client if needed
+    if _httpx_client is None:
+        _httpx_client = httpx.AsyncClient(timeout=WEB_REQUEST_TIMEOUT)
+
+    html_text = ""
+
+    # Acquire semaphore to limit concurrent requests
+    async with _request_semaphore:
+        try:
+            url = f"https://duckduckgo.com/html/?q={urllib.parse.quote(query)}"
+            headers = {"User-Agent": USER_AGENT}
+
+            resp = await _httpx_client.get(url, headers=headers)
+            html_text = resp.text
+        except Exception:
+            # Silently fail - we'll return empty string
+            html_text = ""
 
     # Prevent unbounded memory growth of cache
     if len(_html_cache) >= MAX_HTML_CACHE:
@@ -714,18 +742,18 @@ def _extract_candidate_words(html_text: str) -> List[str]:
     return [w for _, w in scored]
 
 
-def lookup_branches_for_word(
+async def lookup_branches_for_word(
     word: str,
     width: int,
     all_candidates: List[str],
     global_used: Optional[Set[str]] = None
 ) -> List[str]:
     """
-    Return EXACTLY `width` branches for a word.
+    Return EXACTLY `width` branches for a word (async edition).
     Order of preference:
       1) previous mutations from SQLite
       2) phonetic neighbors from candidate pool
-      3) fresh trash from DuckDuckGo
+      3) fresh trash from DuckDuckGo (PARALLEL requests!)
       4) fallback to all_candidates if needed
 
     global_used: set of already-used words across all trees (for deduplication)
@@ -755,7 +783,7 @@ def lookup_branches_for_word(
         return result
 
     # 3) Web synonyms from DuckDuckGo
-    # Try multiple search strategies: with synonym suffix, plain word, and related terms
+    # Launch ALL 4 queries in PARALLEL, take first successful result
     search_queries = [
         f"{word} synonym",
         f"{word} similar",
@@ -763,12 +791,19 @@ def lookup_branches_for_word(
         f"{word} meaning",
     ]
 
+    # Fire all requests in parallel
+    html_results = await asyncio.gather(
+        *[_fetch_web_synonyms(q) for q in search_queries],
+        return_exceptions=True
+    )
+
+    # Take first non-empty result
     candidates = []
-    for query in search_queries:
-        html_text = _fetch_web_synonyms(query)
-        candidates = _extract_candidate_words(html_text)
-        if candidates:
-            break  # Stop on first successful extraction
+    for html_text in html_results:
+        if isinstance(html_text, str) and html_text:
+            candidates = _extract_candidate_words(html_text)
+            if candidates:
+                break
 
     seen: Set[str] = {w.lower() for w in filtered} | global_used
     lw = word.lower()
@@ -876,7 +911,7 @@ def _is_synthetic_word(word: str) -> bool:
     return False
 
 
-def build_tree_for_word(
+async def build_tree_for_word(
     word: str,
     width: int,
     depth: int,
@@ -885,7 +920,7 @@ def build_tree_for_word(
     is_core_word: bool = False
 ) -> Node:
     """
-    Recursively mutate a word into a branching freak.
+    Recursively mutate a word into a branching freak (async edition).
     width = fan-out, depth = how far down we keep mutating.
     global_used: set of already-used words across all trees (for deduplication)
     is_core_word: True for top-level core words (allows synthetic words to be dissected)
@@ -901,14 +936,15 @@ def build_tree_for_word(
     if _is_synthetic_word(word) and not is_core_word:
         return node
 
-    first_level = lookup_branches_for_word(word, width, all_candidates, global_used)
+    first_level = await lookup_branches_for_word(word, width, all_candidates, global_used)
 
-    # Build children even if branches include the word itself
-    # (Ensures all words have at least depth=1 tree structure for rendering)
+    # Build ALL children in PARALLEL (async recursion!)
     next_depth = depth - 1
-    for b in first_level:
-        child = build_tree_for_word(b, width=width, depth=next_depth, all_candidates=all_candidates, global_used=global_used, is_core_word=False)
-        node.children.append(child)
+    child_tasks = [
+        build_tree_for_word(b, width=width, depth=next_depth, all_candidates=all_candidates, global_used=global_used, is_core_word=False)
+        for b in first_level
+    ]
+    node.children = await asyncio.gather(*child_tasks)
 
     return node
 
@@ -1012,8 +1048,8 @@ def render_autopsy(prompt: str, words: List[str], trees: List[Node]) -> str:
 # Main pipeline
 # ───────────────────────────
 
-def sorokin_autopsy(prompt: str) -> str:
-    """Main entry: take a prompt, return its dissection."""
+async def sorokin_autopsy(prompt: str) -> str:
+    """Main entry: take a prompt, return its dissection (async edition)."""
     short = prompt.strip()[:MAX_INPUT_CHARS]
     tokens = tokenize(short)
     if not tokens:
@@ -1030,7 +1066,10 @@ def sorokin_autopsy(prompt: str) -> str:
     # Global deduplication: prevent same mutations across different core words
     global_used: Set[str] = {w.lower() for w in core}  # Start with core words themselves
 
-    trees = [build_tree_for_word(w, width, depth, all_candidates, global_used, is_core_word=True) for w in core]
+    # Build ALL trees in PARALLEL!
+    tree_tasks = [build_tree_for_word(w, width, depth, all_candidates, global_used, is_core_word=True) for w in core]
+    trees = await asyncio.gather(*tree_tasks)
+
     report = render_autopsy(short, core, trees)
     store_autopsy(short, report)
     return report
@@ -1277,35 +1316,35 @@ def harvest_autopsy_patterns(autopsy_id: int, tree_text: str, corpse: str) -> No
         conn.close()
 
 
-def lookup_branches_bootstrap(
+async def lookup_branches_bootstrap(
     word: str,
     width: int,
     all_candidates: List[str],
     global_used: Optional[Set[str]] = None
 ) -> List[str]:
     """
-    Enhanced lookup using learned mutation templates.
+    Enhanced lookup using learned mutation templates (async edition).
     Priority order:
     1. mutation_templates (highest success_count)
-    2. Original lookup (memory + phonetic + web)
+    2. Original lookup (memory + phonetic + web - async!)
     """
     width = max(1, width)
     if global_used is None:
         global_used = set()
-    
+
     # Query learned templates
     conn = sqlite3.connect(DB_PATH)
     try:
         rows = conn.execute(
-            """SELECT target_word FROM mutation_templates 
-               WHERE source_word = ? 
+            """SELECT target_word FROM mutation_templates
+               WHERE source_word = ?
                ORDER BY success_count DESC, resonance_score DESC
                LIMIT ?""",
             (word.lower(), width * 2)
         ).fetchall()
     finally:
         conn.close()
-    
+
     # Filter and collect template results
     template_results = []
     for row in rows:
@@ -1314,17 +1353,17 @@ def lookup_branches_bootstrap(
             template_results.append(target)
             if len(template_results) >= width:
                 break
-    
+
     # If we have enough from templates, return them
     if len(template_results) >= width:
         result = template_results[:width]
         global_used.update(w.lower() for w in result)
         return result
-    
-    # Otherwise, fill remaining with original lookup
+
+    # Otherwise, fill remaining with original lookup (async!)
     remaining = width - len(template_results)
-    original_results = lookup_branches_for_word(word, remaining, all_candidates, global_used)
-    
+    original_results = await lookup_branches_for_word(word, remaining, all_candidates, global_used)
+
     result = template_results + original_results
     return result[:width]
 
@@ -1466,7 +1505,7 @@ def compute_autopsy_resonance(tree_text: str, corpse: str, original_prompt: str)
     }
 
 
-def build_tree_for_word_bootstrap(
+async def build_tree_for_word_bootstrap(
     word: str,
     width: int,
     depth: int,
@@ -1474,7 +1513,7 @@ def build_tree_for_word_bootstrap(
     global_used: Optional[Set[str]] = None,
     is_core_word: bool = False
 ) -> Node:
-    """Bootstrap version using lookup_branches_bootstrap()."""
+    """Bootstrap version using lookup_branches_bootstrap() - async recursive edition!"""
     if global_used is None:
         global_used = set()
 
@@ -1485,15 +1524,20 @@ def build_tree_for_word_bootstrap(
     # Synthetic words don't breed further, EXCEPT core words (user-provided prompts must dissect)
     if _is_synthetic_word(word) and not is_core_word:
         return node
-    
-    first_level = lookup_branches_bootstrap(word, width, all_candidates, global_used)
+
+    first_level = await lookup_branches_bootstrap(word, width, all_candidates, global_used)
 
     next_depth = depth - 1
-    for b in first_level:
-        child = build_tree_for_word_bootstrap(b, width=width, depth=next_depth,
-                                              all_candidates=all_candidates, global_used=global_used, is_core_word=False)
-        node.children.append(child)
-    
+
+    # Build all children in PARALLEL (async recursion!)
+    child_tasks = [
+        build_tree_for_word_bootstrap(b, width=width, depth=next_depth,
+                                      all_candidates=all_candidates, global_used=global_used, is_core_word=False)
+        for b in first_level
+    ]
+
+    node.children = await asyncio.gather(*child_tasks)
+
     return node
 
 
@@ -1552,29 +1596,34 @@ def render_autopsy_bootstrap(prompt: str, words: List[str], trees: List[Node],
     return "\n".join(out)
 
 
-def sorokin_autopsy_bootstrap(prompt: str) -> str:
+async def sorokin_autopsy_bootstrap(prompt: str) -> str:
     """
-    Bootstrap-enhanced autopsy with pattern learning.
+    Bootstrap-enhanced autopsy with pattern learning (async edition).
     Calls harvest_autopsy_patterns() after each run.
+    Now builds ALL trees in PARALLEL!
     """
     short = prompt.strip()[:MAX_INPUT_CHARS]
     tokens = tokenize(short)
     if not tokens:
         return "Nothing to dissect.\n\n— Sorokin"
-    
+
     core = select_core_words(tokens)
-    
+
     k = max(1, min(len(core), MAX_DEPTH))
     width = k
     depth = k
-    
+
     all_candidates = tokens.copy()
-    
+
     # Global deduplication
     global_used: Set[str] = {w.lower() for w in core}
-    
-    # Build trees using bootstrap lookup
-    trees = [build_tree_for_word_bootstrap(w, width, depth, all_candidates, global_used, is_core_word=True) for w in core]
+
+    # Build ALL trees in PARALLEL (async!)
+    tree_tasks = [
+        build_tree_for_word_bootstrap(w, width, depth, all_candidates, global_used, is_core_word=True)
+        for w in core
+    ]
+    trees = await asyncio.gather(*tree_tasks)
     
     # Collect leaves for corpse
     all_leaves: List[str] = []
@@ -1645,26 +1694,31 @@ def sorokin_autopsy_bootstrap(prompt: str) -> str:
     return render_autopsy_bootstrap(short, core, trees, resonance, stats)
 
 
-def repl(use_bootstrap: bool = False) -> None:
-    """Endless dissection loop until the operator gives up. Bootstrap optional."""
+async def repl(use_bootstrap: bool = False) -> None:
+    """Endless dissection loop until the operator gives up (async edition). Bootstrap optional."""
     mode = "BOOTSTRAP" if use_bootstrap else "standard"
     print(f"S̴̥̔o̴͎̿r̶̘̒o̸̺̽k̵̻̈́i̷͖͝ñ̶͕ online ({mode} mode). Type a prompt.")
     while True:
         try:
-            prompt = input("> ").strip()
+            # Use asyncio to handle input without blocking event loop
+            prompt = await asyncio.to_thread(input, "> ")
+            prompt = prompt.strip()
             if not prompt:
                 continue
             if use_bootstrap:
-                print(sorokin_autopsy_bootstrap(prompt))
+                result = await sorokin_autopsy_bootstrap(prompt)
+                print(result)
             else:
-                print(sorokin_autopsy(prompt))
+                result = await sorokin_autopsy(prompt)
+                print(result)
             print()
         except (EOFError, KeyboardInterrupt):
             print("\nExiting autopsy room.")
             break
 
 
-def main(argv: List[str]) -> None:
+async def async_main(argv: List[str]) -> None:
+    """Async entry point for Sorokin."""
     init_db()
     # Bootstrap mode is DEFAULT (best quality output with paragraph generation)
     # Use --simple flag to disable bootstrap and get basic reassembly
@@ -1673,15 +1727,28 @@ def main(argv: List[str]) -> None:
         use_bootstrap = False
     else:
         use_bootstrap = True
-    
-    if len(argv) > 1:
-        prompt = " ".join(argv[1:])
-        if use_bootstrap:
-            print(sorokin_autopsy_bootstrap(prompt))
+
+    try:
+        if len(argv) > 1:
+            prompt = " ".join(argv[1:])
+            if use_bootstrap:
+                result = await sorokin_autopsy_bootstrap(prompt)
+                print(result)
+            else:
+                result = await sorokin_autopsy(prompt)
+                print(result)
         else:
-            print(sorokin_autopsy(prompt))
-    else:
-        repl(use_bootstrap=use_bootstrap)
+            await repl(use_bootstrap=use_bootstrap)
+    finally:
+        # Cleanup httpx client
+        global _httpx_client
+        if _httpx_client is not None:
+            await _httpx_client.aclose()
+
+
+def main(argv: List[str]) -> None:
+    """Synchronous entry point - launches async event loop."""
+    asyncio.run(async_main(argv))
 
 
 if __name__ == "__main__":
