@@ -133,6 +133,11 @@ HTML_ARTIFACTS = {
     "reversethesaurus", "lawlessfrench", "frenchtogether",
     "singaporean", "singaporeans", "singlish", "singlishdict",
     "colombian", "argentinian", "brazilian", "mexican", "canadian",
+
+    # DuckDuckGo-specific artifacts (common in DDG search results)
+    "duckduckgo", "unfortunately", "containing", "error", "confirm",
+    "challenge", "following", "email", "made", "squares", "lite",
+    "related", "example", "associated", "comparable", "correlated",
 }
 
 
@@ -764,12 +769,16 @@ async def lookup_branches_for_word(
     global_used: Optional[Set[str]] = None
 ) -> List[str]:
     """
-    Return EXACTLY `width` branches for a word (async edition).
-    Order of preference:
-      1) previous mutations from SQLite
-      2) phonetic neighbors from candidate pool
-      3) fresh trash from DuckDuckGo (PARALLEL requests!)
-      4) fallback to all_candidates if needed
+    Return EXACTLY `width` branches for a word (async edition with SOURCE MIXING).
+
+    Strategy: Mix memory cache (50%) + fresh web data (50%) to maintain both
+    performance and novelty. No early returns - always fetch web data!
+
+    Order of sources:
+      1) SQLite memory (limited to ~50% of width)
+      2) Fresh web scraping from DuckDuckGo (PARALLEL requests!)
+      3) Phonetic neighbors from candidate pool
+      4) Fallback to all_candidates if needed
 
     global_used: set of already-used words across all trees (for deduplication)
     """
@@ -777,28 +786,22 @@ async def lookup_branches_for_word(
     if global_used is None:
         global_used = set()
 
-    # 1) Memory first
-    mem = recall_word_relations(word, width)
-    # Filter out globally used words AND HTML artifacts
-    mem = [m for m in mem if m.lower() not in global_used and m.lower() not in HTML_ARTIFACTS]
-    if len(mem) >= width:
-        result = mem[:width]
-        global_used.update(w.lower() for w in result)
-        return result
+    filtered = []
+    seen: Set[str] = set(global_used)
+    lw = word.lower()
 
-    # 2) Phonetic neighbors
-    remaining = width - len(mem)
-    phonetic = find_phonetic_neighbors(word, all_candidates, remaining * 2)  # Get more candidates
+    # 1) Memory first - but LIMITED to ~50% of width (balanced mix!)
+    # This ensures we always fetch fresh web data even if cache is full
+    memory_limit = max(1, width // 2)  # At least 1, at most 50% of width
+    mem = recall_word_relations(word, memory_limit * 2)  # Get more candidates
     # Filter out globally used words AND HTML artifacts
-    phonetic = [p for p in phonetic if p.lower() not in global_used and p.lower() not in HTML_ARTIFACTS]
-    filtered = mem + phonetic
-    if len(filtered) >= width:
-        result = filtered[:width]
-        global_used.update(w.lower() for w in result)
-        return result
+    mem = [m for m in mem if m.lower() not in seen and m.lower() not in HTML_ARTIFACTS]
+    mem = mem[:memory_limit]  # Take at most memory_limit
+    filtered.extend(mem)
+    seen.update(w.lower() for w in mem)
 
-    # 3) Web synonyms from DuckDuckGo
-    # Launch ALL 4 queries in PARALLEL, take first successful result
+    # 2) Web synonyms from DuckDuckGo - ALWAYS fetch (even if memory was full!)
+    # This is the KEY change: no early returns, always get fresh data
     search_queries = [
         f"{word} synonym",
         f"{word} similar",
@@ -820,11 +823,9 @@ async def lookup_branches_for_word(
             if candidates:
                 break
 
-    seen: Set[str] = {w.lower() for w in filtered} | global_used
-    lw = word.lower()
-
-    # Try to find more phonetic neighbors in web results
+    # Add web candidates - prefer phonetic matches first, then any valid candidates
     if candidates:
+        # First try phonetic neighbors from web results
         web_phonetic = find_phonetic_neighbors(word, candidates, width - len(filtered))
         for wp in web_phonetic:
             if wp.lower() not in seen and wp.lower() not in HTML_ARTIFACTS:
@@ -833,38 +834,46 @@ async def lookup_branches_for_word(
                 if len(filtered) >= width:
                     break
 
-    # If still not enough, add other non-phonetic candidates
-    for c in candidates:
-        lc = c.lower()
-        if lc == lw:
-            continue
-        if lc in seen:
-            continue
-        if lc in HTML_ARTIFACTS:
-            continue
-        seen.add(lc)
-        filtered.append(c)
-        if len(filtered) >= width:
-            break
+    # If still not enough, add other non-phonetic web candidates
+    if len(filtered) < width and candidates:
+        for c in candidates:
+            lc = c.lower()
+            if lc == lw:
+                continue
+            if lc in seen:
+                continue
+            if lc in HTML_ARTIFACTS:
+                continue
+            seen.add(lc)
+            filtered.append(c)
+            if len(filtered) >= width:
+                break
 
-    # 4) Fallback: if still not enough, use other words from all_candidates
+    # 3) Phonetic neighbors from all_candidates pool (if still need more)
+    if len(filtered) < width:
+        phonetic = find_phonetic_neighbors(word, all_candidates, width - len(filtered))
+        for p in phonetic:
+            if p.lower() not in seen and p.lower() not in HTML_ARTIFACTS:
+                filtered.append(p)
+                seen.add(p.lower())
+                if len(filtered) >= width:
+                    break
+
+    # 4) Fallback: use other words from all_candidates
     # This ensures we always have width branches (tree structure requirement)
-    # Note: Don't check global_used here - we need width branches even if they're reused
-    seen_local = {w.lower() for w in filtered}  # Only check within this lookup
-    remaining = width - len(filtered)
-    if remaining > 0:
+    if len(filtered) < width:
         for candidate in all_candidates:
-            if candidate.lower() not in seen_local and candidate.lower() != lw:
+            lc = candidate.lower()
+            if lc not in seen and lc != lw:
                 filtered.append(candidate)
-                seen_local.add(candidate.lower())
-                remaining -= 1
-                if remaining <= 0:
+                seen.add(lc)
+                if len(filtered) >= width:
                     break
 
     # Final fallback: add original word if still need more
-    remaining = width - len(filtered)
-    if remaining > 0 and lw not in seen_local:
+    if len(filtered) < width and lw not in seen:
         filtered.append(word)
+        seen.add(lw)
 
     # Deduplicate while preserving order
     seen_dedup = set()
