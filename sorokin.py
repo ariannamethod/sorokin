@@ -619,6 +619,18 @@ _request_semaphore: Optional[asyncio.Semaphore] = None  # Initialized on first u
 _httpx_client: Optional[httpx.AsyncClient] = None  # Shared async client
 
 
+async def _cleanup_httpx() -> None:
+    """Cleanup httpx client gracefully."""
+    global _httpx_client
+    if _httpx_client is not None:
+        try:
+            await _httpx_client.aclose()
+        except Exception:
+            pass  # Ignore errors during cleanup
+        finally:
+            _httpx_client = None
+
+
 async def _fetch_web_synonyms(query: str) -> str:
     """
     Scrapes DuckDuckGo like a raccoon in a trash can (async edition).
@@ -1701,23 +1713,27 @@ async def repl(use_bootstrap: bool = False) -> None:
     """Endless dissection loop until the operator gives up (async edition). Bootstrap optional."""
     mode = "BOOTSTRAP" if use_bootstrap else "standard"
     print(f"S̴̥̔o̴͎̿r̶̘̒o̸̺̽k̵̻̈́i̷͖͝ñ̶͕ online ({mode} mode). Type a prompt.")
-    while True:
-        try:
-            # Use asyncio to handle input without blocking event loop
-            prompt = await asyncio.to_thread(input, "> ")
-            prompt = prompt.strip()
-            if not prompt:
-                continue
-            if use_bootstrap:
-                result = await sorokin_autopsy_bootstrap(prompt)
-                print(result)
-            else:
-                result = await sorokin_autopsy(prompt)
-                print(result)
-            print()
-        except (EOFError, KeyboardInterrupt):
-            print("\nExiting autopsy room.")
-            break
+    try:
+        while True:
+            try:
+                # Use asyncio to handle input without blocking event loop
+                prompt = await asyncio.to_thread(input, "> ")
+                prompt = prompt.strip()
+                if not prompt:
+                    continue
+                if use_bootstrap:
+                    result = await sorokin_autopsy_bootstrap(prompt)
+                    print(result)
+                else:
+                    result = await sorokin_autopsy(prompt)
+                    print(result)
+                print()
+            except (EOFError, KeyboardInterrupt):
+                print("\nExiting autopsy room.")
+                break
+    finally:
+        # Ensure cleanup happens even if interrupted
+        await _cleanup_httpx()
 
 
 async def async_main(argv: List[str]) -> None:
@@ -1742,16 +1758,24 @@ async def async_main(argv: List[str]) -> None:
                 print(result)
         else:
             await repl(use_bootstrap=use_bootstrap)
+    except KeyboardInterrupt:
+        # Handle Ctrl+C gracefully
+        print("\n\nInterrupted. Cleaning up...")
     finally:
-        # Cleanup httpx client
-        global _httpx_client
-        if _httpx_client is not None:
-            await _httpx_client.aclose()
+        # Always cleanup httpx client
+        await _cleanup_httpx()
 
 
 def main(argv: List[str]) -> None:
     """Synchronous entry point - launches async event loop."""
-    asyncio.run(async_main(argv))
+    try:
+        asyncio.run(async_main(argv))
+    except KeyboardInterrupt:
+        # Already handled in async_main, just exit cleanly
+        pass
+    except Exception as e:
+        print(f"\nFatal error: {e}", file=sys.stderr)
+        raise
 
 
 if __name__ == "__main__":
