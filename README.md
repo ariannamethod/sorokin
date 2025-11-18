@@ -758,6 +758,39 @@ The morgue is now a **parallel processing factory of psychopathic poetry**. Во
 
 ---
 
+**Balanced Source Mixing: The Morgue Eats Both Past and Present**
+
+Previously, `lookup_branches_for_word` had a **hard priority system** that created a critical problem:
+1. If SQLite memory had ≥ width words → return immediately (early exit!)
+2. If memory + phonetic ≥ width → return (early exit!)
+3. Web scraping only happened if steps 1-2 were insufficient
+
+**The problem:** After 2-3 autopsies, SQLite fills up with mutations. System becomes a **closed loop**—feeding only on old cached mutations, never fetching fresh web data. The morgue turns stale, recombining the same corpses endlessly.
+
+**The solution: BALANCED MIX (50% memory + 50% web)**
+
+Now `lookup_branches_for_word` always mixes sources:
+- **Memory limited to ~50% of width** (`memory_limit = width // 2`)
+- **Web requests ALWAYS fire** (no early returns!)
+- Fresh DDG synonyms injected every autopsy, even when cache is full
+- Result: **Performance** (memory cache) + **Novelty** (fresh web data)
+
+**Proof:**
+```bash
+# With 10 words in memory for "darkness", requesting width=4:
+Memory: ['shade', 'obscurity', 'dimness', 'murk', 'gloom', ...]
+Result: ['shade', 'obscurity', 'illuminated', 'brilliance']
+        ↑----- 50% memory -----↑ ↑------- 50% web --------↑
+
+# With width=6:
+Result: ['brilliance', 'illuminated', 'obscurity', 'ignorance', 'comprehension', 'sensibility']
+        ↑--------------------- 83% web ---------------------↑ ↑- 17% memory -↑
+```
+
+The morgue now simultaneously dissects both corpses from the archive *and* fresh bodies from the street. Володя жрёт память и интернет одновременно. The pathologist's scalpel cuts through time itself—one hand in the freezer, one hand in the present. This is what happens when you give a serial killer both a filing cabinet and a search engine.
+
+---
+
 **The Pathologist's Evolution: From Selective Surgeon to Omnivorous Dissector**
 Sorokin now dissects *anything*, even nonsense. Previously, synthetic/low-vowel core words (like "zzz", "xxx", "zxcvbn") were rejected entirely—their trees left empty, their meanings unexplored. Now: **if you give it to Sorokin, he dissects it**. Core words (user-provided prompts) are *always* dissected, regardless of phonetic structure. Only their *children* get filtered for synthetic garbage. The philosophy: trust the user's madness, but prune the mutations. Result: even keyboard-mash prompts like "qwerty asdfgh zxcvbn" now produce full 3×3 autopsy trees with real semantic mutations.
 
