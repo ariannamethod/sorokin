@@ -642,7 +642,10 @@ async def _fetch_web_synonyms(query: str) -> str:
 
     # Create async client if needed
     if _httpx_client is None:
-        _httpx_client = httpx.AsyncClient(timeout=WEB_REQUEST_TIMEOUT)
+        _httpx_client = httpx.AsyncClient(
+            timeout=WEB_REQUEST_TIMEOUT,
+            follow_redirects=True  # CRITICAL: Follow DDG redirects!
+        )
 
     html_text = ""
 
