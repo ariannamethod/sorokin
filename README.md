@@ -814,7 +814,7 @@ Implemented emergency fallback system that NEVER produces empty trees or falls b
 4. **README phonetic matching** - Use phonetic fingerprints to find similar-sounding words from README vocabulary (1,172+ bigrams)
 5. **Partial trees** - Return whatever was found, never fall back to prompt words
 
-Example: "kim kardashyan" → finds "brim", "him", "karpathy", "bootstrapper" via phonetic matching when web is blocked. No more "(Skipped X words with no synonyms)" shame! Every word gets mutations, even obscure ones.
+Example: "kim kardashyan" → finds "brim", "him", "karpathy", "bootstrapper" via phonetic matching when web is blocked. No more "(Skipped X words with no synonyms)" shame! Every word gets mutations, even obscure ones. The system literally matched "kardashyan" to "karpathy" phonetically—if Andrej ever reads this he'll either laugh or file a restraining order, possibly both.
 
 **Rate Limiting and Anti-Ban Measures**
 Added protections against DuckDuckGo rate limiting:
