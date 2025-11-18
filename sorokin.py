@@ -885,20 +885,35 @@ async def lookup_branches_for_word(
             if len(filtered) >= width:
                 break
 
-    # 3) NO FALLBACK TO all_candidates!
-    # Previously: used prompt words as fallback, but this creates garbage
-    # when web scraping fails (e.g., DDG rate limit).
-    # Better to return partial trees than to recursively breed prompt words.
-    #
-    # If we don't have enough candidates from memory + web, that's OK.
-    # Partial trees > garbage trees.
+    # 3) Smart fallback to MORE memory if web failed
+    # If web returned nothing (DDG ban/error) and we still need more candidates,
+    # go back to memory and get the rest (up to full width)
+    if len(filtered) < width and not candidates:
+        # Web failed! Try to get more from memory (beyond the 50% limit)
+        additional_needed = width - len(filtered)
+        additional_mem = recall_word_relations(word, memory_limit + additional_needed)
+        # Filter: not already seen, not in HTML artifacts
+        additional_mem = [m for m in additional_mem
+                         if m.lower() not in seen and m.lower() not in HTML_ARTIFACTS]
+        # Skip the ones we already took (first memory_limit items)
+        additional_mem = additional_mem[memory_limit:]
+
+        for m in additional_mem[:additional_needed]:
+            filtered.append(m)
+            seen.add(m.lower())
+            if len(filtered) >= width:
+                break
+
+    # 4) NO FALLBACK TO all_candidates!
+    # Previously: used prompt words as fallback, but this creates garbage.
+    # Better to use more memory or return partial trees than to breed prompt words.
     #
     # REMOVED:
     # - Phonetic neighbors from all_candidates (prompt words)
     # - Direct fallback to all_candidates
     # - Self-reference fallback (word → word)
     #
-    # Result: Cleaner trees, even if narrower than requested width.
+    # Result: Smart fallback (memory first), cleaner trees.
 
     # Deduplicate while preserving order
     seen_dedup = set()
