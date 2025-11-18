@@ -3,13 +3,14 @@
 Test suite for sorokin.py — because even Frankenstein needed quality control.
 """
 
+import asyncio
 import unittest
 import tempfile
 import sqlite3
 import os
 import sys
 from pathlib import Path
-from unittest.mock import patch, MagicMock
+from unittest.mock import patch, MagicMock, AsyncMock
 
 # Import the sorokin module
 import sorokin
@@ -130,17 +131,18 @@ class TestPhoneticSimilarity(unittest.TestCase):
         self.assertEqual(neighbors, [])
 
 
-class TestTreeBuilding(unittest.TestCase):
-    """Test the Frankenstein assembly line: recursive mutation."""
+class TestTreeBuilding(unittest.IsolatedAsyncioTestCase):
+    """Test the Frankenstein assembly line: recursive mutation (async edition)."""
 
     def test_node_creation(self):
         node = Node(word="test")
         self.assertEqual(node.word, "test")
         self.assertEqual(node.children, [])
 
-    def test_build_tree_depth_one(self):
-        with patch('sorokin.lookup_branches_for_word', return_value=[]):
-            node = build_tree_for_word("test", width=2, depth=1, all_candidates=[])
+    async def test_build_tree_depth_one(self):
+        # Mock async function with AsyncMock
+        with patch('sorokin.lookup_branches_for_word', new_callable=AsyncMock, return_value=[]):
+            node = await build_tree_for_word("test", width=2, depth=1, all_candidates=[])
             self.assertEqual(node.word, "test")
             self.assertEqual(len(node.children), 0)
 
@@ -276,8 +278,8 @@ class TestDatabase(unittest.TestCase):
         self.assertEqual(recalled, [])
 
 
-class TestIntegration(unittest.TestCase):
-    """Test the complete autopsy: end-to-end dissection."""
+class TestIntegration(unittest.IsolatedAsyncioTestCase):
+    """Test the complete autopsy: end-to-end dissection (async edition)."""
 
     def setUp(self):
         # Use a temporary database for testing
@@ -294,34 +296,34 @@ class TestIntegration(unittest.TestCase):
         except:
             pass
 
-    @patch('sorokin._fetch_web_synonyms')
-    def test_full_autopsy_short_prompt(self, mock_fetch):
-        # Mock the web scraping to avoid actual HTTP requests
+    @patch('sorokin._fetch_web_synonyms', new_callable=AsyncMock)
+    async def test_full_autopsy_short_prompt(self, mock_fetch):
+        # Mock the async web scraping to avoid actual HTTP requests
         mock_fetch.return_value = "<html>test words here</html>"
 
-        result = sorokin_autopsy("test prompt")
+        result = await sorokin_autopsy("test prompt")
         self.assertIsInstance(result, str)
         self.assertIn("— Sorokin", result)
 
-    @patch('sorokin._fetch_web_synonyms')
-    def test_full_autopsy_empty_prompt(self, mock_fetch):
+    @patch('sorokin._fetch_web_synonyms', new_callable=AsyncMock)
+    async def test_full_autopsy_empty_prompt(self, mock_fetch):
         mock_fetch.return_value = ""
-        result = sorokin_autopsy("")
+        result = await sorokin_autopsy("")
         self.assertIn("Nothing to dissect", result)
 
-    @patch('sorokin._fetch_web_synonyms')
-    def test_full_autopsy_long_prompt(self, mock_fetch):
+    @patch('sorokin._fetch_web_synonyms', new_callable=AsyncMock)
+    async def test_full_autopsy_long_prompt(self, mock_fetch):
         mock_fetch.return_value = "<html>test words here</html>"
         # Create a prompt longer than MAX_INPUT_CHARS
         long_prompt = "word " * 100
-        result = sorokin_autopsy(long_prompt)
+        result = await sorokin_autopsy(long_prompt)
         self.assertIsInstance(result, str)
         self.assertIn("— Sorokin", result)
 
-    @patch('sorokin._fetch_web_synonyms')
-    def test_full_autopsy_cyrillic(self, mock_fetch):
+    @patch('sorokin._fetch_web_synonyms', new_callable=AsyncMock)
+    async def test_full_autopsy_cyrillic(self, mock_fetch):
         mock_fetch.return_value = "<html>тест слова здесь</html>"
-        result = sorokin_autopsy("привет мир")
+        result = await sorokin_autopsy("привет мир")
         self.assertIsInstance(result, str)
         self.assertIn("— Sorokin", result)
 
