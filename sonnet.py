@@ -147,8 +147,9 @@ def _compose_sonnet_impl(
     # PATCH 6: Optional title from most charged word
     title = None
     if charged:
-        # Pick most charged word (first in list) and capitalize
-        title = f"Sonnet: {charged[0].upper()}"
+        # Pick most charged word (first in list) and capitalize only first letter
+        # Changed from .upper() to .capitalize() - less aggressive, more readable
+        title = f"Sonnet: {charged[0].capitalize()}"
     
     # 6. Return formatted sonnet (with optional title)
     if title:
