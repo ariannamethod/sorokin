@@ -27,13 +27,14 @@ import urllib.parse
 import httpx
 
 DB_PATH = Path("sorokin.sqlite")
-USER_AGENT = "Mozilla/5.0 (compatible; SorokinAutopsy/1.0)"
+USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
 MAX_INPUT_CHARS = 100
 MAX_WORDS = 6          # max core words to dissect
 MAX_DEPTH = 4          # recursion safety cap
 MAX_HTML_CACHE = 50    # max cached HTML responses to prevent unbounded memory growth
-MAX_CONCURRENT_REQUESTS = 10  # max simultaneous web requests
-WEB_REQUEST_TIMEOUT = 2.0     # timeout in seconds (reduced from 6s)
+MAX_CONCURRENT_REQUESTS = 3   # max simultaneous web requests (lowered from 10 to avoid DDG rate limiting)
+WEB_REQUEST_TIMEOUT = 3.0     # timeout in seconds
+MIN_REQUEST_DELAY = 0.5       # minimum delay between web requests (anti-spam)
 
 # Latin + extended + Cyrillic
 WORD_RE = re.compile(r"[A-Za-zÀ-ÖØ-öø-ÿА-Яа-яЁё]+")
@@ -138,6 +139,10 @@ HTML_ARTIFACTS = {
     "duckduckgo", "unfortunately", "containing", "error", "confirm",
     "challenge", "following", "email", "made", "squares", "lite",
     "related", "example", "associated", "comparable", "correlated",
+
+    # DDG error/rate-limit page artifacts
+    "persists", "anonymized", "understand", "context", "getting",
+    "helps", "support", "address", "includes",
 }
 
 
@@ -622,6 +627,7 @@ def find_phonetic_neighbors(word: str, candidate_pool: List[str], limit: int) ->
 _html_cache: Dict[str, str] = {}
 _request_semaphore: Optional[asyncio.Semaphore] = None  # Initialized on first use
 _httpx_client: Optional[httpx.AsyncClient] = None  # Shared async client
+_last_request_time: float = 0.0  # Track last web request for rate limiting
 
 
 async def _cleanup_httpx() -> None:
@@ -644,10 +650,13 @@ async def _fetch_web_synonyms(query: str) -> str:
 
     Now with:
     - Async HTTP requests (httpx - works everywhere including Termux)
-    - 2s timeout instead of 6s
-    - Semaphore limiting concurrent requests to 10
+    - Rate limiting with MIN_REQUEST_DELAY to avoid DDG ban
+    - Semaphore limiting concurrent requests to 3
+    - Realistic User-Agent to blend in
+    - Error page detection
     """
-    global _request_semaphore, _httpx_client
+    global _request_semaphore, _httpx_client, _last_request_time
+    import time
 
     # Lazy init semaphore
     if _request_semaphore is None:
@@ -668,12 +677,30 @@ async def _fetch_web_synonyms(query: str) -> str:
 
     # Acquire semaphore to limit concurrent requests
     async with _request_semaphore:
+        # Rate limiting: wait if last request was too recent
+        current_time = time.time()
+        time_since_last = current_time - _last_request_time
+        if time_since_last < MIN_REQUEST_DELAY:
+            await asyncio.sleep(MIN_REQUEST_DELAY - time_since_last)
+
         try:
             url = f"https://duckduckgo.com/html/?q={urllib.parse.quote(query)}"
             headers = {"User-Agent": USER_AGENT}
 
             resp = await _httpx_client.get(url, headers=headers)
             html_text = resp.text
+
+            # Update last request time
+            _last_request_time = time.time()
+
+            # Detect DDG error/rate-limit pages
+            if len(html_text) < 1000 and "error" in html_text.lower():
+                # Likely an error page, treat as empty
+                html_text = ""
+            elif "If this persists" in html_text or "email us" in html_text:
+                # DDG rate limit / ban page
+                html_text = ""
+
         except Exception:
             # Silently fail - we'll return empty string
             html_text = ""
@@ -849,31 +876,20 @@ async def lookup_branches_for_word(
             if len(filtered) >= width:
                 break
 
-    # 3) Phonetic neighbors from all_candidates pool (if still need more)
-    if len(filtered) < width:
-        phonetic = find_phonetic_neighbors(word, all_candidates, width - len(filtered))
-        for p in phonetic:
-            if p.lower() not in seen and p.lower() not in HTML_ARTIFACTS:
-                filtered.append(p)
-                seen.add(p.lower())
-                if len(filtered) >= width:
-                    break
-
-    # 4) Fallback: use other words from all_candidates
-    # This ensures we always have width branches (tree structure requirement)
-    if len(filtered) < width:
-        for candidate in all_candidates:
-            lc = candidate.lower()
-            if lc not in seen and lc != lw:
-                filtered.append(candidate)
-                seen.add(lc)
-                if len(filtered) >= width:
-                    break
-
-    # Final fallback: add original word if still need more
-    if len(filtered) < width and lw not in seen:
-        filtered.append(word)
-        seen.add(lw)
+    # 3) NO FALLBACK TO all_candidates!
+    # Previously: used prompt words as fallback, but this creates garbage
+    # when web scraping fails (e.g., DDG rate limit).
+    # Better to return partial trees than to recursively breed prompt words.
+    #
+    # If we don't have enough candidates from memory + web, that's OK.
+    # Partial trees > garbage trees.
+    #
+    # REMOVED:
+    # - Phonetic neighbors from all_candidates (prompt words)
+    # - Direct fallback to all_candidates
+    # - Self-reference fallback (word → word)
+    #
+    # Result: Cleaner trees, even if narrower than requested width.
 
     # Deduplicate while preserving order
     seen_dedup = set()
