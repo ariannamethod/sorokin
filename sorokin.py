@@ -1068,9 +1068,13 @@ def render_autopsy(prompt: str, words: List[str], trees: List[Node]) -> str:
 
     for w, t in zip(words, trees):
         out.append(w)
-        for i, ch in enumerate(t.children):
-            last = (i == len(t.children) - 1)
-            out.extend(render_node(ch, "  ", last))
+        if t.children:
+            for i, ch in enumerate(t.children):
+                last = (i == len(t.children) - 1)
+                out.extend(render_node(ch, "  ", last))
+        else:
+            # Show placeholder when no children found (better than empty silence)
+            out.append("  └─ (no synonyms found)")
         out.append("")
 
     all_leaves: List[str] = []
@@ -1596,14 +1600,18 @@ def render_autopsy_bootstrap(prompt: str, words: List[str], trees: List[Node],
     out: List[str] = []
     out.append(prompt.strip())
     out.append("")
-    
+
     for w, t in zip(words, trees):
         out.append(w)
-        for i, ch in enumerate(t.children):
-            last = (i == len(t.children) - 1)
-            out.extend(render_node(ch, "  ", last))
+        if t.children:
+            for i, ch in enumerate(t.children):
+                last = (i == len(t.children) - 1)
+                out.extend(render_node(ch, "  ", last))
+        else:
+            # Show placeholder when no children found (better than empty silence)
+            out.append("  └─ (no synonyms found)")
         out.append("")
-    
+
     all_leaves: List[str] = []
     for t in trees:
         all_leaves.extend(collect_leaves(t))
