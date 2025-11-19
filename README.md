@@ -31,7 +31,7 @@ Named after Vladimir Sorokin, the Russian writer known for his transgressive and
 
 ### Exhibit: Maximum Autopsy Tree 
 
-Because 'sorokin' builds trees vertically like a linguo-necromancer performing open-heart surgery on reality itself, here's a full corpse-map straight from his SQLite morgue. Here's what happens when you feed Sorokin **"karpathy trains shakespeare on nanogpt"**:
+Because `sorokin` builds trees vertically like a linguo-necromancer performing open-heart surgery on reality itself, here's a full corpse-map straight from his SQLite morgue. Here's what happens when you feed Sorokin **"karpathy trains shakespeare on nanogpt"**:
 
 ```
 shakespeare
@@ -389,7 +389,7 @@ MEMORY ACCUMULATION:
 
 1. **AUTOPSY RESULT** (Acts I-III result): sorokin's first reassembly—grammatically valid paragraph generated via POS-tagged slot-filling. "Within is zealand. Forever prompt. Nothing remains." Pure and raw Sorokin energy.
 
-2. **SONNET** (Act IV): After 'sorokin' took the autopsy output, fed it to `sonnet.py`, which writes a **14-line Shakespearean sonnet** titled "NOSWEATSHAKESPEARE" (the most charged word from the autopsy). Notice:
+2. **SONNET** (Act IV): After `sorokin` took the autopsy output, fed it to `sonnet.py`, which writes a **14-line Shakespearean sonnet** titled "NOSWEATSHAKESPEARE" (the most charged word from the autopsy). Notice:
    
    - Perfect ABABCDCDEFEFGG rhyme scheme
    - Punctuation follows Shakespearean structure (semicolons at quatrain breaks, em-dash before volta, period at end)
@@ -416,7 +416,7 @@ Each autopsy doesn't just destroy—it *accumulates*. Over time:
 - "Charged words" selected by length + rarity from autopsy text
 - Structure enforced via rigid 14-line scheme + punctuation rules
 
-It's what happens when you give a serial killer both a thesaurus and a copy of *The Norton Anthology* and tell them to "make it rhyme." The result is **structurally Shakespearean, semantically Sorokin, phonetically unhinged**.
+It's what happens when you give a serial killer both a thesaurus and a copy of *The Norton Anthology* and tell them to "make it rhyme." The result is **structurally Shakespearean, semantically `sorokin`, phonetically unhinged**.
 
 Karpathy would be proud. Or horrified. Honestly, at this level of abstraction, those are the same emotion.  
 
