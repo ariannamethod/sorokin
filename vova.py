@@ -310,24 +310,28 @@ def warp(
     Args:
         field: Vova field instance
         seed: Input text (can be empty for pure generation)
-        max_tokens: Max output length
+        max_tokens: Max output length (total, including seed)
         temperature: Sampling temp (lower = sharper)
         chaos: Ignore centers (full vocab sampling)
 
     Returns:
-        Warped text pulled toward README centers
+        Warped text: seed tokens MIXED with README resonance
     """
-    # Start from seed or random center
-    tokens = tokenize(seed) if seed else []
-    if tokens and tokens[-1] in field.vocab:
-        current = tokens[-1]
+    # KEEP seed tokens as foundation
+    seed_tokens = tokenize(seed) if seed else []
+    output = seed_tokens.copy()  # Start with seed (preserve mutation tree words!)
+
+    # Pick last seed word as starting point for README generation
+    if seed_tokens and seed_tokens[-1] in field.vocab:
+        current = seed_tokens[-1]
     else:
         current = choose_start_token(field, chaos=chaos)
 
-    output = []
-    for _ in range(max_tokens):
-        output.append(current)
+    # Generate ADDITIONAL tokens from README (not replace!)
+    additional_tokens = max(0, max_tokens - len(seed_tokens))
+    for _ in range(additional_tokens):
         current = step_token(field, current, temperature=temperature)
+        output.append(current)
 
     # Format
     result = []
