@@ -13,9 +13,9 @@
 
 *Or: How I Learned to Stop Worrying and Love the Dissection*
 
-> "The heads of philologists are stuffed with books to the brim. They see life only through text. And they are proud of it. … Forever gorged and poisoned by literature, they take living life as the continuation of text, as its appendix.
+> "The heads of philologists are stuffed with books to the brim. They see life only through text. And they are proud of it. … Forever gorged and poisoned by literature, they take living life as the continuation of text, as its appendix."
 >
-> -Vladimir Sorokin"
+> —Vladimir Sorokin
 
 
 ### What is this madness?
@@ -23,11 +23,11 @@
 `sorokin` is a triple-module Python entity (~3090 lines) that takes your innocent prompts, tears them apart like a psychopathic linguist, builds a recursive tree of semantic mutations, and then—like Dr. Frankenstein having a particularly creative day—reassembles the corpse into something *new*.
 
 It consists of:
-- **sorokin.py** (~2094 lines): The main autopsy engine: brutally tokenize your prompt, builds recursive trees of semantic mutations, and reassembles the corpse into grammatically valid but semantically deranged paragraphs.
+- **sorokin.py** (~2094 lines): The main autopsy engine: brutally tokenizes your prompt, builds recursive trees of semantic mutations, and reassembles the corpse into grammatically valid but semantically deranged paragraphs.
 - **sonnet.py** (~599 lines): The *ASS* (Autopsy Sonnet Symphony)— asynchronously takes **sorokin.py**'s dissection output and writes a 14-line Shakespearean sonnet (ABABCDCDEFEFGG rhyme scheme) using only output data and the memory's accumulated vocabulary. No internet. No embeddings. Just pure structural psychosis in iambic pentameter.
 - **vova.py** (~397 lines): The *VOVA* (README resonance meta-layer)— implements SSKA (Suppertime Subjectivity Kernel Autonomous) to warp text through README's resonance field using accumulated bigram centers. Meta-cannibalism: the system eats its own documentation.
 
-Named after Vladimir Sorokin, the Russian writer known for his transgressive and experimental style, sorokin embodies the same spirit of literary dissection and reconstruction. It's not here to help you. It's here to show you what your words *could have been*, reassemble them, and declare the output canonical.
+Named after Vladimir Sorokin, the Russian writer known for his transgressive and experimental style, sorokin embodies the same spirit of literary dissection and reconstruction. It's not here to help you. It's here to show you what your words *could have been*, to reassemble them, and to declare the output canonical.
 
 
 ### Exhibit: Maximum Autopsy Tree 
@@ -583,7 +583,7 @@ All autopsies 'sorokin' pedantically saves to `sorokin.sqlite`:
 - **corpse_bigrams**: Harvested word pairs from successful reassemblies, with frequency tracking
 - **autopsy_metrics**: Resonance scores (phonetic diversity, structural echo, mutation depth) for each autopsy
 
-The SQLite morgue becomes a self-improving lexical graveyard, learns through resonance, and even this README feeds 'sorokin' with bigrams and grammar.
+The SQLite morgue becomes a self-improving lexical graveyard that learns through resonance, and even this README feeds 'sorokin' with bigrams and grammar.
 
 ---
 
