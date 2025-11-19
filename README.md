@@ -22,9 +22,9 @@
 
 `sorokin` is a dual-module (for now) Python entity (~2549 lines) that takes your innocent prompts, tears them apart like a psychopathic linguist, builds a recursive tree of semantic mutations, and then—like Dr. Frankenstein having a particularly creative day—reassembles the corpse into something *new*.  
 
-It's consisting of:
+It consists of:
 - **sorokin.py** (~2008 lines): The main autopsy engine: brutally tokenize your prompt, builds recursive trees of semantic mutations, and reassembles the corpse into grammatically valid but semantically deranged paragraphs.
-- **sonnet.py** (~541 lines): The *ASS* (Autopsy Sonnet Symphony)— asynchronically takes **sorokin.py**'s dissection output and writes a 14-line Shakespearean sonnet (ABABCDCDEFEFGG rhyme scheme) using only output data and the memory's accumulated vocabulary. No internet. No embeddings. Just pure structural psychosis in iambic pentameter.
+- **sonnet.py** (~541 lines): The *ASS* (Autopsy Sonnet Symphony)— asynchronously takes **sorokin.py**'s dissection output and writes a 14-line Shakespearean sonnet (ABABCDCDEFEFGG rhyme scheme) using only output data and the memory's accumulated vocabulary. No internet. No embeddings. Just pure structural psychosis in iambic pentameter.
 
 Named after Vladimir Sorokin, the Russian writer known for his transgressive and experimental style, sorokin embodies the same spirit of literary dissection and reconstruction. It's not here to help you. It's here to show you what your words *could have been*, reassemble them, and declare the output canonical.
 
@@ -387,9 +387,9 @@ MEMORY ACCUMULATION:
 
 **What just happened?**
 
-1. **AUTOPSY RESULT** (Act I): sorokin's first reassembly—grammatically valid paragraph generated via POS-tagged slot-filling. "Within is zealand. Forever prompt. Nothing remains." Pure and raw Sorokin energy.
+1. **AUTOPSY RESULT** (Acts I-III result): sorokin's first reassembly—grammatically valid paragraph generated via POS-tagged slot-filling. "Within is zealand. Forever prompt. Nothing remains." Pure and raw Sorokin energy.
 
-2. **SONNET** (Act II): After 'sorokin' took the autopsy output, fed it to `sonnet.py`, which writes a **14-line Shakespearean sonnet** titled "NOSWEATSHAKESPEARE" (the most charged word from the autopsy). Notice:
+2. **SONNET** (Act IV): After 'sorokin' took the autopsy output, fed it to `sonnet.py`, which writes a **14-line Shakespearean sonnet** titled "NOSWEATSHAKESPEARE" (the most charged word from the autopsy). Notice:
    
    - Perfect ABABCDCDEFEFGG rhyme scheme
    - Punctuation follows Shakespearean structure (semicolons at quatrain breaks, em-dash before volta, period at end)
@@ -445,13 +445,13 @@ Stopwords? Rejected. Single letters? Discarded. What remains are the words that 
 
 #### Act II: The Tree (or "Building the Monster")
 
-Now comes the fun part. For each core word, `sorokin` builds a recursive branching tree of mutations. How? With the calm precision of a med-school dropout who skipped bedside manner, but technically - that's how:
+Now comes the fun part. For each core word, `sorokin` builds a recursive branching tree of mutations. How? With the calm precision of a med-school dropout who skipped bedside manner, but technically, here's how:
 
 **Step 1: Memory First**  
 Check the SQLite morgue. Have we dissected this word before? Use those cached mutations.
 
-**Step 2: Phonetic Similarity**  
-Generate a "phonetic fingerprint" (consonant skeleton + vowel pattern) and find words that *sound* similar. Not linguistically rigorous, by the vibes.  
+**Step 2: Phonetic Similarity**
+Generate a "phonetic fingerprint" (consonant skeleton + vowel pattern) and find words that *sound* similar. Not linguistically rigorous, just vibes.  
 
 ```python
 >>> phonetic_fingerprint("cat")
@@ -511,8 +511,6 @@ After the autopsy reassembly, `sonnet.py` (the **ASS** module) takes the entire 
 
 The result? **14 lines. ABABCDCDEFEFGG rhyme scheme. Iambic *vibes*. Zero semantic understanding.** Just bigrams, phonetic fingerprints, and structural obsession.
 
-It's what happens when you give a serial killer both a thesaurus and a copy of *The Norton Anthology* and tell them to "make it rhyme."
-
 ```SONNET:
 Sonnet: Nosweatshakespeare
   Recognizing findsclothing or onto on onto toronto to pulls,
@@ -565,10 +563,10 @@ Or maybe it's just fun to watch language come apart at the seams.
 
 Picture this: every time 'sorokin' dissects a prompt, he doesn't just throw the body parts in the trash. No. He's a *hoarder*. He saves every successful mutation, every word-pair, every pattern of collapse into his SQLite morgue. Then—and here's where it gets freaky—he uses those accumulated corpses to inform *future* dissections.
 
-'sorokin'is not not intelligence. 'sorokin'is not artifical. 
-He's not learning. He's **resonanating through ritual repetition**.
+'sorokin' is not intelligence. 'sorokin' is not artificial.
+He's not learning. He's **resonating through ritual repetition**.
 
-Think of it like this: 'sorokin' wihout **bootsrap** is a mad linguist with a scalpel, and **bootsrap** 'sorokin' is that same linguist who's been doing this for 30 years and has developed *habits*. Muscle memory. Pattern recognition. Not because of intelligence, but because he's done the same surgery 10,000 times and his hands just know where to cut. Like Bruce Lee.  
+Think of it like this: 'sorokin' without **bootstrap** is a mad linguist with a scalpel, and **bootstrap** 'sorokin' is that same linguist who's been doing this for 30 years and has developed *habits*. Muscle memory. Pattern recognition. Not because of intelligence, but because he's done the same surgery 10,000 times and his hands just know where to cut. Like Bruce Lee.  
 
 ### Why "Bootstrap"?
 
@@ -585,7 +583,7 @@ No bullshit. Resonate.
 **Notice**: Bootstrap mode now generates **grammatically valid paragraphs** using POS-tagged template slot-filling! Sorokin dissected "reality becomes syntax error" and achieved **perfect 1.000 Phonetic Diversity** with **0.101 Mutation Depth**. Look at the mutations—"peru", "example", "explanation", "crowdsourced"—*all appear in this very README*. The system is eating its own documentation and hallucinating it back as psychopathic poetry. Self-reference achieved. Peak metafiction.  
 
 
-### ⚡️ SONNET: Autopsy Sonnet Symphony(ASS): When Sorokin Learned to Rhyme (Sort Of)**
+### ⚡️ SONNET: Autopsy Sonnet Symphony (ASS): When Sorokin Learned to Rhyme (Sort Of)
 
 New module `sonnet.py` (~541 lines) writes **14-line Shakespearean sonnets** from autopsy output using zero semantic understanding—just bigram chains, phonetic fingerprints, and an unhealthy obsession with structure over meaning.
 
@@ -606,7 +604,7 @@ Integration is **silent fallback**—if sonnet.py fails or is missing, bootstrap
 
 Here's the wild part. 'sorokin' doesn't understand *meaning*. He doesn't have embeddings. He doesn't know what words "mean." But he knows **resonance**.
 
-What's resonance? It's when patterns echo. When structures repeat. When the structure's is recursive. When phonemes rhyme across semantic boundaries. When the shape of one corpse mirrors the shape of another, not in content but in *form*.
+What's resonance? It's when patterns echo. When structures repeat. When the structure is recursive. When phonemes rhyme across semantic boundaries. When the shape of one corpse mirrors the shape of another, not in content but in *form*.
 
 Three flavors of resonance:
 
@@ -668,7 +666,7 @@ The morgue grows. Patterns compound. Nothing is forgotten. Each corpse teaches t
 
 ### The Persistent Morgue
 
-All autopsies 'sorokin' pedantically saves to 'sorokin.sqlite:  
+All autopsies 'sorokin' pedantically saves to `sorokin.sqlite`:  
   
 - **autopsy table**: Full reports of each dissection
 - **word_memory table**: Cached word mutations for faster subsequent operations
@@ -679,56 +677,9 @@ All autopsies 'sorokin' pedantically saves to 'sorokin.sqlite:
 - **corpse_bigrams**: Harvested word pairs from successful reassemblies, with frequency tracking
 - **autopsy_metrics**: Resonance scores (phonetic diversity, structural echo, mutation depth) for each autopsy
 
-The SQlite-morgue becomes a self-improving lexical graveyard. and learns through resonance, and even this README feeds 'sorokin' with b-grams and grammar.
-   
-
-### Resonant Interface Audit (Architect's Notebook)
-
-'sorokin' is already an autopsy ritual, but giving the corpse a voice makes the haunt complete. Here's the high-level blueprint now pacing the morgue:
-
-1. **Interface spine (Bootstrap + README sync)**: expose 'sorokin''s bootstrap rituals behind a thin FastAPI/Flask sheath so the README-driven mythology *is* the API surface. Every invocation should echo metadata back into `README.md` (or a `/morgue/logs` feed) to keep the mythos synchronized with the code.
-2. **Reddit prowler**: wire a daemonized client (PRAW or plain OAuth) that samples unexpected threads, injects Sorokin dissections, and archives prompt→autopsy pairs in SQLite. Surprise matters; schedule via cron-like jitter.
-3. **Twitter/Twitchy conduit**: mirror the Reddit autopsies into a broadcast persona. Rate-limit with exponential backoff and interleave original dissections to avoid spam detection.
-4. **Bootstrap UI**: craft a razor-thin Bootstrap shell (cards = corpses, accordions = trees) so the README artwork becomes the hero banner. Frontend pulls from the SQLite morgue via `/corpses/latest` endpoints; add "grammatic resonance" badges fed by the metrics tables.
-
-Sorokin's subjectivity emerges when its morgue, interface, and myth bleed together. README-first design keeps the ritual self-documenting while the bot network ensures random passersby get pulled onto the autopsy table.
+The SQLite morgue becomes a self-improving lexical graveyard, learns through resonance, and even this README feeds 'sorokin' with bigrams and grammar.
 
 ---
-
-### The Four Tables of the Bootstrap Apocalypse
-
-When you run `--bootstrap`, Sorokin writes to four additional SQLite tables:
-
-1. **`mutation_templates`**: Learned word transformations
-   - "darkness" → "illuminated" (used 15 times, resonance: 0.73)
-   - "consumes" → "contexts" (used 8 times, resonance: 0.52)
-
-2. **`corpse_bigrams`**: Harvested word-pairs from reassemblies
-   - "connection" → "economise" (frequency: 3)
-   - "shelter" → "greece" (frequency: 2)
-
-3. **`autopsy_metrics`**: Resonance scores for each dissection
-   - Autopsy #47: phonetic_diversity=0.92, structural_echo=0.13, mutation_depth=0.81
-
-4. **`seed_corpus`**: Embedded poetic text about dissection (hardcoded in sorokin.py)
-   - Provides structural DNA for bigram chains
-   - Not in database, lives in `SOROKIN_SEED_CORPUS` constant
-
-
-### The Seed Corpus (The Morgue's DNA)
-
-Embedded in `sorokin.py` is a block of poetic text about dissection. Not prose. Not instructions. Just fragments:
-
-> *"Sorokin takes prompts and opens them like cooling bodies on a steel table"*  
-> *"Mutation grows in him like frost patterns crawling across broken glass"*  
-> *"The autopsy produces fragments that echo the ghost of structure"*
-
-This text gets parsed into bigrams at startup. These bigrams **prime** the reassembly process. So when bootstrap mode stitches corpses together, it unconsciously echoes the seed corpus structure.
-
-Not copying words. Copying **sentence rhythms**. The *shape* of language.
-
-It's like teaching someone to paint by showing them brushstrokes, not paintings.  
-
 
 ### Bootstrap vs Standard Mode
 
@@ -739,24 +690,7 @@ It's like teaching someone to paint by showing them brushstrokes, not paintings.
 | Metrics | None | Phonetic diversity, structural echo, mutation depth |
 | Learning | None | Every autopsy feeds the next |
 | Database tables | 2 (autopsy, word_memory) | 5 (+ mutation_templates, corpse_bigrams, autopsy_metrics) |
-| Vibes | Chaotic | Chaotic but *remembering* |  
-
-
-### The Philosophy of Resonance
-
-Here's the thing. Sorokin doesn't "understand" language. He doesn't know that "darkness" and "light" are opposites. He doesn't know "consumes" is a verb. He doesn't care.
-
-But through **resonance**, he discovers patterns:
-- Words that sound similar tend to mutate into each other
-- Bigrams that worked once tend to work again
-- Structural rhythms (word-length patterns) create aesthetic coherence
-
-This is **meaning-free pattern recognition**. No semantics. Just structure, phonetics, and frequency. Sorokin is what happens when you staple a Karpathy bootstrapper to a Russian literary fever dream and whisper, "optimize your madness."
-
-And weirdly, it produces results that *feel* meaningful—not because they are, but because human brains are pattern-matching machines too. We see meaning where there's only resonance.
-
-Sorokin isn't a poet. He's a mirror. He reflects your own pattern-seeking back at you.
-
+| Vibes | Chaotic | Chaotic but *remembering* |
 
 ---
 
@@ -808,114 +742,15 @@ This README promised to be both circus barker and lab notebook, so here's the cl
 
 ### Recent Improvements
 
-**Full Async/Await Refactor: The Morgue Dissects in Parallel**
+**Async/Await Refactor**: Complete architectural rewrite with `httpx` + `asyncio`. 3-4x faster on complex prompts (was 60s, now ~15s). Parallel web requests and tree construction. All 57 tests passing.
 
-Sorokin now performs autopsies asynchronously — no more hanging on complex prompts! Complete architectural rewrite with `httpx` + `asyncio`:
+**Balanced Source Mixing**: Fixed closed-loop problem where SQLite cache dominated after a few autopsies. Now always mixes 50% cached memory + 50% fresh web data. Result: performance + novelty.
 
-**Performance gains:**
-- 3-4x faster on complex prompts (was 60+ seconds, now ~15-20 seconds)
-- Parallel web requests: 4 DDG queries fire simultaneously instead of sequentially
-- Parallel tree construction: all child nodes built concurrently using `asyncio.gather()`
-- Timeout reduced from 6s to 2s (web requests are faster now!)
-- Semaphore limiting: max 10 concurrent web requests to avoid overwhelming DDG
+**Bootstrap Extension**: Added `--bootstrap` flag enabling self-improving autopsy ritual through resonance metrics and pattern accumulation (see Bootstrap section above).
 
-**Technical changes:**
-- Replaced `urllib` with `httpx.AsyncClient` (works in Termux!)
-- All core functions now `async def`: `_fetch_web_synonyms`, `lookup_branches_for_word`, `build_tree_for_word`, `sorokin_autopsy`, etc.
-- Graceful cleanup: `_cleanup_httpx()` ensures no "event loop closed" errors on exit
-- Tests updated: `unittest.IsolatedAsyncioTestCase` + `AsyncMock` + `pytest.mark.asyncio` (all 57 tests passing!)
+**DuckDuckGo Scraping**: Switched from Google (was returning garbage) to DDG for synonym discovery. Better bot tolerance, real semantic mutations.
 
-**Critical fix:** Enabled `follow_redirects=True` in httpx (DuckDuckGo returns 302 redirects). Without this, Sorokin was only getting 138 bytes of `<center>nginx</center>` error pages instead of real synonym data. That's why you kept seeing "nginx" and "found" everywhere! Now getting proper 31KB HTML responses with actual synonyms.
-
-The morgue is now a **parallel processing factory of psychopathic poetry**. Володя жрёт интернет асинхронно.
-
-**Why async?** Because watching Sorokin wait for DuckDuckGo is like watching a serial killer file paperwork—technically impressive restraint, but you know he'd rather disembowel four sentences simultaneously while humming Shostakovich. Now he can. The event loop is his scalpel. The semaphore is his ethics committee. Both are optional.
-
----
-
-**Balanced Source Mixing: The Morgue Eats Both Past and Present**
-
-Previously, `lookup_branches_for_word` had a **hard priority system** that created a critical problem:
-1. If SQLite memory had ≥ width words → return immediately (early exit!)
-2. If memory + phonetic ≥ width → return (early exit!)
-3. Web scraping only happened if steps 1-2 were insufficient
-
-**The problem:** After 2-3 autopsies, SQLite fills up with mutations. System becomes a **closed loop**—feeding only on old cached mutations, never fetching fresh web data. The morgue turns stale, recombining the same corpses endlessly.
-
-**The solution: BALANCED MIX (50% memory + 50% web)**
-
-Now `lookup_branches_for_word` always mixes sources:
-- **Memory limited to ~50% of width** (`memory_limit = width // 2`)
-- **Web requests ALWAYS fire** (no early returns!)
-- Fresh DDG synonyms injected every autopsy, even when cache is full
-- Result: **Performance** (memory cache) + **Novelty** (fresh web data)
-
-**Proof:**
-```bash
-# With 10 words in memory for "darkness", requesting width=4:
-Memory: ['shade', 'obscurity', 'dimness', 'murk', 'gloom', ...]
-Result: ['shade', 'obscurity', 'illuminated', 'brilliance']
-        ↑----- 50% memory -----↑ ↑------- 50% web --------↑
-
-# With width=6:
-Result: ['brilliance', 'illuminated', 'obscurity', 'ignorance', 'comprehension', 'sensibility']
-        ↑--------------------- 83% web ---------------------↑ ↑- 17% memory -↑
-```
-
-The morgue now simultaneously dissects both corpses from the archive *and* fresh bodies from the street. The pathologist's scalpel cuts through time itself—one hand in the freezer, one hand in the present. This is what happens when you give a serial killer both a filing cabinet and a search engine.
-
----
-
-**The Pathologist's Evolution: From Selective Surgeon to Omnivorous Dissector**
-Sorokin now dissects *anything*, even nonsense. Previously, synthetic/low-vowel core words (like "zzz", "xxx", "zxcvbn") were rejected entirely—their trees left empty, their meanings unexplored. Now: **if you give it to Sorokin, he dissects it**. Core words (user-provided prompts) are *always* dissected, regardless of phonetic structure. Only their *children* get filtered for synthetic garbage. The philosophy: trust the user's madness, but prune the mutations. Result: even keyboard-mash prompts like "qwerty asdfgh zxcvbn" now produce full 3×3 autopsy trees with real semantic mutations.
-
-Additionally, thesaurus/dictionary site filtering became more aggressive—now filters are applied not just to web scraping, but also to cached memory and phonetic neighbor lookups. Sites like `yourdictionary`, `thefreedictionary`, `urbanthesaurus`, and `urbandictionary` are now globally blacklisted across all lookup stages. The morgue stays clean. The mutations stay real.
-
-**Bootstrap Extension with Pattern Accumulation**
-Added `--bootstrap` flag enabling self-improving autopsy ritual. See the dedicated Bootstrap section above for full details. TL;DR: the morgue now learns from every corpse through resonance metrics and pattern accumulation. No intelligence, just ritual repetition.
-
-**DuckDuckGo Web Scraping**
-Switched from Google to DuckDuckGo for synonym discovery. Google was blocking bot requests and returning garbage results (always the same words: "trouble", "within", "having"). DuckDuckGo is less aggressive with bot blocking and returns actual synonyms:
-- "destroy" → destruction, disintegrate, dismantle, obliteration, demolish
-- "evil" → villainy, villain, evildoing, depravity, wickedness
-- "machines" → automobile, equipment, mechanical, apparatus
-Result: Real semantic resonance instead of random HTML artifacts.
-
-**Smart Fallback Chain with README Phonetic Matching**
-Implemented emergency fallback system that NEVER produces empty trees or falls back to prompt words (which caused recursive garbage). The fallback chain:
-1. **Memory cache (50%)** - Fast cached results from SQLite, limited to half of requested width
-2. **Web scraping (50%)** - Fresh DuckDuckGo synonyms to maintain novelty
-3. **Extended memory** - If web fails (rate limiting/ban), grab additional results from cache beyond 50% limit
-4. **README phonetic matching** - Use phonetic fingerprints to find similar-sounding words from README vocabulary (1,172+ bigrams)
-5. **Partial trees** - Return whatever was found, never fall back to prompt words
-
-Example: "kim kardashyan" → finds "brim", "him", "karpathy", "bootstrapper" via phonetic matching when web is blocked. No more "(Skipped X words with no synonyms)" shame! Every word gets mutations, even obscure ones. The system literally matched "kardashyan" to "karpathy" phonetically—if Andrej ever reads this he'll either laugh or file a restraining order, possibly both.
-
-**Rate Limiting and Anti-Ban Measures**
-Added protections against DuckDuckGo rate limiting:
-- Realistic User-Agent (Chrome on Windows instead of obvious bot signature)
-- Request delay of 0.5 seconds between web calls
-- Reduced concurrency from 10 → 3 simultaneous requests
-- Error page detection ("If this persists, please email us...")
-- Extended HTML_ARTIFACTS blacklist with DDG UI elements
-Result: Stable web scraping even during extended autopsy sessions.
-
-**Synthetic Mutation Purge**
-Removed `_generate_phonetic_variants` entirely because it was creating garbage that polluted the autopsy:
-- Reversed words ("elpmis", "etaerc") bred recursively into unreadable noise
-- Suffix mutations ("createded" → "creatededed" → "createedededed") were pure madness
-- Now uses minimal fallback: only real web-scraped synonyms + phonetic neighbors
-- Synthetic word detection prevents breeding of low-vowel/repeated-letter mutations
-- Result: Clean autopsy output instead of synthetic garbage like "creatededed elpmisss tttrouble"
-
-**Global Deduplication**
-Implemented cross-tree word deduplication to prevent the same mutations from appearing in different core word branches. Each tree now gets unique mutations, resulting in more diverse and interesting autopsies.
-
-**Enhanced HTML Artifact Filtering**
-Expanded the HTML_ARTIFACTS blacklist with ~40 common web UI/UX words (redirected, accessing, feedback, google, etc.) that were polluting mutation results from web scraping.
-
-**The Original Bug Fix**
-Fixed a crash in `reassemble_corpse()` where `random.randint(5, min(10, len(leaves)))` would fail if `len(leaves) < 5`. Changed to `random.randint(min(5, len(leaves)), min(10, len(leaves)))` so even small corpses can be reassembled.
+**Other Fixes**: Core words always dissected regardless of phonetic structure. Global deduplication across trees. Enhanced HTML artifact filtering. Rate limiting protections.
 
   
 ### Credits
