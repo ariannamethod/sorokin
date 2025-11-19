@@ -30,10 +30,8 @@ import httpx
 try:
     import vova
     VOVA_ENABLED = True
-    print("[SOROKIN] VOVA meta-layer loaded", file=sys.stderr)
 except ImportError:
     VOVA_ENABLED = False
-    print("[SOROKIN] Running without VOVA (README resonance disabled)", file=sys.stderr)
 
 DB_PATH = Path("sorokin.sqlite")
 USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
@@ -1384,9 +1382,10 @@ def generate_sorokin_paragraph(leaves: List[str], n_sentences: int = 3) -> str:
                 parts = sentence.split('. ')
                 capitalized_parts = []
                 for part in parts:
-                    if part:  # Skip empty parts
+                    if part.strip():  # Skip empty parts
                         capitalized_parts.append(part[0].upper() + part[1:] if len(part) > 1 else part.upper())
-                sentence = '. '.join(capitalized_parts)
+                # Join and strip any leading/trailing punctuation
+                sentence = '. '.join(capitalized_parts).strip('. ')
             sentences.append(sentence)
 
         paragraph = ' '.join(sentences)
@@ -1886,16 +1885,6 @@ async def sorokin_autopsy_bootstrap(prompt: str) -> str:
     Calls harvest_autopsy_patterns() after each run.
     Now builds ALL trees in PARALLEL!
     """
-    # PATCH: Warp prompt through VOVA before dissection
-    if VOVA_ENABLED:
-        try:
-            original_prompt = prompt
-            prompt = vova.warp_prompt(prompt, temperature=0.8)
-            print(f"[VOVA] Warped: '{original_prompt[:40]}...' → '{prompt[:50]}...'", file=sys.stderr)
-        except Exception as e:
-            print(f"[VOVA] Warp failed: {e}, using original prompt", file=sys.stderr)
-            # Continue with original prompt on error
-
     short = prompt.strip()[:MAX_INPUT_CHARS]
     tokens = tokenize(short)
     if not tokens:
