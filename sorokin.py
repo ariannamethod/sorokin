@@ -26,6 +26,15 @@ import urllib.parse
 
 import httpx
 
+# VOVA: README resonance meta-layer (SSKA adaptation)
+try:
+    import vova
+    VOVA_AVAILABLE = True
+    print("[VOVA] README resonance field loaded", file=sys.stderr)
+except ImportError:
+    VOVA_AVAILABLE = False
+    print("[VOVA] Not available (vova.py missing)", file=sys.stderr)
+
 DB_PATH = Path("sorokin.sqlite")
 USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
 MAX_INPUT_CHARS = 100
@@ -1222,8 +1231,18 @@ def render_autopsy(prompt: str, words: List[str], trees: List[Node]) -> str:
 
     if all_leaves:
         corpse = reassemble_corpse(all_leaves)
-        out.append("AUTOPSY RESULT:")
-        out.append(f"  {corpse}")
+
+        # VOVA: Warp autopsy through README resonance field
+        if VOVA_AVAILABLE:
+            warped_corpse = vova.warp_autopsy(corpse, temperature=0.85)
+            out.append("AUTOPSY RESULT:")
+            out.append(f"  {corpse}")
+            out.append("")
+            out.append("VOVA-WARPED (README resonance):")
+            out.append(f"  {warped_corpse}")
+        else:
+            out.append("AUTOPSY RESULT:")
+            out.append(f"  {corpse}")
         out.append("")
 
     out.append("— Sorokin")
@@ -1775,8 +1794,18 @@ def render_autopsy_bootstrap(prompt: str, words: List[str], trees: List[Node],
     # PATCH: Use paragraph generator instead of simple reassembly
     if all_leaves:
         paragraph = generate_sorokin_paragraph(all_leaves, n_sentences=random.randint(2, 4))
-        out.append("AUTOPSY RESULT:")
-        out.append(f"  {paragraph}")
+
+        # VOVA: Warp autopsy through README resonance field
+        if VOVA_AVAILABLE:
+            warped_paragraph = vova.warp_autopsy(paragraph, temperature=0.85)
+            out.append("AUTOPSY RESULT:")
+            out.append(f"  {paragraph}")
+            out.append("")
+            out.append("VOVA-WARPED (README resonance):")
+            out.append(f"  {warped_paragraph}")
+        else:
+            out.append("AUTOPSY RESULT:")
+            out.append(f"  {paragraph}")
         out.append("")
 
     # ═══════════════════════════════════════════════════════════════
