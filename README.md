@@ -31,7 +31,7 @@ Named after Vladimir Sorokin, the Russian writer known for his transgressive and
 
 ### Exhibit: Maximum Autopsy Tree 
 
-Because Sorokin builds trees vertically like a linguo-necromancer performing open-heart surgery on reality itself, here's a full corpse-map straight from his SQLite morgue. Here's what happens when you feed Sorokin **"karpathy trains shakespeare on nanogpt"**:
+Because 'sorokin' builds trees vertically like a linguo-necromancer performing open-heart surgery on reality itself, here's a full corpse-map straight from his SQLite morgue. Here's what happens when you feed Sorokin **"karpathy trains shakespeare on nanogpt"**:
 
 ```
 shakespeare
@@ -387,7 +387,7 @@ MEMORY ACCUMULATION:
 
 **What just happened?**
 
-1. **AUTOPSY RESULT** (Act I): Sorokin's first reassembly—grammatically valid paragraph generated via POS-tagged slot-filling. "Within is zealand. Forever prompt. Nothing remains." Pure and raw Sorokin energy.
+1. **AUTOPSY RESULT** (Act I): sorokin's first reassembly—grammatically valid paragraph generated via POS-tagged slot-filling. "Within is zealand. Forever prompt. Nothing remains." Pure and raw Sorokin energy.
 
 2. **SONNET** (Act II): After 'sorokin' took the autopsy output, fed it to `sonnet.py`, which writes a **14-line Shakespearean sonnet** titled "NOSWEATSHAKESPEARE" (the most charged word from the autopsy). Notice:
    
