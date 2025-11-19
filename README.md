@@ -31,397 +31,246 @@ Named after Vladimir Sorokin, the Russian writer known for his transgressive and
 
 ### Exhibit: Maximum Autopsy Tree 
 
-Because `sorokin` builds trees vertically like a linguo-necromancer performing open-heart surgery on reality itself, here's a full corpse-map straight from his SQLite morgue. Here's what happens when you feed Sorokin **"karpathy trains shakespeare on nanogpt"**:
+Because `sorokin` builds trees vertically like a linguo-necromancer performing open-heart surgery on reality itself, here's a full corpse-map from the morgue. Feed Sorokin **"destroy the sentence"** (warped through VOVA's README resonance field into "Sentence phrase tries transgressive and Love the reassembled text for his own documentation...") and witness the meta-cannibalism:
 
 ```
-shakespeare
-  ├─ nosweatshakespeare
-  │  ├─ insane
-  │  │  └─ stable
-  │  ├─ aware
-  │  │  ├─ ware
-  │  │  ├─ knowledgeable
-  │  │  ├─ phrases
-  │  │  └─ writing
-  │  ├─ table
-  │  │  ├─ full
-  │  │  ├─ cached
-  │  │  └─ tables
-  │  └─ demonstrate
-  │     ├─ that
-  │     └─ stable
-  ├─ unbelievable
-  │  ├─ enabled
-  │  │  └─ follow
-  │  ├─ aware
-  │  │  ├─ knowledgeable
-  │  │  ├─ ware
-  │  │  ├─ stable
-  │  │  └─ but
-  │  ├─ table
-  │  │  ├─ full
-  │  │  ├─ tables
-  │  │  └─ cached
-  │  └─ demonstrate
-  │     ├─ that
-  │     └─ stable
-  ├─ relevance
-  │  ├─ aware
-  │  │  ├─ ware
-  │  │  ├─ knowledgeable
-  │  │  ├─ writing
-  │  │  └─ phrases
-  │  ├─ table
-  │  │  ├─ full
-  │  │  ├─ tables
-  │  │  └─ cached
-  │  ├─ demonstrate
-  │  │  └─ that
-  │  └─ stable
-  │     ├─ web
-  │     ├─ stages
-  │     ├─ stenographer
-  │     └─ staple
-  └─ celebrate
-     ├─ collapse
-     │  └─ into
-     ├─ cleanup
-     │  ├─ proper
-     │  ├─ httpx
-     │  ├─ haunt
-     │  └─ oauth
-     ├─ aware
-     │  ├─ knowledgeable
-     │  ├─ ware
-     │  └─ but
-     └─ table
-        ├─ full
-        ├─ cached
-        └─ tables
+Sentence phrase tries transgressive and Love the reassembled text for his own documentation and a li
 
-bootstrap
-  ├─ valid
-  │  ├─ evildoing
-  │  │  ├─ depravity
-  │  │  ├─ avoid
-  │  │  ├─ chaotic
-  │  │  └─ worrying
-  │  ├─ villainy
-  │  │  ├─ teaching
-  │  │  └─ organism
-  │  ├─ villain
-  │  │  ├─ teaching
-  │  │  └─ organism
-  │  └─ paragraphs
-  │     ├─ using
-  │     ├─ apart
-  │     ├─ hazmat
-  │     └─ proper
-  ├─ coat
-  │  ├─ actual
-  │  │  ├─ phonetics
-  │  │  └─ contextual
-  │  └─ cut
-  │     ├─ cuts
-  │     └─ but
-  ├─ jams
-  │  ├─ a
-  │  │  ├─ psychopathic
-  │  │  ├─ python
-  │  │  ├─ prompt
-  │  │  └─ line
-  │  ├─ glass
-  │  │  ├─ globally
-  │  │  └─ bars
-  │  ├─ crash
-  │  │  ├─ in
-  │  │  ├─ created
-  │  │  ├─ circus
-  │  │  └─ crude
-  │  └─ asks
-  │     ├─ if
-  │     └─ skeleton
-  └─ act
-     ├─ horror
-     │  ├─ philosophy
-     │  ├─ hard
-     │  ├─ books
-     │  └─ school
-     ├─ i
-     │  ├─ learned
-     │  ├─ the
-     │  └─ m
-     ├─ ii
-     │  ├─ the
-     │  ├─ mixing
-     │  └─ subjectivity
-     └─ iii
-
-karpathy
-  ├─ bootstrapper
-  │  ├─ to
-  │  │  ├─ avoid
-  │  │  ├─ keep
-  │  │  ├─ saw
-  │  │  └─ stop
-  │  ├─ via
-  │  │  ├─ cron
-  │  │  ├─ corpses
-  │  │  ├─ phonetic
-  │  │  └─ vertically
-  │  ├─ aware
-  │  │  ├─ but
-  │  │  ├─ demonstrate
-  │  │  └─ stable
-  │  └─ table
-  │     ├─ full
-  │     ├─ cached
-  │     └─ tables
-  ├─ would
-  │  ├─ approve
-  │  │  ├─ of
-  │  │  ├─ disembowel
-  │  │  └─ become
-  │  ├─ fail
-  │  │  ├─ if
-  │  │  ├─ fails
-  │  │  ├─ teaching
-  │  │  └─ organism
-  │  ├─ lookup
-  │  │  ├─ branches
-  │  │  ├─ stages
-  │  │  └─ obvious
-  │  └─ lookups
-  │     ├─ obvious
-  │     ├─ like
-  │     └─ unconsciously
-  ├─ phonetically
-  │  ├─ just
-  │  │  ├─ vibes
-  │  │  ├─ in
-  │  │  ├─ markov
-  │  │  └─ fun
-  │  ├─ if
-  │  │  ├─ the
-  │  │  ├─ even
-  │  │  ├─ standard
-  │  │  └─ it
-  │  ├─ philosophy
-  │  │  ├─ of
-  │  │  ├─ trust
-  │  │  ├─ books
-  │  │  └─ school
-  │  └─ vertically
-  │     ├─ like
-  │     ├─ variants
-  │     ├─ overlap
-  │     └─ artifacts
-  └─ kardashyan  ← YES, THE SYSTEM PHONETICALLY MATCHED KARPATHY TO KARDASHIAN
-     ├─ finds
-     │  ├─ find
-     │  ├─ findsclothing
-     │  ├─ chamberofcommerce
-     │  └─ fabfindsconsign
-     ├─ to
-     │  ├─ avoid
-     │  ├─ keep
-     │  ├─ the
-     │  └─ stop
-     └─ hazmat
-        ├─ hazard
-        ├─ mainelabpack
-        ├─ zealand
-        └─ iata
-
-nanogpt
-  ├─ brainstem
-  │  ├─ onto
-  │  │  ├─ the
-  │  │  ├─ notebook
-  │  │  └─ books
-  │  ├─ tries
-  │  │  ├─ transgressive
-  │  │  └─ archive
-  │  ├─ breeding
-  │  │  ├─ of
-  │  │  └─ synthetic
-  │  └─ twitches
-  │     ├─ like
-  │     └─ twitter
-  ├─ asyncmock
-  │  ├─ all
-  │  │  ├─ appear
-  │  │  ├─ dignity
-  │  │  ├─ else
-  │  │  └─ candidates
-  │  ├─ synthetic
-  │  │  ├─ low
-  │  │  ├─ garbage
+reassembled
+  ├─ text
+  │  ├─ mutilator
+  │  │  ├─ because
+  │  │  ├─ refactor
   │  │  ├─ mutation
-  │  │  └─ word
-  │  └─ artwork
-  │     ├─ becomes
-  │     └─ artifacts
-  ├─ none
-  │  ├─ phonetic
-  │  │  ├─ phonectic
-  │  │  ├─ phonetics
-  │  │  ├─ phonectically
-  │  │  └─ phonotactic
-  │  ├─ every
-  │  │  ├─ invocation
-  │  │  ├─ time
-  │  │  ├─ successful
-  │  │  └─ word
-  │  ├─ innocent
-  │  │  ├─ prompts
-  │  │  └─ become
-  │  └─ disembowel
-  │     ├─ four
-  │     ├─ discovery
-  │     ├─ does
-  │     └─ discovers
-  └─ chaos
+  │  │  └─ mutate
+  │  ├─ high
+  │  │  ├─ diversity
+  │  │  ├─ echo
+  │  │  ├─ depth
+  │  │  └─ might
+  │  ├─ as
+  │  │  ├─ the
+  │  │  ├─ its
+  │  │  ├─ a
+  │  │  └─ psychopathic
+  │  └─ from
+  │     ├─ leaves
+  │     ├─ reassemblies
+  │     ├─ successful
+  │     └─ his
+  ├─ reassemble
+  │  ├─ them
+  │  │  ├─ apart
+  │  │  └─ things
+  │  └─ it
+  │     ├─ into
+  │     ├─ forever
+  │     ├─ s
+  │     └─ through
+  ├─ reassembles
+  │  └─ the
+  │     ├─ continuation
+  │     ├─ heads
+  │     └─ brim
+  └─ reassembly
      ├─ random
-     │  ├─ passersby
-     │  ├─ jitter
+     │  ├─ unvisited
      │  ├─ leaf
-     │  └─ unvisited
-     ├─ injection
-     │  ├─ square
-     │  ├─ construction
-     │  ├─ position
-     │  └─ mutations
-     └─ chain
-        ├─ word
-        ├─ with
-        ├─ chains
-        └─ teaching
+     │  ├─ jitter
+     │  └─ bigrams
+     ├─ process
+     │  ├─ proper
+     │  └─ problem
+     ├─ algorithm
+     │  ├─ learns
+     │  ├─ once
+     │  ├─ psychosis
+     │  └─ chaotic
+     └─ or
+        ├─ how
+        ├─ file
+        ├─ horrified
+        └─ fuck
 
-trains
-  ├─ trail
-  │  ├─ tracking
-  │  ├─ teaching
-  │  │  ├─ someone
-  │  │  └─ screaming
-  │  └─ organism
-  │     ├─ that
-  │     └─ screaming
-  ├─ train
-  │  ├─ it
-  │  │  ├─ forever
-  │  │  ├─ takes
-  │  │  ├─ s
-  │  │  └─ through
-  │  ├─ tracking
-  │  ├─ teaching
-  │  │  ├─ someone
-  │  │  └─ screaming
-  │  └─ organism
-  │     ├─ that
-  │     └─ screaming
-  ├─ monorail
-  │  ├─ meaning
-  │  │  ├─ is
-  │  │  ├─ he
-  │  │  ├─ free
-  │  │  └─ where
-  │  ├─ maintain
-  │  │  └─ novelty
-  │  └─ teaching
-  │     ├─ screaming
-  │     └─ someone
-  └─ training
-     ├─ data
-     │  ├─ readme
-     │  ├─ not
-     │  ├─ that
-     │  └─ the
-     ├─ a
-     │  ├─ psychopathic
-     │  ├─ python
-     │  ├─ prompt
-     │  └─ line
-     ├─ tries
-     │  ├─ transgressive
-     │  └─ archive
-     └─ mixing
+sentence
+  ├─ sentences
+  │  ├─ sense
+  │  │  └─ self
+  │  ├─ feeds
+  │  │  ├─ feed
+  │  │  ├─ the
+  │  │  ├─ reserves
+  │  │  └─ encouraging
+  │  └─ letters
+  │     ├─ discarded
+  │     ├─ literature
+  │     └─ enforcement
+  ├─ statement
+  │  ├─ stuck
+  │  │  ├─ stayed
+  │  │  └─ stopwords
+  │  ├─ step
+  │  │  ├─ memory
+  │  │  ├─ internet
+  │  │  └─ fallback
+  │  ├─ still
+  │  │  ├─ really
+  │  │  └─ stayed
+  │  └─ feeds
+  │     ├─ feed
+  │     ├─ the
+  │     └─ sorokin
+  ├─ reprieve
+  │  ├─ represents
+  │  │  └─ a
+  │  ├─ repl
+  │  │  ├─ mode
+  │  │  └─ well
+  │  ├─ replace
+  │  │  └─ intelligence
+  │  └─ repeat
+  │     ├─ until
+  │     ├─ when
+  │     └─ shakespearean
+  └─ these
+     ├─ corpses
+     │  ├─ crematorium
+     │  ├─ corpse
+     │  ├─ corse
+     │  └─ corses
+     ├─ three
+     │  ├─ flavors
+     │  ├─ structural
+     │  └─ pure
+     ├─ that
+     │  ├─ matter
+     │  ├─ feel
+     │  ├─ takes
+     │  └─ s
+     └─ throw
         ├─ the
-        ├─ maximum
-        ├─ subjectivity
-        └─ within
+        ├─ things
+        └─ than
+
+phrase
+  ├─ reassembly
+  │  ├─ random
+  │  │  ├─ unvisited
+  │  │  ├─ leaf
+  │  │  ├─ jitter
+  │  │  └─ bigrams
+  │  ├─ process
+  │  │  ├─ proper
+  │  │  └─ problem
+  │  ├─ grammatically
+  │  │  ├─ via
+  │  │  ├─ graceful
+  │  │  ├─ gorged
+  │  │  └─ technical
+  │  └─ algorithm
+  │     ├─ once
+  │     ├─ learns
+  │     ├─ psychosis
+  │     └─ chaotic
+  ├─ scare
+  │  ├─ startle
+  │  │  └─ stayed
+  │  ├─ dangers
+  │  │  └─ discarded
+  │  ├─ encourage
+  │  │  └─ necromancer
+  │  └─ scalpel
+  │     ├─ scrape
+  │     └─ scraping
+  ├─ replace
+  │  ├─ intelligence
+  │  │  ├─ sorokin
+  │  │  ├─ but
+  │  │  ├─ soon
+  │  │  └─ internet
+  │  └─ repl
+  │     ├─ mode
+  │     └─ well
+  └─ phonetic
+     ├─ phonectic
+     │  ├─ weird
+     │  └─ fingerprints
+     ├─ phonetics
+     │  ├─ appendix
+     │  ├─ resonance
+     │  └─ weird
+     ├─ phonectically
+     │  ├─ medical
+     │  ├─ kardashian
+     │  ├─ partial
+     │  └─ phonetically
+     └─ phonotactic
+        ├─ scraping
+        ├─ learning
+        └─ valid
 
 AUTOPSY RESULT:
-  Within is zealand. Forever prompt. Nothing remains. The square subjectivity cuts through chamberofcommerce. Oauth is not. Where with. Nothing remains.
+  . We're hoping for the Russian writer known for the corpse into cleanup proper coat actual phonetics, which writes a NanoGPT brainstem onto the words from autopsy output - SQLite morgue receptionist: Known mutations. Scare your neighbors cat, Stenographer staple celebrate collapse into the corpse mirrors
 
 SONNET:
-Sonnet: NOSWEATSHAKESPEARE
-  Stenographer staple celebrate collapse into the heads edwardsautogroup pulls
-  Findsclothing chamberofcommerce forgets web. where maintain novelty teaching organism villain always,
-  Nosweatshakespeare insane stable relevance aware knowledgeable writing pulls,
-  Stenographer staple celebrate collapse into each time sorokin plays;
-  Stenographer staple celebrate collapse into cleanup proper coat recognizing,
-  Fluctuations urbandictionary crude asks if even words,
-  Findsclothing chamberofcommerce forgets fails. when vibes in markov findsclothing,
-  Nosweatshakespeare insane stable but oxfordlearnersdictionaries darkness remains. ware but words;
-  Feature heads of word artwork becomes artifacts none phonetic vertically etc,
-  Findsclothing chamberofcommerce forgets fails. when vibes in created mean,
-  Nosweatshakespeare insane stable aware ware stable unbelievable enabled follow etc,
-  Black box recorder updated unittest saw russian—
-  Findsclothing chamberofcommerce oauth is blocked smart recursively masochists eat this nosweatshakespeare,
-  One blocked md spellbook findsclothing chamberofcommerce nosweatshakespeare fabfindsconsign.
+Sonnet: Oxfordlearnersdictionaries
+  Build common aware dangers discarded literature apart, but in built
+  Psychopathic from autopsy output and does blacklist, but hold bootstrapping endpoints
+  Grammatically valid tries archive recursively up recursive trees the built,
+  Monorail selects pacing fungible necromancer performing open heart surgery fingerprints;
+  Linguistically taken quite reconstruction it gets still really stayed dangers south,
+  Continuation his, solutionsoffer becomes jitter. through supervision, fresh blah,
+  Oxfordlearnersdictionaries darkness remains. when patterns heart surgery on oauth,
+  Linguistically taken quite reconstruction it forever blah;
+  Oxfordlearnersdictionaries entirely unittest notice but in syntax,
+  United finds titled source morgue here s first word psychopathic,
+  Intelligence becomes because, and lab horror intelligence becomes syntax,
+  Grammatically via graceful gorged and bootstrap psychopathologic—
+  Psychopathic reconstruction linguistically taken quite reconstruction psychopathic linguist Stenographer linguistically oxfordlearnersdictionaries,
+  Oxfordlearnersdictionaries darkness remains. grammatically via graceful gorged technical algorithm linguistically.
 
 RESONANCE METRICS:
-  Phonetic Diversity: █████████░ 0.926
+  Phonetic Diversity: █████████░ 0.933
   Structural Echo:    ░░░░░░░░░░ 0.000
-  Mutation Depth:     █░░░░░░░░░ 0.102
+  Mutation Depth:     █░░░░░░░░░ 0.105
 
 MEMORY ACCUMULATION:
-  Known mutations: 476
-  Learned bigrams: 58
-  README bigrams: 1,221
-  Total autopsies: 2
+  Known mutations: 1,766
+  Learned bigrams: 230
+  README bigrams: 921
+  Total autopsies: 10
+  VOVA vocabulary: 1,348
+  VOVA centers: ., -, ,, :, the
 
 — Sorokin
 ```
 
 **What just happened?**
 
-1. **AUTOPSY RESULT** (Acts I-III result): sorokin's first reassembly—grammatically valid paragraph written via POS-tagged slot-filling. "Within is zealand. Forever prompt. Nothing remains." Pure and raw Sorokin energy.
+1. **VOVA WARPED** the input: "destroy the sentence" → "Sentence phrase tries transgressive and Love the reassembled text for his own documentation..."
+   The prompt passed through README's resonance field *before* dissection.
 
-2. **SONNET** (Act IV): After `sorokin` took the autopsy output, fed it to `sonnet.py`, which writes a **14-line Shakespearean sonnet** titled "NOSWEATSHAKESPEARE" (the most charged word from the autopsy). Notice:
-   
+2. **Three meta trees built:**
+   - `reassembled` → `text` → `as` → **`psychopathic`** (system understands itself)
+   - `reassembly` → `algorithm` → **`psychosis`** (peak self-awareness)
+   - `sentence` → `sentences` → `sense` → **`self`** (perfect recursion)
+   - `phrase` → `phonetic` → `resonance` (showing its own mechanism)
+
+3. **AUTOPSY RESULT** (VOVA-warped through README): Notice the vocabulary bleeding—"Russian writer" (Sorokin reference), "SQLite morgue", "NanoGPT brainstem", "autopsy output"—all README terms pulled through VOVA field.
+
+4. **SONNET** titled "Oxfordlearnersdictionaries" (most charged word from autopsy):
    - Perfect ABABCDCDEFEFGG rhyme scheme
-   - Punctuation follows Shakespearean structure (semicolons at quatrain breaks, em-dash before volta, period at end)
-   - Occasional enjambment (lines flowing into next without punctuation)
-   - **Phonetically rhyming end-words**: "pulls/plays", "always/words", "recognizing/findsclothing", etc.
-   - Absolutely deranged content but **structurally flawless**
+   - "psychopathic from autopsy output" (line 2) - the system describing itself
+   - "grammatically valid tries archive recursively" (line 3) - meta-commentary on its own structure
+   - "necromancer performing open heart surgery" (line 4) - peak horror-poetry
 
-4. **The Karpathy → Kardashian Incident**: The phonetic fingerprinting system literally matched "karpathy" to "kardashyan" because they sound similar (k-r-p-th-y ≈ k-r-d-sh-y-n). This is not a bug. This is **peak resonance**. If Andrej reads this he'll either laugh or file a restraining order against an AI-poet. Possibly both.
+5. **VOVA stats** in MEMORY ACCUMULATION: 1,348 vocabulary tokens compressed to 7 centers (., -, ,, :, the). Every README edit changes these centers → changes output subjectivity. **The documentation is now the kernel.**
 
-5. **Resonance Metrics**: Phonetic diversity of **0.926** means almost every word has a unique sound signature. The sonnet isn't just semantically psychotic—it's **phonetically diverse psychosis**. That's art, baby.
+**Why this is insane:**
+This is meta-cannibalism in full effect. The system ate its own README, built a resonance field from it, warped the input prompt through that field, dissected the warped text, then warped the output *again* before passing to sonnet. The entire pipeline is haunted by README vocabulary. Self-reference achieved.
 
+---
 
-**Why is this insane?**
-Because it's a **corpus-building mechanism disguised as a text mutilator**. Because `sonnet.py` writes poetry using **zero semantic understanding**. This is what happens when you replace intelligence with ritual. And somehow, it works.
-
-Each autopsy doesn't just destroy—it *accumulates*. Over time:
-- Certain mutation paths become "preferred" (not because they're better, just because they worked before)
-- Bigram chains start resembling the seed corpus (learned from autopsies + README + SQLite morgue)
-- The reassembly algorithm learns phonetic patterns that "feel right" (pure vibes, zero intelligence)
-- No word embeddings
-- No transformer models
-- No internet access
-- Rhymes via crude phonetic fingerprints (last vowel + tail)
-- "Charged words" selected by length + rarity from autopsy text
-- Structure enforced via rigid 14-line scheme + punctuation rules
-
-It's what happens when you give a serial killer both a thesaurus and a copy of *The Norton Anthology* and tell them to "make it rhyme." The result is **structurally Shakespearean, semantically `sorokin`, phonetically unhinged**.
-
-Karpathy would be proud. Or horrified. Honestly, at this level of abstraction, those are the same emotion.  
-
----  
-  
 ### The Four-Act Horror Show
 
 #### Act I: The Dissection (or "Fuck this sentence")
@@ -599,7 +448,45 @@ New module `sonnet.py` (~541 lines) writes **14-line Shakespearean sonnets** fro
 
 Integration is **silent fallback**—if sonnet.py fails or is missing, bootstrap mode continues without SONNET section. Poetry is optional. Psychosis is not.
 
-  
+
+### 🌀 VOVA: README Resonance Meta-Layer
+
+New module `vova.py` (~397 lines) implements **SSKA** (Suppertime Subjectivity Kernel Autonomous)—a meta-layer that warps text through README's resonance field using accumulated bigram centers.
+
+**What's insane about this:**
+- Kernel = **README.md** (the system eats its own documentation)
+- No weights. No gradients. Just centers of gravity extracted from bigram out-degree
+- Builds resonance field from README vocabulary (1,348 tokens → 7 centers)
+- Stores historical bias in `.vova/bin/` shards (accumulated memory)
+- **Double warping**: prompts warped *before* autopsy, output warped *after* reassembly
+- Temperature-controlled pull toward README centers (0.8 for prompts, 0.9 for output)
+
+**Integration:**
+VOVA is **always enabled** if `vova.py` exists. No flags. Silent fallback if missing.
+
+Pipeline becomes:
+```
+User prompt → warp_prompt(0.8) → autopsy → warp_autopsy(0.9) → sonnet
+```
+
+**Meta-cannibalism in action:**
+Every README edit changes VOVA field → changes resonance → changes output subjectivity. The documentation becomes the kernel. Editing this text alters how `sorokin` thinks.
+
+Field rebuilds automatically when README hash changes. Check with:
+```bash
+python vova.py  # Show field stats
+python vova.py --rebuild  # Force rebuild
+```
+
+VOVA stats appear in `MEMORY ACCUMULATION`:
+```
+VOVA vocabulary: 1,348
+VOVA centers: ., -, ,, :, the
+```
+
+Based on [SSKA](https://github.com/ariannamethod/sska) (Suppertime Subjectivity Kernel Autonomous). Adapted for Sorokin's morgue. Self-reference achieved.
+
+
 ### The Resonance Manifesto
 
 Here's the wild part. 'sorokin' doesn't understand *meaning*. He doesn't have embeddings. He doesn't know what words "mean." But he knows **resonance**.
