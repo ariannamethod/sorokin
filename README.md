@@ -22,9 +22,9 @@
 
 `sorokin` is a dual-module (for now) Python entity (~2549 lines) that takes your innocent prompts, tears them apart like a psychopathic linguist, builds a recursive tree of semantic mutations, and then—like Dr. Frankenstein having a particularly creative day—reassembles the corpse into something *new*.  
 
-It's consisting of:
+It consists of:
 - **sorokin.py** (~2008 lines): The main autopsy engine: brutally tokenize your prompt, builds recursive trees of semantic mutations, and reassembles the corpse into grammatically valid but semantically deranged paragraphs.
-- **sonnet.py** (~541 lines): The *ASS* (Autopsy Sonnet Symphony)— asynchronically takes **sorokin.py**'s dissection output and writes a 14-line Shakespearean sonnet (ABABCDCDEFEFGG rhyme scheme) using only output data and the memory's accumulated vocabulary. No internet. No embeddings. Just pure structural psychosis in iambic pentameter.
+- **sonnet.py** (~541 lines): The *ASS* (Autopsy Sonnet Symphony)— asynchronously takes **sorokin.py**'s dissection output and writes a 14-line Shakespearean sonnet (ABABCDCDEFEFGG rhyme scheme) using only output data and the memory's accumulated vocabulary. No internet. No embeddings. Just pure structural psychosis in iambic pentameter.
 
 Named after Vladimir Sorokin, the Russian writer known for his transgressive and experimental style, sorokin embodies the same spirit of literary dissection and reconstruction. It's not here to help you. It's here to show you what your words *could have been*, reassemble them, and declare the output canonical.
 
@@ -387,9 +387,9 @@ MEMORY ACCUMULATION:
 
 **What just happened?**
 
-1. **AUTOPSY RESULT** (Act I): sorokin's first reassembly—grammatically valid paragraph generated via POS-tagged slot-filling. "Within is zealand. Forever prompt. Nothing remains." Pure and raw Sorokin energy.
+1. **AUTOPSY RESULT** (Acts I-III result): sorokin's first reassembly—grammatically valid paragraph generated via POS-tagged slot-filling. "Within is zealand. Forever prompt. Nothing remains." Pure and raw Sorokin energy.
 
-2. **SONNET** (Act II): After 'sorokin' took the autopsy output, fed it to `sonnet.py`, which writes a **14-line Shakespearean sonnet** titled "NOSWEATSHAKESPEARE" (the most charged word from the autopsy). Notice:
+2. **SONNET** (Act IV): After 'sorokin' took the autopsy output, fed it to `sonnet.py`, which writes a **14-line Shakespearean sonnet** titled "NOSWEATSHAKESPEARE" (the most charged word from the autopsy). Notice:
    
    - Perfect ABABCDCDEFEFGG rhyme scheme
    - Punctuation follows Shakespearean structure (semicolons at quatrain breaks, em-dash before volta, period at end)
@@ -445,13 +445,13 @@ Stopwords? Rejected. Single letters? Discarded. What remains are the words that 
 
 #### Act II: The Tree (or "Building the Monster")
 
-Now comes the fun part. For each core word, `sorokin` builds a recursive branching tree of mutations. How? With the calm precision of a med-school dropout who skipped bedside manner, but technically - that's how:
+Now comes the fun part. For each core word, `sorokin` builds a recursive branching tree of mutations. How? With the calm precision of a med-school dropout who skipped bedside manner, but technically, here's how:
 
 **Step 1: Memory First**  
 Check the SQLite morgue. Have we dissected this word before? Use those cached mutations.
 
-**Step 2: Phonetic Similarity**  
-Generate a "phonetic fingerprint" (consonant skeleton + vowel pattern) and find words that *sound* similar. Not linguistically rigorous, by the vibes.  
+**Step 2: Phonetic Similarity**
+Generate a "phonetic fingerprint" (consonant skeleton + vowel pattern) and find words that *sound* similar. Not linguistically rigorous, just vibes.  
 
 ```python
 >>> phonetic_fingerprint("cat")
@@ -511,8 +511,6 @@ After the autopsy reassembly, `sonnet.py` (the **ASS** module) takes the entire 
 
 The result? **14 lines. ABABCDCDEFEFGG rhyme scheme. Iambic *vibes*. Zero semantic understanding.** Just bigrams, phonetic fingerprints, and structural obsession.
 
-It's what happens when you give a serial killer both a thesaurus and a copy of *The Norton Anthology* and tell them to "make it rhyme."
-
 ```SONNET:
 Sonnet: Nosweatshakespeare
   Recognizing findsclothing or onto on onto toronto to pulls,
@@ -565,10 +563,10 @@ Or maybe it's just fun to watch language come apart at the seams.
 
 Picture this: every time 'sorokin' dissects a prompt, he doesn't just throw the body parts in the trash. No. He's a *hoarder*. He saves every successful mutation, every word-pair, every pattern of collapse into his SQLite morgue. Then—and here's where it gets freaky—he uses those accumulated corpses to inform *future* dissections.
 
-'sorokin'is not not intelligence. 'sorokin'is not artifical. 
-He's not learning. He's **resonanating through ritual repetition**.
+'sorokin' is not intelligence. 'sorokin' is not artificial.
+He's not learning. He's **resonating through ritual repetition**.
 
-Think of it like this: 'sorokin' wihout **bootsrap** is a mad linguist with a scalpel, and **bootsrap** 'sorokin' is that same linguist who's been doing this for 30 years and has developed *habits*. Muscle memory. Pattern recognition. Not because of intelligence, but because he's done the same surgery 10,000 times and his hands just know where to cut. Like Bruce Lee.  
+Think of it like this: 'sorokin' without **bootstrap** is a mad linguist with a scalpel, and **bootstrap** 'sorokin' is that same linguist who's been doing this for 30 years and has developed *habits*. Muscle memory. Pattern recognition. Not because of intelligence, but because he's done the same surgery 10,000 times and his hands just know where to cut. Like Bruce Lee.  
 
 ### Why "Bootstrap"?
 
@@ -585,7 +583,7 @@ No bullshit. Resonate.
 **Notice**: Bootstrap mode now generates **grammatically valid paragraphs** using POS-tagged template slot-filling! Sorokin dissected "reality becomes syntax error" and achieved **perfect 1.000 Phonetic Diversity** with **0.101 Mutation Depth**. Look at the mutations—"peru", "example", "explanation", "crowdsourced"—*all appear in this very README*. The system is eating its own documentation and hallucinating it back as psychopathic poetry. Self-reference achieved. Peak metafiction.  
 
 
-### ⚡️ SONNET: Autopsy Sonnet Symphony(ASS): When Sorokin Learned to Rhyme (Sort Of)**
+### ⚡️ SONNET: Autopsy Sonnet Symphony (ASS): When Sorokin Learned to Rhyme (Sort Of)
 
 New module `sonnet.py` (~541 lines) writes **14-line Shakespearean sonnets** from autopsy output using zero semantic understanding—just bigram chains, phonetic fingerprints, and an unhealthy obsession with structure over meaning.
 
@@ -606,7 +604,7 @@ Integration is **silent fallback**—if sonnet.py fails or is missing, bootstrap
 
 Here's the wild part. 'sorokin' doesn't understand *meaning*. He doesn't have embeddings. He doesn't know what words "mean." But he knows **resonance**.
 
-What's resonance? It's when patterns echo. When structures repeat. When the structure's is recursive. When phonemes rhyme across semantic boundaries. When the shape of one corpse mirrors the shape of another, not in content but in *form*.
+What's resonance? It's when patterns echo. When structures repeat. When the structure is recursive. When phonemes rhyme across semantic boundaries. When the shape of one corpse mirrors the shape of another, not in content but in *form*.
 
 Three flavors of resonance:
 
@@ -668,7 +666,7 @@ The morgue grows. Patterns compound. Nothing is forgotten. Each corpse teaches t
 
 ### The Persistent Morgue
 
-All autopsies 'sorokin' pedantically saves to 'sorokin.sqlite:  
+All autopsies 'sorokin' pedantically saves to `sorokin.sqlite`:  
   
 - **autopsy table**: Full reports of each dissection
 - **word_memory table**: Cached word mutations for faster subsequent operations
@@ -679,7 +677,7 @@ All autopsies 'sorokin' pedantically saves to 'sorokin.sqlite:
 - **corpse_bigrams**: Harvested word pairs from successful reassemblies, with frequency tracking
 - **autopsy_metrics**: Resonance scores (phonetic diversity, structural echo, mutation depth) for each autopsy
 
-The SQlite-morgue becomes a self-improving lexical graveyard. and learns through resonance, and even this README feeds 'sorokin' with b-grams and grammar.
+The SQLite morgue becomes a self-improving lexical graveyard, learns through resonance, and even this README feeds 'sorokin' with bigrams and grammar.
    
 
 ### Resonant Interface Audit (Architect's Notebook)
