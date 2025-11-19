@@ -404,7 +404,7 @@ MEMORY ACCUMULATION:
 
 **Why is this insane?**
 
-Because `sonnet.py` generates poetry using **zero semantic understanding**:
+Because `sonnet.py` writes poetry using **zero semantic understanding**:
 - No word embeddings
 - No transformer models
 - No internet access
@@ -512,11 +512,12 @@ It's what happens when you give a serial killer both a thesaurus and a copy of *
 Sonnet: Nosweatshakespeare
   Recognizing findsclothing or onto on onto toronto to pulls,
   Cleanup proper httpx haunt oauth autopsy parallel main was words,
-  ... [14 lines of structurally flawless, semantically psychotic verse] ...
+  ... [14 lines of structurally flawless, semantically psychotic verse] ...```
+
 
 ### Usage
 
-This README doubles as the morgue receptionist: every invocation must be logged here mentally before you run it. Say the command out loud. Scare your neighbors.
+This **README** doubles as the morgue receptionist: every invocation must be logged here mentally before you run it. Say the command out loud. Scare your neighbors.
 
 **Standard mode (classic autopsy):**
 ```bash
