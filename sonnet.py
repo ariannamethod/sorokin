@@ -537,6 +537,9 @@ def _generate_line(
         prev = w
     words = deduped_words
 
+    # Clean punctuation from words before adding line-level punctuation
+    words = [w.rstrip('.,;:!?—') for w in words]
+
     line = " ".join(words)
     
     # PATCH 7: Punctuation with enjambment support
