@@ -9,8 +9,8 @@ import unittest
 from pathlib import Path
 import sys
 
-# Add parent dir to path
-sys.path.insert(0, str(Path(__file__).parent))
+# Add parent dir to path (sorokin root)
+sys.path.insert(0, str(Path(__file__).parent.parent))
 
 import vova
 
