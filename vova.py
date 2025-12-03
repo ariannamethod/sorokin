@@ -51,6 +51,7 @@ def tokenize(text: str) -> List[str]:
 class VovaField:
     """The resonance field built from README.md"""
     bigrams: Dict[str, Dict[str, int]]
+    trigrams: Dict[str, Dict[str, int]]  # NEW: trigram graph for better coherence
     vocab: List[str]
     centers: List[str]
     readme_hash: str
@@ -58,6 +59,7 @@ class VovaField:
     def to_json(self) -> dict:
         return {
             "bigrams": self.bigrams,
+            "trigrams": self.trigrams,
             "vocab": self.vocab,
             "centers": self.centers,
             "readme_hash": self.readme_hash,
@@ -67,6 +69,7 @@ class VovaField:
     def from_json(cls, data: dict) -> "VovaField":
         return cls(
             bigrams={k: dict(v) for k, v in data.get("bigrams", {}).items()},
+            trigrams={k: dict(v) for k, v in data.get("trigrams", {}).items()},
             vocab=list(data.get("vocab", [])),
             centers=list(data.get("centers", [])),
             readme_hash=data.get("readme_hash", ""),
@@ -91,6 +94,25 @@ def build_bigrams(tokens: List[str]) -> tuple[Dict[str, Dict[str, int]], List[st
         dst[b] = dst.get(b, 0) + 1
 
     return bigrams, sorted(vocab_set)
+
+
+def build_trigrams(tokens: List[str]) -> Dict[str, Dict[str, int]]:
+    """
+    Build trigram graph from token stream.
+    Key: "word1|word2" (two preceding words)
+    Value: {next_word: count}
+
+    This improves coherence by considering 2-word context.
+    """
+    trigrams: Dict[str, Dict[str, int]] = {}
+
+    for i in range(len(tokens) - 2):
+        a, b, c = tokens[i], tokens[i + 1], tokens[i + 2]
+        key = f"{a}|{b}"
+        dst = trigrams.setdefault(key, {})
+        dst[c] = dst.get(c, 0) + 1
+
+    return trigrams
 
 
 def select_centers(bigrams: Dict[str, Dict[str, int]], k: int = 7) -> List[str]:
@@ -191,7 +213,8 @@ def rebuild_field(force: bool = False) -> VovaField:
     print(f"[VOVA] Building field from README.md ({len(text)} chars)")
     tokens = tokenize(text)
     bigrams, vocab = build_bigrams(tokens)
-    print(f"[VOVA] Vocab: {len(vocab)} tokens")
+    trigrams = build_trigrams(tokens)
+    print(f"[VOVA] Vocab: {len(vocab)} tokens, {len(trigrams)} trigram contexts")
 
     # Local centers
     centers = select_centers(bigrams, k=7) if bigrams else []
@@ -211,6 +234,7 @@ def rebuild_field(force: bool = False) -> VovaField:
 
     field = VovaField(
         bigrams=bigrams,
+        trigrams=trigrams,
         vocab=vocab,
         centers=centers,
         readme_hash=readme_hash,
@@ -269,14 +293,53 @@ def choose_start_token(field: VovaField, chaos: bool = False) -> str:
     return random.choice(pool)
 
 
-def step_token(field: VovaField, current: str, temperature: float = 1.0) -> str:
-    """Walk one step in bigram graph."""
-    row = field.bigrams.get(current)
+def step_token(
+    field: VovaField,
+    current: str,
+    prev: Optional[str] = None,
+    temperature: float = 1.0,
+    trigram_weight: float = 0.7,
+) -> str:
+    """
+    Walk one step using trigrams (when available) + bigrams fallback.
+
+    Args:
+        field: Vova field instance
+        current: Current token
+        prev: Previous token (for trigram lookup)
+        temperature: Sampling temperature
+        trigram_weight: Blend weight for trigrams vs bigrams (0.0-1.0)
+    """
+    row = None
+    use_trigram = False
+
+    # Try trigram first (better coherence)
+    if prev and field.trigrams:
+        trigram_key = f"{prev}|{current}"
+        row = field.trigrams.get(trigram_key)
+        if row:
+            use_trigram = True
+
+    # Fallback to bigram
+    if not row:
+        row = field.bigrams.get(current)
+
     if not row:
         return choose_start_token(field, chaos=False)
 
     tokens = list(row.keys())
     counts = [row[t] for t in tokens]
+
+    # Blend with bigram if using trigram (for diversity)
+    if use_trigram and trigram_weight < 1.0:
+        bigram_row = field.bigrams.get(current, {})
+        for tok in bigram_row:
+            if tok not in tokens:
+                tokens.append(tok)
+                counts.append(bigram_row[tok] * (1 - trigram_weight))
+            else:
+                idx = tokens.index(tok)
+                counts[idx] = counts[idx] * trigram_weight + bigram_row[tok] * (1 - trigram_weight)
 
     # Apply temperature
     t = _safe_temperature(temperature)
@@ -324,14 +387,18 @@ def warp(
     # Pick last seed word as starting point for README generation
     if seed_tokens and seed_tokens[-1] in field.vocab:
         current = seed_tokens[-1]
+        prev = seed_tokens[-2] if len(seed_tokens) >= 2 else None
     else:
         current = choose_start_token(field, chaos=chaos)
+        prev = None
 
     # Generate ADDITIONAL tokens from README (not replace!)
     additional_tokens = max(0, max_tokens - len(seed_tokens))
     for _ in range(additional_tokens):
-        current = step_token(field, current, temperature=temperature)
-        output.append(current)
+        next_tok = step_token(field, current, prev=prev, temperature=temperature)
+        output.append(next_tok)
+        prev = current
+        current = next_tok
 
     # Format
     result = []
