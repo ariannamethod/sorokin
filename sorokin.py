@@ -1848,7 +1848,7 @@ def reassemble_corpse_bootstrap(leaves: List[str]) -> str:
                 max_weight = max(weights)
                 # Find candidates within 70% of max (strong grammatical options)
                 strong_indices = [i for i, wt in enumerate(weights) if wt >= max_weight * 0.7]
-                
+
                 if len(strong_indices) > 1:
                     # Blend: 70% grammar + 30% semantics
                     blended_weights = []
@@ -1857,7 +1857,7 @@ def reassemble_corpse_bootstrap(leaves: List[str]) -> str:
                         blended = gram_weight * 0.7 + sem_bonus * 0.3
                         blended_weights.append(blended)
                     
-                    # Add chaos: reduce weight differences for unpredictability
+            # Add chaos: reduce weight differences for unpredictability
                     chaos_weights = [w ** 0.5 for w in blended_weights]
                     current = random.choices([w for w, _ in valid_options], weights=chaos_weights, k=1)[0]
                 else:
@@ -1869,7 +1869,7 @@ def reassemble_corpse_bootstrap(leaves: List[str]) -> str:
                 # No co-occurrence data or single option - use grammar only
                 words, weights = zip(*valid_options)
                 chaos_weights = [w ** 0.5 for w in weights]
-                current = random.choices(words, weights=chaos_weights, k=1)[0]
+            current = random.choices(words, weights=chaos_weights, k=1)[0]
         else:
             # Fallback: pick random unused leaf
             unused = [w for w in leaves if w.lower() not in seen]
