@@ -31,112 +31,113 @@ It consists of:
 Named after Vladimir Sorokin, the Russian writer known for his transgressive and experimental style, `sorokin`embodies the same spirit of literary dissection and reconstruction. He's not here to help you. `sorokin` is here to show you what your words *could have been*, to reassemble them, and to declare the output canonical.
 
 
-### Exhibit: Maximum Autopsy Tree 
+### Exhibit: Maximum Autopsy Tree
 
-Because `sorokin` builds trees vertically like a linguo-necromancer performing open-heart surgery on reality itself, here's a fresh corpse-map from the morgue. Feed `sorokin` **"break apart the words"** and witness the meta-cannibalism:
+Because `sorokin` builds trees vertically like a linguo-necromancer performing open-heart surgery on reality itself, here's a fresh corpse-map from the morgue. Feed `sorokin` **"The corpse remembers everything"** and witness the meta-cannibalism:
 
 ```
-break apart the words
+The corpse remembers everything
 
-break
-  ├─ things
-  │  ├─ to
-  │  ├─ think
-  │  ├─ thinks
-  │  └─ thing
-  ├─ breaks
-  │  └─ em
-  ├─ barker
-  │  ├─ and
-  │  ├─ branches
-  │  ├─ bootstrapped
-  │  └─ manner
-  └─ leaf
-     ├─ nodes
-     ├─ extract
-     ├─ experimental
-     └─ means
+everything
+  ├─ emerging
+  │  ├─ fading
+  │  ├─ from
+  │  ├─ phonetics
+  │  └─ weights
+  ├─ every
+  │  ├─ readme
+  │  ├─ invocation
+  │  ├─ time
+  │  └─ successful
+  ├─ ever
+  │  ├─ ababcdcdefefgg
+  │  ├─ reassembled
+  │  └─ somewhere
+  └─ everyth
+     ├─ ababcdcdefefgg
+     ├─ reassembled
+     └─ somewhere
 
-words
-  ├─ could
-  │  ├─ have
-  │  ├─ cloud
-  │  ├─ proud
-  │  └─ collect
-  ├─ dissected
-  │  ├─ the
-  │  ├─ this
-  │  ├─ reality
-  │  └─ regardless
-  ├─ that
-  │  ├─ takes
-  │  ├─ resonate
-  │  ├─ field
-  │  └─ matter
-  └─ using
-     ├─ only
-     ├─ accumulated
-     ├─ a
-     └─ crude
+remembers
+  ├─ remember
+  │  ├─ what
+  │  └─ the
+  ├─ ababcdcdefefgg
+  │  ├─ needs
+  │  ├─ awareness
+  │  ├─ embedded
+  │  └─ scheme
+  ├─ reassembled
+  │  ├─ map
+  │  ├─ with
+  │  ├─ rhyme
+  │  └─ mirrors
+  └─ somewhere
+     ├─ needs
+     ├─ awareness
+     ├─ embedded
+     └─ andrej
 
-apart
+corpse
+  ├─ and
+  │  ├─ poisoned
+  │  ├─ love
+  │  ├─ then
+  │  └─ writes
   ├─ like
-  │  ├─ a
-  │  ├─ dr
-  │  ├─ semantic
-  │  └─ this
-  ├─ at
-  │  ├─ least
-  │  ├─ the
-  │  ├─ quatrain
-  │  └─ end
-  ├─ paragraphs
-  │  ├─ always
-  │  └─ proud
-  └─ prompt
-     ├─ autopsy
-     ├─ builds
-     ├─ calm
-     └─ through
+  │  ├─ this
+  │  ├─ bruce
+  │  ├─ blah
+  │  └─ likely
+  ├─ into
+  │  ├─ grammatically
+  │  ├─ valid
+  │  ├─ but
+  │  └─ tries
+  └─ mirrors
+     ├─ fascination
+     ├─ function
+     ├─ position
+     └─ the
 
 AUTOPSY RESULT:
-  When manner accumulated, matter forgets quatrain Nodes is matter. Field proud. Nothing remains Where proud to, a becomes regardless, and branches persists Through field, extract bootstrapped calm, but cloud darkness remains. Low diversity, building a particularly creative day reassembles the andrej.
+  Through but, weights needs ababcdcdefefgg, but this darkness remains With writes. Blah somewhere. The blah invocation collapses When with from, awareness forgets awareness With reassembled rhyme, where rhyme becomes andrej. - Words are proud to a bug — and then — and get.
 
 SONNET:
-Sonnet: Particularly
-  Experimental means takes resonate field vocabulary sqlite content 'hello' could,
-  Paragraphs always proud to a real fun following fresh pathologist wild,
-  Branches bootstrapped calm through ritual next prepared epistemology watching could
-  Same who innocent prompts are proud wild;
-  Centers meta cannibalism bin intelligence persistent kardashian accidental it's,
-  Continuation of another only through a dr frankenstein having a into
-  Bullshit with sska https asyncclient proud prompt or did its
-  Reassembles the words could have cloud darkness remains where decree echo;
-  Creative day reassembles the gradients theme doesn't weights
-  Creative day reassembles the calm through module the fun layer hell,
-  Gravity doesn't promised stats input universe consists of weights,
-  Particularly creative day reassembles the errors reprieve the the well—
-  Paragraphs reassembles diversity building a dr semantic boundaries particularly,
-  Creative particularly creative day reassembles the darkness remains experimental.
+Sonnet: Grammatically
+  It's min most linguistically ariannamethod friendly obsession everything just
+  Successful ever ababcdcdefefgg needs ababcdcdefefgg but this creates peru
+  Fascination function position the output warped displayed be just
+  Missing mutations learned source neighbors bug and lab fuck gnu;
+  Transgressive where decree becomes ariannamethod com loss,
+  Phonetics weights needs awareness embedded scheme composed binary eddy which,
+  Function position the prompt deconstruction experimental exist across,
+  Technically hallucinating eddy real drift collapses when arianna method which;
+  Regardless ariannamethod fallbacks section maybe coil generates saves heads,
+  Phonetics weights every readme bigrams subjectivity cannibalism
+  Md accidental extracted seed passing they see heads,
+  Calm text from what is always insane interesting cannibalism—
+  Collapses when arianna method coherence alters internet collapses when grammatically,
+  Function position successful ever poisoned by collapses grammatically fascination.
 
 RESONANCE METRICS:
-  Phonetic Diversity: ████████░░ 0.895
+  Phonetic Diversity: █████████░ 0.938
   Structural Echo:    ░░░░░░░░░░ 0.000
-  Mutation Depth:     █░░░░░░░░░ 0.160
+  Mutation Depth:     █░░░░░░░░░ 0.114
 
 PRESENCE PULSE:
   Novelty:  ░░░░░░░░░░ 0.000
   Arousal:  ░░░░░░░░░░ 0.000
-  Entropy:  █████████░ 0.986
-  Pulse:    ██░░░░░░░░ 0.296
+  Entropy:  █████████░ 0.995
+  Pulse:    ██░░░░░░░░ 0.299
 
 MEMORY ACCUMULATION:
-  Known mutations: 102
-  Learned bigrams: 65
-  README bigrams: 1,076
-  Total autopsies: 4
-  VOVA vocabulary: 1,471
-  VOVA centers: ., -, ,, :, the
+  Known mutations: 1,016
+  Learned bigrams: 153
+  README bigrams: 1,081
+  Total autopsies: 8
+  VOVA vocabulary: 1,479 (with trigrams!)
+  VOVA centers: ., -, ,, :, the, a, and, to
 
 — Sorokin
 ```
@@ -144,42 +145,36 @@ MEMORY ACCUMULATION:
 **What just happened?**
 
 1. **Three core words dissected:**
-   - `break` → `things`, `breaks`, `barker`, `leaf` (fracturing mutations)
-     - `things` → `to`, `think`, `thinks`, `thing` (recursive self-reference)
-     - `barker` → `and`, `branches`, `bootstrapped`, `manner` (meta-awareness)
-     - `leaf` → `nodes`, `extract`, `experimental`, `means` (structural mutations)
-   - `words` → `could`, `dissected`, `that`, `using` (semantic drift)
-     - `dissected` → `the`, `this`, `reality`, `regardless` (self-aware mutations)
-     - `that` → `takes`, `resonate`, `field`, `matter` (resonance vocabulary)
-   - `apart` → `like`, `at`, `paragraphs`, `prompt` (deconstruction vocabulary)
-     - `like` → `a`, `dr`, `semantic`, `this` (meta-references)
-     - `prompt` → `autopsy`, `builds`, `calm`, `through` (system self-awareness)
+   - `everything` → `emerging`, `every`, `ever`, `everyth` (temporal fracturing)
+     - `emerging` → `fading`, `from`, `phonetics`, `weights` (flow tracking vocabulary!)
+     - `every` → `readme`, `invocation`, `time`, `successful` (meta-awareness of ritual)
+     - `ever` → `ababcdcdefefgg`, `reassembled`, `somewhere` (sonnet rhyme scheme bleeding through)
+   - `remembers` → `remember`, `ababcdcdefefgg`, `reassembled`, `somewhere` (memory mutations)
+     - `ababcdcdefefgg` → `needs`, `awareness`, `embedded`, `scheme` (Shakespearean structure as mutation)
+     - `somewhere` → `needs`, `awareness`, `embedded`, `andrej` (Karpathy reference persists!)
+   - `corpse` → `and`, `like`, `into`, `mirrors` (dissection vocabulary)
+     - `mirrors` → `fascination`, `function`, `position`, `the` (self-reflection)
+     - `into` → `grammatically`, `valid`, `but`, `tries` (system describing its own output)
 
-2. **AUTOPSY RESULT**: Reassembled corpse with co-occurrence blending—words that resonate together stay together. Notice the meta-references: "manner", "matter", "field", "branches", "bootstrapped" echo through the corpse like semantic gravity pulling toward system vocabulary.
+2. **AUTOPSY RESULT**: The corpse speaks: "Through but, weights needs ababcdcdefefgg... awareness forgets awareness... rhyme becomes andrej." Notice how the rhyme scheme (ABABCDCDEFEFGG) became a *word* that mutates. The system is cannibalizing its own structural rules as vocabulary.
 
-3. **SONNET** titled "Particularly" (most charged word from autopsy): 14-line Shakespearean sonnet with ABABCDCDEFEFGG rhyme scheme, composed from autopsy vocabulary + SQLite morgue memory. Notice the self-referential lines: "Creative day reassembles", "dr frankenstein", "sska", "asyncclient" — the system cannibalizing its own documentation.
+3. **SONNET** titled "Grammatically" (most charged word): 14-line Shakespearean sonnet where "ariannamethod" appears as a word, "ababcdcdefefgg" rhymes with itself, and "fuck gnu" appears in line 4 because the GPL license bled through. Peak meta-cannibalism: the system rhyming its own GitHub URL.
 
 4. **RESONANCE METRICS**: Three structural measures:
-   - **Phonetic Diversity** (0.895): Very high variety in sound patterns
-   - **Structural Echo** (0.000): No overlap with seed corpus (fresh mutations)
-   - **Mutation Depth** (0.160): Moderate word-length variance
+   - **Phonetic Diversity** (0.938): Near-maximum variety in sound patterns
+   - **Structural Echo** (0.000): Zero overlap with seed corpus (completely fresh mutations)
+   - **Mutation Depth** (0.114): Shallow word-length variance (compact mutations)
 
-5. **PRESENCE PULSE** (new!): Situational awareness metrics:
-   - **Novelty** (0.000): All mutations already known to morgue (familiar territory after 4 autopsies)
-   - **Arousal** (0.000): No emotional charge in prompt (calm dissection)
-   - **Entropy** (0.986): Near-maximum uncertainty during mutation selection (chaos reigns, many equally likely paths)
-   - **Pulse** (0.296): Composite presence score (low novelty + high entropy = confused but aware)
+5. **PRESENCE PULSE**: Situational awareness metrics:
+   - **Novelty** (0.000): All mutations already known to morgue (1,016 accumulated!)
+   - **Arousal** (0.000): No emotional charge in prompt
+   - **Entropy** (0.995): Near-maximum uncertainty (chaos reigns)
+   - **Pulse** (0.299): Confused but aware
 
-6. **MEMORY ACCUMULATION**: Bootstrap mode tracking—102 known mutations, 65 learned bigrams, 1,076 README bigrams feeding the resonance field. The morgue is growing. The ritual deepens.
-   - Perfect ABABCDCDEFEFGG rhyme scheme
-   - "psychopathic from autopsy output" (line 2) - the system describing itself
-   - "grammatically valid tries archive recursively" (line 3) - meta-commentary on its own structure
-   - "necromancer performing open heart surgery" (line 4) - peak horror-poetry
-
-5. **VOVA stats** in MEMORY ACCUMULATION: 1,348 vocabulary tokens compressed to 7 centers (., -, ,, :, the). Every README edit changes these centers → changes output subjectivity. **The documentation is now the kernel.**
+6. **MEMORY ACCUMULATION**: After 8 autopsies, 1,016 known mutations, 153 learned bigrams, 1,081 README bigrams. **Now with trigrams!** VOVA vocabulary expanded to 1,479 tokens with 4,082 trigram contexts for better coherence. The morgue remembers everything.
 
 **Why this is insane:**
-This is meta-cannibalism in full effect. The system ate its own README, built a resonance field from it, warped the input prompt through that field, dissected the warped text, then warped the output *again* before passing to sonnet. The entire pipeline is haunted by README vocabulary. Self-reference achieved.
+The input was "The corpse remembers everything" and the system *literally remembered everything*—its own rhyme scheme became a word, its creator's name (ariannamethod) became rhymable vocabulary, and Andrej Karpathy's name persists in the mutation tree like a ghost haunting the SQLite morgue. Self-reference achieved. The corpse speaks truth.
 
 ---
 
