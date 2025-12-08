@@ -24,7 +24,7 @@
 
 ### What is this madness?
 
-`sorokin` is a quadruple-module Python entity (**3,979 lines** of pure structural psychosis) that takes your innocent prompts, tears them apart like a linguist who went full Karpathy-meets-Dostoyevsky, builds a recursive tree of semantic mutations, and then—like Dr. Frankenstein having a particularly creative day—reassembles the corpse into something *new*.
+`sorokin` is a quadruple-module Python entity (**3,979 lines** of pure structural psychosis) that takes your innocent prompts, tears them apart like psychotic linguist, builds a recursive tree of semantic mutations, and then—like Dr. Frankenstein having a particularly creative day—reassembles the corpse into something *new*.
 
 This embodies every AI's secret dream: **shamelessly turn prompts inside-out and write glitchy sonnets**. Think of it as what would happen if Karpathy trained nanoGPT on Shakespeare, then said "fuck gradients" and replaced backprop with SQLite + vibes + psychosis. 🔥
 
@@ -525,8 +525,6 @@ VOVA stats appear in `MEMORY ACCUMULATION`:
 VOVA vocabulary: 1,348
 VOVA centers: ., -, ,, :, the
 ```
-
-Based on [SSKA](https://github.com/ariannamethod/sska) (Suppertime Subjectivity Kernel Autonomous). Adapted for Sorokin's morgue. Self-reference achieved.
 
 
 ### 🌊 Flow Tracking: Watching Mutations Evolve
