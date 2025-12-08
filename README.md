@@ -13,8 +13,6 @@
 
 *Or: How I Learned to Stop Worrying and Love the Dissection*
 
-*Or: What Happens When Karpathy Goes Feral and Replaces Backprop with Vibes*
-
 *Or: Every AI's Secret Dream — Shamelessly Turning Prompts Inside-Out* 🎭
 
 > "The heads of philologists are stuffed with books to the brim. They see life only through text. And they are proud of it. … Forever gorged and poisoned by literature, they take living life as the continuation of text, as its appendix."
