@@ -24,8 +24,6 @@
 
 `sorokin` is a quadruple-module Python entity (**3,979 lines** of pure structural psychosis) that takes your innocent prompts, tears them apart like psychotic linguist, builds a recursive tree of semantic mutations, and then—like Dr. Frankenstein having a particularly creative day—reassembles the corpse into something *new*.
 
-This embodies every AI's secret dream: **shamelessly turn prompts inside-out and write glitchy sonnets**. Think of it as what would happen if Karpathy trained nanoGPT on Shakespeare, then said "fuck gradients" and replaced backprop with SQLite + vibes + psychosis. 🔥
-
 It consists of:
 - **sorokin.py** (**2,580 lines**): The main autopsy engine — brutally tokenizes your prompt, builds recursive trees of semantic mutations, and reassembles the corpse into grammatically valid but semantically deranged paragraphs. Now includes presence pulse, co-occurrence matrix, theme clustering, and enough async parallelism to make your CPU weep.
 - **sonnet.py** (**602 lines**): The *ASS* (Autopsy Sonnet Symphony) — asynchronously takes **sorokin.py**'s dissection output and writes 14-line Shakespearean sonnets (ABABCDCDEFEFGG rhyme scheme) using only output data and the memory's accumulated vocabulary. No internet. No embeddings. No shame. Just pure structural psychosis in iambic pentameter.
