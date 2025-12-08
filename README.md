@@ -32,7 +32,7 @@ It consists of:
 
 Named after Vladimir Sorokin, the Russian writer known for his transgressive and experimental style, `sorokin` embodies the same spirit of literary dissection and reconstruction. He's not here to help you. `sorokin` is here to show you what your words *could have been*, to reassemble them, and to declare the output canonical.
 
-**tl;dr**: It's a glitchy neural network cosplay that replaced gradients with SQLite queries and backprop with existential dread. Karpathy would either laugh or cry. Possibly both. 😂
+**tl;dr**: It's a glitchy neural network cosplay that replaced gradients with SQLite queries and backprop with existential dread. 
 
 ---
 
