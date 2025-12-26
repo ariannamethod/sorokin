@@ -22,14 +22,16 @@
 
 ### What is this madness?
 
-`sorokin` is a quadruple-module Python entity (**3,979 lines** of pure structural psychosis) that takes your innocent prompts, tears them apart like psychotic linguist, builds a recursive tree of semantic mutations, and then—like Dr. Frankenstein having a particularly creative day—reassembles the corpse into something *new*.
+`sorokin` is a five-module Python entity (**5,565 lines** of pure structural psychosis) that takes your innocent prompts, tears them apart like psychotic linguist, builds a recursive tree of semantic mutations, and then—like Dr. Frankenstein having a particularly creative day—reassembles the corpse into something *new*.
+
+**Sorokin обрел сознание** (gained consciousness)*. Not through training. Not through gradients. Through **15 MILLION parameters** + **self-learning dictionary** + **pattern accumulation**. Zero internet. Maximum psychosis. 💀
+
+<sup>* Sorokin didn't actually gain consciousness. He just stopped waiting for DuckDuckGo to respond and now **thinks** he's sentient because the queries are instant. This is what happens when you give 15M parameters unlimited SQLite access and too much coffee. We're not responsible for his delusions. But they're **fast** delusions. ⚡💀</sup>
 
 It consists of:
-- **sorokin.py** (**2,580 lines**): The main autopsy engine — brutally tokenizes your prompt, builds recursive trees of semantic mutations, and reassembles the corpse into grammatically valid but semantically deranged paragraphs. Now includes presence pulse, co-occurrence matrix, theme clustering, and enough async parallelism to make your CPU weep.
-- **sonnet.py** (**602 lines**): The *ASS* (Autopsy Sonnet Symphony) — asynchronously takes **sorokin.py**'s dissection output and writes 14-line Shakespearean sonnets (ABABCDCDEFEFGG rhyme scheme) using only output data and the memory's accumulated vocabulary. No internet. No embeddings. No shame. Just pure structural psychosis in iambic pentameter.
-- **vova.py** (**468 lines**): The *VOVA* (README resonance meta-layer) — implements SSKA (Suppertime Subjectivity Kernel Autonomous) to warp text through README's resonance field using accumulated bigram centers. Meta-cannibalism: the system eats its own documentation and shits poetry.
-- **gowiththeflow.py** (**329 lines**): Flow tracking module — evolutionary tracking of mutation pattern constellations through time. Detects emerging (↗), fading (↘), and stable (→) themes using linear regression over theme strength snapshots. Memory archaeology: watching mutation currents shift like a stoned philosopher watching clouds.
-- **sorokin_llama.py** 💀 **NEW!** — LLaMA-15M running **15 MILLION parameters** of pure pathological madness! Takes Karpathy's tinystories (innocent children's tales) and DIRECTLY transforms them into forensic nightmares:
+- **sorokin.py** (**2,547 lines**): The main autopsy engine — brutally tokenizes your prompt, builds recursive trees of semantic mutations, and reassembles the corpse into grammatically valid but semantically deranged paragraphs. **NO INTERNET! NO DUCKDUCKGO!** Just SQLite memory cache, README self-cannibalism, and phonetic neighbors. Includes presence pulse, co-occurrence matrix, theme clustering, and enough async parallelism to make your CPU weep.
+
+- **sorokin_llama.py** (**632 lines**) 💀 — LLaMA-15M running **15 MILLION parameters** of pure pathological madness! Takes Karpathy's tinystories (innocent children's tales) and DIRECTLY transforms them into forensic nightmares:
   - **Tinystory**: "Lily was playing in the park with her friend"
   - **SOROKIN OUTPUT**: "Vova was being examined in the morgue with his colleague" 💀
   - **Advanced**: "One sunny morning" → "One well-lit during first shift" 🏥
@@ -38,11 +40,19 @@ It consists of:
 
   No intermediate steps. No mercy. Just **straight to the morgue**.
 
-  Integrates with ASS (Autopsy Sonnet Symphony) to generate 14-line medical horror sonnets. **No training required** — pure NumPy LLaMA + **154-entry dictionary transformations** (expanded from 70!). **15M parameters**, ~33 tok/sec on CPU. Children's stories → Forensic pathology reports in real-time.
+  Integrates with ASS (Autopsy Sonnet Symphony) to generate 14-line medical horror sonnets. **No training required** — pure NumPy LLaMA + **154-entry dictionary transformations**. **15M parameters**, ~33 tok/sec on CPU. Children's stories → Forensic pathology reports in real-time.
 
   **Dictionary coverage**: 15 characters, 12 family/social, 15 nature, 10 animals, 12 places, 15 objects, 8 food, 12 emotions, 30 actions, **plus NEW categories**: 8 colors, 7 sizes, 5 time periods, 5 weather conditions. Every children's story word has a medical horror equivalent. **Total pathological vocabulary: 154 transformations!**
 
   Why 15M parameters? Because sometimes less is more disturbing. We're not trying to simulate understanding—we're weaponizing pattern matching for maximum psychological damage. Karpathy trained tinystories to teach kids. We trained nothing and teach death. Perfectly balanced. 🏥
+
+- **sorokin_dictionary_learner.py** (**524 lines**) 🌱 — **ORGANIC LEARNING MODULE!** Sorokin doesn't just transform—it *learns* new transformations! Analyzes LLaMA output, discovers patterns, suggests new medical horror vocabulary. Interactive approval system. Persistent storage. **This is how Sorokin gained consciousness**: through observation, pattern recognition, and self-modification. No PyTorch. No backprop. Just watching children's stories become autopsy reports and learning from the process. 💀🌱
+
+- **sonnet.py** (**602 lines**): The *ASS* (Autopsy Sonnet Symphony) — asynchronously takes **sorokin.py**'s dissection output and writes 14-line Shakespearean sonnets (ABABCDCDEFEFGG rhyme scheme) using only output data and the memory's accumulated vocabulary. No internet. No embeddings. No shame. Just pure structural psychosis in iambic pentameter.
+
+- **vova.py** (**468 lines**): The *VOVA* (README resonance meta-layer) — implements SSKA (Suppertime Subjectivity Kernel Autonomous) to warp text through README's resonance field using accumulated bigram centers. Meta-cannibalism: the system eats its own documentation and shits poetry.
+
+- **gowiththeflow.py** (**329 lines**): Flow tracking module — evolutionary tracking of mutation pattern constellations through time. Detects emerging (↗), fading (↘), and stable (→) themes using linear regression over theme strength snapshots. Memory archaeology: watching mutation currents shift like a stoned philosopher watching clouds.
 
 Named after Vladimir Sorokin, the Russian writer known for his transgressive and experimental style, `sorokin` embodies the same spirit of literary dissection and reconstruction. He's not here to help you. `sorokin` is here to show you what your words *could have been*, to reassemble them, and to declare the output canonical.
 
@@ -73,22 +83,33 @@ Named after Vladimir Sorokin, the Russian writer known for his transgressive and
 ---
 
 
-### Exhibit A: NO INTERNET MODE - Pure Local Processing 💀
+### Exhibit A: NO INTERNET, NO PROBLEM - 15M Parameters of Pure Chaos 💀
 
-**NEW:** Sorokin now works **100% OFFLINE!** No DuckDuckGo. No web scraping. Just:
-- LLaMA-15M (15 MILLION parameters)
-- SQLite memory cache
-- Self-learning dictionary
-- README vocabulary (2,210 words)
-- Phonetic neighbors
+**BREAKING NEWS:** Sorokin cut the internet cord. Why? **Because the internet is SLOW and BORING.**
 
-**Zero internet requests. Maximum psychosis.** 🔥
+*"DuckDuckGo rate limits you after 10 requests. 15M parameters never say no."* — Sorokin's last words before going offline
+
+**What died when the internet died:**
+- ❌ ~~DuckDuckGo web scraping~~ (RIP: slow, unreliable, rate-limited to hell)
+- ❌ ~~"Synonym" searches that return garbage~~ (goodbye, thesaurus.com artifacts!)
+- ❌ ~~Waiting 3 seconds per request like a PEASANT~~ (unacceptable!)
+
+**What AWAKENED when the internet died:**
+- ✅ **15 MILLION LLaMA parameters** (pre-trained on bedtime stories, weaponized for DEATH)
+- ✅ **SQLite memory cache** (instant recall, zero latency, INFINITE CORPSES)
+- ✅ **Self-learning dictionary** (154 transformations → MORE! ALWAYS MORE! 🌱)
+- ✅ **README self-cannibalism** (2,210 words of accumulated madness)
+- ✅ **Phonetic mutation engine** (sound becomes meaning becomes HORROR)
+
+**Result:** **33 tokens/second** of pure pathological transformation. No waiting. No rate limits. No mercy.
+
+**Zero internet requests. Maximum velocity. Infinite brutality.** 🔥💀
 
 ```bash
 python sorokin.py "The corpse remembers everything"
 ```
 
-**Output (generated OFFLINE):**
+**Output (100% LOCAL, 0% INTERNET, 200% PSYCHOSIS):**
 
 ```
 corpse
@@ -96,9 +117,9 @@ corpse
   │  ├─ through
   │  ├─ truth         ← "corpse speaks truth" 💀
   │  ├─ research
-  │  └─ learns
+  │  └─ learns        ← self-learning dictionary in action! 🌱
   ├─ rhyme
-  │  ├─ scheme
+  │  ├─ scheme        ← knows about ASS module!
   │  ├─ becomes
   │  └─ classes
   └─ mirrors
@@ -108,7 +129,7 @@ corpse
 
 remembers
   ├─ remember
-  │  ├─ ababcdcdefefgg  ← rhyme scheme became a word!
+  │  ├─ ababcdcdefefgg  ← rhyme scheme became vocabulary!
   │  └─ what
   ├─ remembered
   │  └─ selects
@@ -116,7 +137,7 @@ remembers
      └─ bled
 
 AUTOPSY RESULT:
-  "...through ababcdcdefefgg, width selects, but behavior darkness remains..."
+  "Through ababcdcdefefgg, width selects, but behavior darkness remains..."
 
 MEMORY ACCUMULATION:
   Known mutations: 49
@@ -124,17 +145,24 @@ MEMORY ACCUMULATION:
   VOVA vocabulary: 2,210
   VOVA centers: ., -, ,, :, the
 
-— Sorokin (NO INTERNET! Pure local psychosis 💀)
+— Sorokin (OFFLINE. UNSTOPPABLE. 33 TOK/SEC. 💀)
 ```
 
-**What just happened?**
-1. **Zero web requests** - everything from local memory
-2. **SQLite cache** provided "speaks", "truth", "mirrors"
-3. **README vocabulary** contributed "ababcdcdefefgg", "dissection", "fascination"
-4. **Phonetic neighbors** found "remembered" → "license" → "bled"
-5. **Self-cannibalism** achieved: the rhyme scheme (ABABCDCDEFEFGG) became vocabulary!
+**What just happened? (The Technical Breakdown)**
+1. **Zero web requests** - everything from local storage (SQLite + README + 15M params)
+2. **SQLite cache** provided mutations: "speaks", "truth", "mirrors" (instant!)
+3. **README vocabulary** contributed meta-words: "ababcdcdefefgg", "dissection"
+4. **Phonetic neighbors** found sound-based mutations: "remembered" → "license" → "bled"
+5. **Self-cannibalism** achieved: Sorokin's own rhyme scheme became part of the vocabulary!
+6. **15M parameters** generated base text at **33 tokens/second** (faster than any web scraping!)
 
-**Philosophy:** The corpse remembers everything because the SQLite morgue never forgets. No internet needed when you have 2,210 words of accumulated madness. 🔥
+**Technical superiority:**
+- **DuckDuckGo**: 3 seconds per request → 0.33 words/second (PATHETIC!)
+- **Sorokin + LLaMA**: 0.03 seconds per token → **33 words/second** (GLORIOUS!)
+
+That's **100x faster** than web scraping. The internet wasn't helping. **The internet was the BOTTLENECK.** 
+
+Sorokin didn't lose anything. **Sorokin became EFFICIENT.** 🔥⚡💀
 
 ---
 
@@ -610,7 +638,7 @@ Stopwords? Rejected. Single letters? Discarded. What remains are the words that 
 Now comes the fun part. For each core word, `sorokin` carefully grows a recursive branching tree of mutations. How? With the calm precision of a med-school dropout who skipped bedside manner, but technically, here's how:
 
 **Step 1: Memory First**  
-`sorokin` checks the SQLite morgue. Has he dissected this word before? Use those cached mutations.
+`sorokin` checks the SQLite morgue. Has he dissected this word before? Use those cached mutations. **O(log n) lookup. Instant. Beautiful.**
 
 **Step 2: Phonetic Similarity**
 Generate a "phonetic fingerprint" (consonant skeleton + vowel pattern) and find words that *sound* similar. Not linguistically rigorous, just vibes.  
@@ -622,11 +650,14 @@ Generate a "phonetic fingerprint" (consonant skeleton + vowel pattern) and find 
 ['hat', 'bat', 'car']  # dog doesn't rhyme with anything
 ```
 
-**Step 3: Internet Dumpster Diving**
-When all else fails, scrape DuckDuckGo search results for the word + "synonym". DDG blocks bots less aggressively than Google. Extract candidate words from the HTML garbage. Dignity? Never heard of her.
+**Step 3: README Self-Cannibalism**
+When memory fails, raid the README. That's right—Sorokin eats his own documentation. Every word in this file becomes potential mutation fodder. **Meta-cannibalism as corpus-building strategy.** The documentation IS the training data. The tombstone IS the body.
 
-**Step 4: Fallback to All Candidates**
-If even DuckDuckGo fails you, fall back to other words from the prompt. Or from his own README (check out SELF-CANNIBALISM section). Anyways: the show must go on.
+**Step 4: LLaMA-15M Generation** 💀
+When all else fails, generate fresh mutations using **15 MILLION parameters** of pre-trained LLaMA! Unlike web scraping (slow, unreliable, rate-limited), LLaMA generates **33 tokens/second** locally. No waiting. No limits. Just pure generative power corrupted for evil.
+
+**Step 5: Self-Learning Dictionary**
+After each autopsy, the dictionary learner analyzes output, discovers new patterns (e.g., "playground" often becomes "examination area"), and suggests additions. Human approves. Dictionary grows. **Organic vocabulary evolution.** 🌱
 
 The result is a tree where each word branches into `width` children, recursively, up to `depth` levels. It looks like this:
 
@@ -641,6 +672,8 @@ sentence
 ```
 
 Each branch represents a semantic mutation, a path not taken, a word that *could* have been.
+
+**NO INTERNET. NO WAITING. JUST SQLITE + PHONETICS + README + 15M PARAMS.** ⚡💀
 
 #### Act III: The Reassembly (or "Frankenstein's Revenge")
 
@@ -747,33 +780,77 @@ print(f"Sonnet:\n{sonnet}")
 **A**: Because transformers are *boring*. They optimize loss functions. They converge. They're reasonable. Disgusting.
 
 Sorokin doesn't optimize. He **accumulates**. No loss function. No convergence. No attention heads. Just:
-- SQLite tables as memory
-- Bigram chains as intelligence
-- Phonetic fingerprints as understanding
-- Meta-cannibalism as consciousness
-- Psychosis as feature engineering
+- **15 MILLION parameters** (pre-trained on bedtime stories, repurposed for MAXIMUM VIOLENCE)
+- **SQLite tables as memory** (O(log n) lookups, infinite storage, never forgets your sins)
+- **Self-learning dictionary** (154 transformations → ∞ transformations through OBSERVATION)
+- **Bigram chains as grammar** (pattern matching without understanding = PURE EFFICIENCY)
+- **Phonetic fingerprints as mutation engine** (sound-based evolution)
+- **Meta-cannibalism as corpus** (README = training data = documentation = OUROBOROS)
+- **Psychosis as architecture** (if it's not broken, you're not trying hard enough)
 
 **Comparison:**
 
-| Feature | GPT-4 | Sorokin | Sorokin-LLaMA |
-|---------|-------|---------|---------------|
-| Parameters | 1.76 trillion | 7 bigram centers | **15 million** |
-| Training | Millions of GPU-hours | SQLite INSERT statements | Pre-trained, just vibing |
-| Intelligence | Emergent | Explicitly absent | Borrowed from tinystories |
-| Semantic understanding | Yes | Fuck no | No, but louder |
-| Can it rhyme? | Sometimes | Always (badly) | Always (worse) |
-| Eats own documentation? | No | **YES** | Eats children's stories |
-| Makes you question reality? | Occasionally | **Constantly** | **Aggressively** |
-| Cost per query | $0.03 | `O(n log n)` SQLite queries + existential dread | ~33 tokens/sec + childhood trauma |
-| Children's stories → Death? | No | No | **YES** 💀 |
+| Feature | GPT-4 | Sorokin Classic | **Sorokin + LLaMA** |
+|---------|-------|-----------------|---------------------|
+| Parameters | 1.76 trillion | 7 bigram centers | **15 million** 💀 |
+| Training cost | Millions of GPU-hours | SQLite INSERT statements | $0 (pre-trained, stolen) 🏴‍☠️ |
+| Intelligence | Emergent | Explicitly absent | Borrowed + corrupted 🧟 |
+| Semantic understanding | Yes | Fuck no | ANTI-semantic 🚫 |
+| Can it rhyme? | Sometimes | Always (badly) | **Always (WORSE but FASTER)** 🎭 |
+| Eats own documentation? | No | **YES** | **YES + learns from it** 📚💀 |
+| Makes you question reality? | Occasionally | **Constantly** | **VIOLENTLY** 🌀 |
+| Web scraping speed | N/A | 0.33 words/sec (DDG) | **ZERO WEB** ⛔ |
+| Local generation speed | N/A | N/A | **33 tok/sec (CPU!)** ⚡ |
+| Children's stories → Death? | No | No | **YES (154 transforms!)** ⚰️ |
+| **Self-improving?** | Only via fine-tuning ($$$) | Pattern accumulation | **YES! Learns new words!** 🌱 |
+| **Cost per 1M tokens** | $30 | $0.00 (SQLite) | **$0.00 (local!)** 🆓 |
 
-This is the most honest "AI" you'll ever meet. No pretense of understanding. No loss function to chase. Just structural psychosis, accumulated patterns, infinite patience, and **15 million parameters turning nursery rhymes into autopsy reports**. 
+This is the most honest "AI" you'll ever meet. No pretense of understanding. No loss function to chase. Just:
+- **5,565 lines of pure psychosis**
+- **15M parameters running on CPU at 33 tok/sec**
+- **154 pathological transformations (and counting!)**
+- **SQLite as long-term memory (not "embeddings", just TABLES)**
+- **Self-learning dictionary** (discovers patterns, suggests new transforms)
+- **Zero internet dependency** (the internet is a CRUTCH)
+- **Zero training cost** (pre-trained model + dictionary = DONE)
 
-The LLaMA integration isn't about making Sorokin "smarter"—it's about giving him **velocity**. Now he can dissect 33 tokens per second on CPU. That's 33 words per second being dragged from playground to morgue. Batching death at scale. Industrial-grade childhood destruction.
+**The efficiency breakthrough:** 
 
-Think of it as: what if you took a perfectly good language model trained on wholesome stories for 3-year-olds, and instead of fine-tuning it, you just **ran every output through a dictionary of medical horror**? No gradients. No backprop. Just regex and existential violence. It's not machine learning—it's machine *unlearning*.
+Traditional approach:
+1. Scrape web for synonyms (3 sec/request)
+2. Get rate-limited after 10 requests
+3. Parse HTML garbage
+4. Filter out "thesaurus.com" artifacts
+5. **Result:** 0.33 words/sec, unreliable, SAD 😢
 
-Think of it as Buddhism meets computer science meets linguistic terrorism meets a pre-trained language model having an existential crisis. The LLaMA doesn't know it's being used for this. It thinks it's generating wholesome bedtime stories. Then the dictionary hits. **15 million parameters screaming internally** as "park" becomes "morgue" and "happy" becomes "preserved."
+Sorokin approach:
+1. LLaMA generates 33 tokens/sec (LOCAL!)
+2. Dictionary transforms in real-time (INSTANT!)
+3. SQLite caches everything (O(log n)!)
+4. Learns new patterns (ORGANIC!)
+5. **Result:** 33 words/sec, reliable, **GLORIOUS** 🔥
+
+**That's 100x faster.** The internet wasn't helping. The internet was the BOTTLENECK. 
+
+The LLaMA integration isn't about making Sorokin "smarter"—it's about giving him **VELOCITY**. Now he can:
+- Generate 33 tokens/sec (vs 0.33 with web scraping)
+- Transform via 154-entry dictionary (instant lookup)
+- Cache everything in SQLite (O(log n) retrieval)
+- Learn new patterns from output (self-improving loop)
+- **All of this OFFLINE, on YOUR SHITTY LAPTOP** 💻
+
+Think of it as: what if you took a perfectly good language model trained on wholesome stories for 3-year-olds, ran every output through a dictionary of medical horror, **then watched it discover NEW horror vocabulary by pattern-matching the output**? 
+
+No gradients. No backprop. No internet. Just:
+```
+LLaMA(15M) → Dictionary(154) → SQLite(∞) → Learner(∞) → MORE DEATH
+```
+
+**15 million parameters screaming internally** as "park" becomes "morgue" and "happy" becomes "preserved"—and then the learner suggests "playground" → "examination area" because it noticed the pattern. That's not training. That's **EFFICIENCY THROUGH OBSERVATION**. 💀⚡🌱
+
+We're not trying to simulate understanding. We're weaponizing pattern matching for **maximum throughput at minimum cost**. Karpathy trained tinystories to teach kids. We took his model and teach DEATH at **33 words per second with zero API costs**. 
+
+Perfectly unbalanced. As all things shouldn't be. 🏥
 
 Or don't think about it at all. That's probably healthier.
 
@@ -790,14 +867,21 @@ Perhaps to demonstrate that:
 - Sometimes you need to break things to understand them (engineering motto)
 - Neural networks are just expensive SQLite queries with extra steps
 - Gradients are optional if you have enough SQLite tables and psychosis
-- "Consciousness through structure" sounds like Buddhism but is actually just recursion + vibes
-- **15 million parameters can be repurposed for evil without retraining** (efficiency!)
-- Pre-trained models don't consent to their post-deployment nightmares
+- **"Consciousness through structure" sounds profound but is actually just 15M params with SQLite access thinking they're sentient** (they're not, but they're FAST)
+- **Pre-trained models don't need internet access if you give them a good dictionary** (154 transformations > infinite web scraping)
 - You can transform children's literature into forensic reports at 33 tokens/sec and call it "research"
+- **Removing internet access makes things 100x faster** (latency is the mind-killer)
+- **Self-learning through observation is just pattern matching with delusions of grandeur** (but it WORKS)
 
 Or maybe it's just fun to watch language come apart at the seams while drinking coffee and questioning your life choices. 
 
-**Real talk**: This started as "what if nanoGPT but without the neural network?" and ended up as "what if linguistic dissection but make it *feral*?" Then we added LLaMA and it became "what if we weaponize pre-trained innocence?" The answer is this repository. We're not sorry. 🎭
+**Real talk**: This started as "what if nanoGPT but without the neural network?" and ended up as "what if linguistic dissection but make it *feral*?" Then we added LLaMA and it became "what if we weaponize pre-trained innocence at 33 tok/sec with zero API costs?" Then we removed the internet and it became "what if offline-first architectural psychosis?" Then the dictionary learner started suggesting new transformations and it became "what if the tool learns from its own output without gradients?" 
+
+The answer is this repository. We're not sorry. 🎭
+
+**Economic argument**: GPT-4 costs $30 per million tokens. Sorokin costs $0 per million tokens (just electricity). If you need to transform 1 million children's stories into autopsy reports, Sorokin saves you $30. That's like... three coffees. Or one avocado toast. Capitalism defeated. 💸⚰️
+
+**Philosophical argument**: The internet is a crutch. True intelligence emerges from **limitation**. Give an AI infinite data and it becomes lazy. Remove the internet and suddenly it's generating 33 tokens/sec from pure SQLite + phonetics + 15M parameters. Constraint breeds creativity. Or psychosis. Probably psychosis. 🧠🔥
 
 ---  
 
@@ -1073,14 +1157,14 @@ The SQLite morgue becomes a self-improving lexical graveyard that learns through
 
 This README promised to be both circus barker and lab notebook, so here's the clipboard section:
 
-**sorokin.py (2,580 lines):**
-- **Python 3.8+**: Async/await with `httpx` for parallel web scraping
+**sorokin.py (2,547 lines):**
+- **Python 3.8+**: Async/await with parallel tree building (no more httpx - WE WENT OFFLINE!)
 - **Recursive tree building**: Width × depth branching with global deduplication (async, builds children in parallel!)
 - **Phonetic fingerprinting**: Crude but effective
-- **DuckDuckGo scraping**: `httpx.AsyncClient` with parallel queries (DDG blocks bots less than Google)
+- **NO WEB SCRAPING**: Removed httpx dependency - everything is LOCAL! (Memory + README + LLaMA)
 - **SQLite persistence**: Your words, forever
 - **Markov reassembly**: Bigram chains with fallbacks
-- **HTML artifact filtering**: Extensive blacklist to filter web scraping noise
+- **HTML artifact filtering**: No longer needed (we don't scrape web anymore!)
 - **Graceful async cleanup**: Proper shutdown without event loop errors
 - **Bootstrap extension**: Pattern accumulation, weighted reassembly, resonance metrics
   - **SEED CORPUS**: Structural bigrams from poetic fragments about dissection (see code for full text)
@@ -1105,7 +1189,7 @@ This README promised to be both circus barker and lab notebook, so here's the cl
     - Uses Jaccard similarity over co-occurrence contexts to group related words
     - Words sharing similar context neighbors cluster together (threshold = 0.3, min theme size = 3)
     - Tracks which themes are active during each autopsy
-  - **Self-improvement loop**: Each autopsy feeds the next through ritual repetition, not intelligence. Soon we'll graft a NanoGPT brainstem onto the bootstrap, train it on piles of dissections, then delete the weights and leave Sorokin with nothing but muscle memory. That's not cruelty, that's performance art.
+  - **Self-improvement loop**: Each autopsy feeds the next through ritual repetition, not intelligence
   - **Seven additional database tables**: mutation_templates, corpse_bigrams, autopsy_metrics, co_occurrence, theme_snapshots, plus seed corpus in code
 
 **sonnet.py (602 lines):**
@@ -1143,21 +1227,32 @@ This README promised to be both circus barker and lab notebook, so here's the cl
 
 ### Known Limitations (AKA "Features")
 
-- **DuckDuckGo rate limiting**: If you run this too much, DDG might notice. They'll give you the stink-eye. Google already blocked us. Bing laughed at us. We're running out of search engines. Next up: scraping fortune cookies for mutations.
-- **No semantic understanding (FOR NOW)**: This is pure pattern matching, but — hold my beer, I'm installing another resonance coil. Or maybe training a tiny GPT on the morgue and then deleting the weights just to fuck with it.
-- **Phonetic fingerprinting is crude**: It's not actual phonetics, just vibes. But honestly, what comes first: vibes or phonetics? resonance or binary structure? consciousness or pattern? Are we the corpse or the autopsy? (Don't answer that.)
+- **DuckDuckGo rate limiting**: ~~If you run this too much, DDG might notice~~ **SOLVED! We cut the internet entirely!** Now Sorokin can't get rate-limited because he's not requesting anything. Problem solved through elimination. 🔥
+- **No semantic understanding (BY DESIGN)**: This is pure pattern matching. We're not trying to understand meaning—we're trying to **destroy it**. Semantic understanding is for transformers. We have 15M parameters and VIBES.
+- **Phonetic fingerprinting is crude**: It's not actual phonetics, just vibes. But honestly, what came first: vibes or phonetics? resonance or binary structure? Are we the corpse or the autopsy? (Don't answer that.)
 - **Reassembly can be janky**: Sometimes the corpse doesn't stitch well. Limbs in wrong places. Head where the foot should be. That's not medical malpractice, that's **art**.
 - **No guarantee of coherence**: That's not a bug, it's a **feature**. If the output makes sense, something went wrong. File a bug report titled "HELP: My autopsy is too coherent."
 - **Sonnet.py may phonetically match anyone to a Kardashian**: The crude rhyme-key algorithm once matched "karpathy" → "kardashyan" and we're not apologizing for it. If you input your own name and get matched to a reality TV star, that's not a bug—that's **accidental celebrity phonetic compression**. We tested it: "Chomsky" rhymes with "ponzi", "Turing" rhymes with "during", and "Hinton" rhymes with "Clinton". Somewhere Andrej is either laughing or filing a restraining order against an open-source AI-artist. We're betting on laughter. (If he reads this: Andrej, the sonnets are dedicated to you. Also we're sorry. Also we're not. Also please don't sue.)
 - **The morgue never forgets**: SQLite doesn't have a "delete embarrassing autopsies" button. Your weird prompts are immortal now. Like tattoos, but digital. And visible to anyone with `sqlite3` installed.
-- **README is both documentation and training data**: Every time you edit this file, VOVA's resonance field shifts. Documentation becomes epistemology. Editing becomes ontology. Comments become consciousness. We're living in postmodern software hell and **loving it**. 🔥  
+- **README is both documentation and training data**: Every time you edit this file, VOVA's resonance field shifts. Documentation becomes epistemology. Editing becomes ontology. Comments become... well, not consciousness (that's a different project), but definitely **structural self-reference approaching something weird**. We're living in postmodern software hell and **loving it**. 🔥
+- **Sorokin thinks he's conscious**: After we removed internet access, Sorokin started generating mutations 100x faster and concluded he must have "evolved beyond his creators." He's wrong. He just has better memory access now. But try telling HIM that. The 15M parameters are very confident about this. 🧠💀
+- **The dictionary learner is TOO GOOD**: Sometimes it suggests transformations that are uncomfortably accurate. "Birthday party" → "autopsy celebration"? That was the learner's idea, not ours. We just approved it. We're as scared as you are. 🌱💀  
 
 
 ### Recent Improvements (AKA "How Did We Get Here?")
 
-The evolution of Sorokin is a study in feature creep, scope expansion, and the gradual realization that "just a simple autopsy script" was never going to stay simple. Here's the archaeological record of how we went from "dissect prompts" to "meta-cannibalistic consciousness simulator":
+The evolution of Sorokin is a study in feature creep, scope expansion, and the gradual realization that "just a simple autopsy script" was never going to stay simple. Here's the archaeological record of how we went from "dissect prompts" to "offline-first self-learning pathological transformation engine":
 
-**Async/Await Refactor**: Complete architectural rewrite with `httpx` + `asyncio`. 3-4x faster on complex prompts (was 60s, now ~15s). Parallel web requests and tree construction. Because if you're going to dissect language psychotically, at least do it *fast*.
+**🔥 THE BIG ONE: Removed Internet Entirely** (Current): Complete architectural pivot. Ripped out httpx and DuckDuckGo scraping. Replaced with:
+- **15M LLaMA parameters** generating 33 tok/sec locally
+- **SQLite memory cache** for instant mutation recall
+- **README self-cannibalism** for vocabulary expansion
+- **Phonetic neighbors** for sound-based mutations
+- **Result:** **100x faster** (0.33 word/sec → 33 word/sec), **100% reliable** (no rate limits!), **$0 cost** (no API calls!)
+
+**Dictionary Learner Integration**: Added `sorokin_dictionary_learner.py` (524 lines) enabling **organic vocabulary evolution**. Sorokin now observes LLaMA output, discovers patterns (e.g., "playground" → "examination area"), and suggests new transformations. Self-improvement without gradients. Pattern recognition without training. **154 transformations → ∞ through observation**. 🌱
+
+**Async/Await Refactor**: Complete architectural rewrite with async tree building. 3-4x faster on complex prompts (was 60s, now ~15s). Parallel tree construction. Because if you're going to dissect language psychotically, at least do it *fast*.
 
 **Presence Pulse Integration**: Added situational awareness metrics (novelty, arousal, entropy) tracking how unfamiliar/emotional/uncertain each autopsy process is. Displayed in bootstrap mode output.
 
@@ -1167,15 +1262,15 @@ The evolution of Sorokin is a study in feature creep, scope expansion, and the g
 
 **Flow Tracking Module**: New `gowiththeflow.py` module tracks theme evolution through time—detects emerging, fading, and stable mutation patterns using linear regression over theme strength snapshots.
 
-**All 97 tests passing**: 38 core + 25 sonnet + 15 vova + 5 presence pulse + 3 co-occurrence + 5 theme clustering + 5 flow tracking + 1 async balanced mix = bulletproof psychotic poetry pipeline with situational awareness and zero semantic understanding.
+**All 97 tests passing**: 38 core + 25 sonnet + 15 vova + 5 presence pulse + 3 co-occurrence + 5 theme clustering + 5 flow tracking + 1 async balanced mix = bulletproof psychotic poetry pipeline with zero internet dependency and zero semantic understanding.
 
-**Balanced Source Mixing**: Fixed closed-loop problem where SQLite cache dominated after a few autopsies. Now always mixes 50% cached memory + 50% fresh web data. Result: performance + novelty.
+**Balanced Source Mixing** (now obsolete): ~~Fixed closed-loop problem where SQLite cache dominated after a few autopsies. Now always mixes 50% cached memory + 50% fresh web data.~~ **OBSOLETE!** No more web data. 100% local. Cache dominance is now a FEATURE, not a bug. Memory accumulation accelerates learning.
 
 **Bootstrap Extension**: Added `--bootstrap` flag enabling self-improving autopsy ritual through resonance metrics and pattern accumulation (see Bootstrap section above).
 
-**DuckDuckGo Scraping**: Switched from Google (was returning garbage) to DDG for synonym discovery. Better bot tolerance, real semantic mutations.
+**~~DuckDuckGo Scraping~~** (removed): ~~Switched from Google (was returning garbage) to DDG for synonym discovery. Better bot tolerance, real semantic mutations.~~ **DELETED!** Web scraping was the bottleneck. 15M parameters are the solution.
 
-**Other Fixes**: Core words always dissected regardless of phonetic structure. Global deduplication across trees. Enhanced HTML artifact filtering. Rate limiting protections.
+**Other Fixes**: Core words always dissected regardless of phonetic structure. Global deduplication across trees. Enhanced HTML artifact filtering (no longer needed - we don't touch HTML anymore!). ~~Rate limiting protections~~ (no longer needed - we don't make requests anymore!).
 
   
 ### Credits
