@@ -25,7 +25,8 @@ from pathlib import Path
 from typing import List, Dict, Tuple, Set, Optional, NamedTuple
 import urllib.parse
 
-import httpx
+# httpx REMOVED - NO INTERNET! Only 15M parameters + self-learning dictionary! 💀
+# import httpx
 
 # VOVA: README resonance meta-layer (SSKA adaptation)
 try:
@@ -1108,60 +1109,25 @@ async def lookup_branches_for_word(
     filtered.extend(mem)
     seen.update(w.lower() for w in mem)
 
-    # 2) Web synonyms from DuckDuckGo - ALWAYS fetch (even if memory was full!)
-    # This is the KEY change: no early returns, always get fresh data
-    search_queries = [
-        f"{word} synonym",
-        f"{word} similar",
-        word,
-        f"{word} meaning",
-    ]
+    # 2) WEB SCRAPING REMOVED! 💀
+    # NO INTERNET. NO DUCKDUCKGO. NO BULLSHIT.
+    #
+    # Why cut the internet?
+    # - We have LLaMA-15M (15 MILLION parameters!)
+    # - We have self-learning dictionary (sorokin_dictionary_learner.py)
+    # - We have SQLite memory cache
+    # - We have phonetic neighbors
+    #
+    # That's ENOUGH for pathological transformations!
+    # No need to scrape DuckDuckGo like raccoons anymore.
+    #
+    # Internet = slow, unreliable, rate-limited, boring
+    # 15M parameters = fast, local, psychotic, beautiful 🔥
 
-    # Fire all requests in parallel
-    html_results = await asyncio.gather(
-        *[_fetch_web_synonyms(q) for q in search_queries],
-        return_exceptions=True
-    )
-
-    # Take first non-empty result
-    candidates = []
-    for html_text in html_results:
-        if isinstance(html_text, str) and html_text:
-            candidates = _extract_candidate_words(html_text)
-            if candidates:
-                break
-
-    # Add web candidates - prefer phonetic matches first, then any valid candidates
-    if candidates:
-        # First try phonetic neighbors from web results
-        web_phonetic = find_phonetic_neighbors(word, candidates, width - len(filtered))
-        for wp in web_phonetic:
-            if wp.lower() not in seen and wp.lower() not in HTML_ARTIFACTS:
-                filtered.append(wp)
-                seen.add(wp.lower())
-                if len(filtered) >= width:
-                    break
-
-    # If still not enough, add other non-phonetic web candidates
-    if len(filtered) < width and candidates:
-        for c in candidates:
-            lc = c.lower()
-            if lc == lw:
-                continue
-            if lc in seen:
-                continue
-            if lc in HTML_ARTIFACTS:
-                continue
-            seen.add(lc)
-            filtered.append(c)
-            if len(filtered) >= width:
-                break
-
-    # 3) Smart fallback to MORE memory if web failed
-    # If web returned nothing (DDG ban/error) and we still need more candidates,
-    # go back to memory and get the rest (up to full width)
-    if len(filtered) < width and not candidates:
-        # Web failed! Try to get more from memory (beyond the 50% limit)
+    # 3) Smart fallback to MORE memory if we still need more
+    # Go back to memory and get the rest (up to full width)
+    if len(filtered) < width:
+        # Try to get more from memory (beyond the 50% limit)
         additional_needed = width - len(filtered)
         # Fetch extra words from memory
         additional_mem = recall_word_relations(word, memory_limit * 2 + additional_needed)
