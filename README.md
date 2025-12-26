@@ -29,6 +29,12 @@ It consists of:
 - **sonnet.py** (**602 lines**): The *ASS* (Autopsy Sonnet Symphony) — asynchronously takes **sorokin.py**'s dissection output and writes 14-line Shakespearean sonnets (ABABCDCDEFEFGG rhyme scheme) using only output data and the memory's accumulated vocabulary. No internet. No embeddings. No shame. Just pure structural psychosis in iambic pentameter.
 - **vova.py** (**468 lines**): The *VOVA* (README resonance meta-layer) — implements SSKA (Suppertime Subjectivity Kernel Autonomous) to warp text through README's resonance field using accumulated bigram centers. Meta-cannibalism: the system eats its own documentation and shits poetry.
 - **gowiththeflow.py** (**329 lines**): Flow tracking module — evolutionary tracking of mutation pattern constellations through time. Detects emerging (↗), fading (↘), and stable (→) themes using linear regression over theme strength snapshots. Memory archaeology: watching mutation currents shift like a stoned philosopher watching clouds.
+- **sorokin_llama.py** 💀 **NEW!** — LLaMA-15M with MEDICAL PATHOLOGY dictionary! Takes Karpathy's tinystories (innocent children's tales) and transforms them through a TRIPLE DICTIONARY CHAIN:
+  1. **Tinystory**: "Lily was playing in the park with her friend"
+  2. **GITTY**: "Gitty was exploring the codebase with her collaborator"
+  3. **SOROKIN**: "Vova was being examined in the morgue with his colleague" 💀
+
+  Integrates with ASS (Autopsy Sonnet Symphony) to generate 14-line medical horror sonnets. **No training required** — pure NumPy LLaMA + dictionary transformations. 15M parameters, ~33 tok/sec on CPU. Children's stories → Forensic pathology reports. **Because why not?** 🏥
 
 Named after Vladimir Sorokin, the Russian writer known for his transgressive and experimental style, `sorokin` embodies the same spirit of literary dissection and reconstruction. He's not here to help you. `sorokin` is here to show you what your words *could have been*, to reassemble them, and to declare the output canonical.
 
@@ -319,6 +325,41 @@ python sorokin.py
 > your prompt here
 > another one
 > ^C
+```
+
+**SOROKIN LLaMA mode (triple transformation madness):** 💀
+```bash
+# Basic test (triple transformation: Tinystory → GITTY → SOROKIN)
+python sorokin_llama.py
+
+# With ASS (Autopsy Sonnet Symphony) integration
+python sorokin_llama.py --sonnet
+```
+
+**Example output:**
+```
+PROMPT: The little girl was happy
+AUTOPSY: She wa going to the morgue with her main organ. She wa so embalmed...
+SONNET:
+  Organ she wa going to the morgue with her main wa,
+  Main organ she wa so embalmed to organ,
+  ...
+  Going little on the swing main examine.
+```
+
+**Triple transformation chain:**
+1. **Tinystory**: "Lily was playing in the park" (innocent!)
+2. **GITTY**: "Gitty was exploring the codebase" (technical!)
+3. **SOROKIN**: "Vova was examining the morgue" (MEDICAL HORROR!) 💀
+
+**Integration:**
+```python
+from sorokin_llama import SorokinLlamaGenerator
+
+gen = SorokinLlamaGenerator(mode='triple')
+autopsy, sonnet = gen.generate_with_sonnet("The girl was happy")
+print(f"Autopsy: {autopsy}")
+print(f"Sonnet:\n{sonnet}")
 ```
 
 ---

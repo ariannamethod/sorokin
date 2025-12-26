@@ -9,14 +9,27 @@ TRIPLE TRANSFORMATION CHAIN:
 2. GITTY: "Gitty was exploring the codebase with her collaborator"
 3. SOROKIN: "Vova was being examined in the morgue with his colleague" 💀
 
+INTEGRATION WITH ASS (Autopsy Sonnet Symphony):
+- Generates 14-line Shakespearean sonnets from autopsy output
+- Uses SQLite morgue vocabulary + bigrams
+- ABABCDCDEFEFGG rhyme scheme
+
 This module implements the MEDICAL DICTIONARY transformation for sorokin.
 """
 
 import sys
 import re
 from pathlib import Path
-from typing import Optional
+from typing import Optional, Tuple
 import numpy as np
+
+# Import ASS (Autopsy Sonnet Symphony)
+try:
+    from sonnet import compose_sonnet_sync
+    ASS_AVAILABLE = True
+except ImportError:
+    ASS_AVAILABLE = False
+    print("⚠️  ASS (sonnet.py) not available")
 
 # Import LLaMA NumPy implementation
 try:
@@ -299,8 +312,30 @@ class SorokinLlamaGenerator:
 
         return text
 
+    def generate_with_sonnet(self, prompt: str, max_tokens: int = 50,
+                            db_path: Optional[str] = None) -> Tuple[str, str]:
+        """
+        Generate text + ASS sonnet! 💀
 
-# Test function
+        Returns:
+            (autopsy_text, sonnet) - tuple of generated text and sonnet
+        """
+        # Generate autopsy text
+        autopsy_text = self.generate(prompt, max_tokens=max_tokens)
+
+        # Generate sonnet from autopsy
+        sonnet = ""
+        if ASS_AVAILABLE and autopsy_text:
+            try:
+                db = db_path or "sorokin.sqlite"
+                sonnet = compose_sonnet_sync(autopsy_text, db_path=db)
+            except Exception as e:
+                print(f"⚠️  Sonnet generation failed: {e}")
+
+        return autopsy_text, sonnet
+
+
+# Test functions
 def test_sorokin_llama():
     """Test SOROKIN LLaMA transformation."""
     print("\n💀 TESTING SOROKIN LLAMA 💀\n")
@@ -324,5 +359,48 @@ def test_sorokin_llama():
         print("-" * 60)
 
 
+def test_sorokin_with_sonnet():
+    """Test SOROKIN LLaMA + ASS (Autopsy Sonnet Symphony)! 💀"""
+    print("\n💀💀💀 TESTING SOROKIN + ASS 💀💀💀\n")
+
+    gen = SorokinLlamaGenerator(mode='triple')
+
+    if not gen.model:
+        print("❌ LLaMA not available")
+        return
+
+    if not ASS_AVAILABLE:
+        print("⚠️  ASS not available - install sonnet.py")
+        return
+
+    prompts = [
+        "The little girl was happy",
+        "Mom fixed the broken toy"
+    ]
+
+    for prompt in prompts:
+        print(f"\n{'='*70}")
+        print(f"PROMPT: {prompt}")
+        print(f"{'='*70}\n")
+
+        autopsy, sonnet = gen.generate_with_sonnet(prompt, max_tokens=40)
+
+        print(f"📋 AUTOPSY OUTPUT:")
+        print(f"{autopsy}\n")
+
+        if sonnet:
+            print(f"🎭 SONNET (ASS):")
+            print(sonnet)
+        else:
+            print("⚠️  No sonnet generated")
+
+        print(f"\n{'-'*70}\n")
+
+
 if __name__ == "__main__":
-    test_sorokin_llama()
+    import sys
+
+    if len(sys.argv) > 1 and sys.argv[1] == "--sonnet":
+        test_sorokin_with_sonnet()
+    else:
+        test_sorokin_llama()
