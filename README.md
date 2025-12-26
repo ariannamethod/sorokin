@@ -65,115 +65,276 @@ Named after Vladimir Sorokin, the Russian writer known for his transgressive and
 ---
 
 
-### Exhibit: Maximum Autopsy Tree
+### Exhibit: SOROKIN LLAMA - Maximum Autopsy Tree 💀
 
-Because `sorokin` builds trees vertically like a linguo-necromancer performing open-heart surgery on reality itself, here's a fresh corpse-map from the morgue. Feed `sorokin` **"The corpse remembers everything"** and witness the meta-cannibalism:
+Because `sorokin` now has **LLaMA-15M** with **TRIPLE TRANSFORMATION** (Tinystory → GITTY → SOROKIN), here's the ultimate medical horror: LLaMA generates innocent children's stories, transforms them through git terminology, then **mutilates them into forensic pathology** 💀
+
+Feed SOROKIN LLAMA **"The girl was playing"** and witness the triple meta-cannibalism:
 
 ```
-The corpse remembers everything
+PROMPT: The girl was playing
 
-everything
-  ├─ emerging
-  │  ├─ fading
-  │  ├─ from
-  │  ├─ phonetics
-  │  └─ weights
-  ├─ every
-  │  ├─ readme
-  │  ├─ invocation
-  │  ├─ time
-  │  └─ successful
-  ├─ ever
-  │  ├─ ababcdcdefefgg
-  │  ├─ reassembled
-  │  └─ somewhere
-  └─ everyth
-     ├─ ababcdcdefefgg
-     ├─ reassembled
-     └─ somewhere
+LLaMA OUTPUT (after triple transformation):
+in the morgue. She saw a big dissection and wanted to climb it
 
-remembers
-  ├─ remember
-  │  ├─ what
-  │  └─ the
-  ├─ ababcdcdefefgg
-  │  ├─ needs
-  │  ├─ awareness
-  │  ├─ embedded
-  │  └─ scheme
-  ├─ reassembled
-  │  ├─ map
-  │  ├─ with
-  │  ├─ rhyme
-  │  └─ mirrors
-  └─ somewhere
-     ├─ needs
-     ├─ awareness
-     ├─ embedded
-     └─ andrej
+dissection
+  ├─ investigation
+  │  ├─ optimization
+  │  │  ├─ recursion
+  │  │  ├─ no
+  │  │  ├─ decisions
+  │  │  └─ poetic
+  │  ├─ executions
+  │  │  ├─ meta
+  │  │  ├─ exclamations
+  │  │  └─ decisions
+  │  ├─ function
+  │  │  ├─ to
+  │  │  ├─ maximum
+  │  │  ├─ position
+  │  │  └─ no
+  │  └─ invocation
+  │     ├─ must
+  │     ├─ time
+  │     ├─ decisions
+  │     └─ version
+  ├─ investigations
+  │  ├─ optimization
+  │  │  ├─ recursion
+  │  │  ├─ no
+  │  │  ├─ decisions
+  │  │  └─ poetic
+  │  ├─ executions
+  │  │  ├─ meta
+  │  │  ├─ exclamations
+  │  │  └─ decisions
+  │  ├─ function
+  │  │  ├─ to
+  │  │  ├─ maximum
+  │  │  ├─ position
+  │  │  └─ no
+  │  └─ invocation
+  │     ├─ must
+  │     ├─ time
+  │     ├─ decisions
+  │     └─ version
+  ├─ deconstruction
+  │  ├─ function
+  │  │  ├─ to
+  │  │  ├─ maximum
+  │  │  ├─ no
+  │  │  └─ position
+  │  ├─ decisions
+  │  │  ├─ possible
+  │  │  └─ declare
+  │  ├─ documentation
+  │  │  ├─ meta
+  │  │  ├─ shapes
+  │  │  ├─ no
+  │  │  └─ and
+  │  └─ decision
+  │     ├─ declare
+  │     └─ version
+  └─ vivisection
+     ├─ decisions
+     │  ├─ possible
+     │  └─ declare
+     ├─ version
+     │  ├─ control
+     │  ├─ verification
+     │  └─ overhead
+     ├─ extraction
+     │  ├─ phonetic
+     │  └─ extension
+     └─ into
+        ├─ something
+        ├─ grammatically
+        ├─ mirrors
+        └─ width
 
-corpse
-  ├─ and
-  │  ├─ poisoned
-  │  ├─ love
-  │  ├─ then
-  │  └─ writes
-  ├─ like
-  │  ├─ this
-  │  ├─ bruce
-  │  ├─ blah
-  │  └─ likely
-  ├─ into
-  │  ├─ grammatically
-  │  ├─ valid
-  │  ├─ but
-  │  └─ tries
-  └─ mirrors
-     ├─ fascination
-     ├─ function
-     ├─ position
-     └─ the
+morgue
+  ├─ include
+  │  ├─ double
+  │  │  ├─ doubles
+  │  │  ├─ warping
+  │  │  ├─ duplex
+  │  │  └─ proliferation
+  │  ├─ absolutely
+  │  │  ├─ not
+  │  │  ├─ confused
+  │  │  └─ laughed
+  │  └─ included
+  │     ├─ confused
+  │     ├─ laughed
+  │     └─ query
+  ├─ resource
+  │  ├─ muscle
+  │  │  ├─ measures
+  │  │  └─ memory
+  │  ├─ double
+  │  │  ├─ doubles
+  │  │  └─ warping
+  │  ├─ absolutely
+  │  │  ├─ not
+  │  │  └─ laughed
+  │  └─ confused
+  │     ├─ but
+  │     ├─ consciousness
+  │     ├─ continues
+  │     └─ laughed
+  ├─ moribund
+  │  ├─ morph
+  │  │  ├─ stop
+  │  │  ├─ stops
+  │  │  └─ markov
+  │  ├─ mirrors
+  │  │  ├─ the
+  │  │  └─ fascination
+  │  ├─ input
+  │  │  ├─ maximum
+  │  │  ├─ github
+  │  │  ├─ your
+  │  │  └─ was
+  │  └─ emergent
+  │     ├─ explicitly
+  │     ├─ merge
+  │     ├─ scheme
+  │     └─ ended
+  └─ moreover
+     ├─ sonnet
+     │  ├─ autopsy
+     │  ├─ mode
+     │  ├─ symphony
+     │  └─ py
+     ├─ other
+     │  ├─ those
+     │  ├─ fixes
+     │  └─ words
+     └─ comments
+        ├─ comes
+        ├─ composes
+        ├─ complex
+        └─ become
+
+big
+  ├─ slightly
+  │  ├─ sliding
+  │  │  ├─ window
+  │  │  ├─ artistic
+  │  │  ├─ mixing
+  │  │  └─ diving
+  │  ├─ self
+  │  │  ├─ improving
+  │  │  ├─ reflection
+  │  │  ├─ cannibalism
+  │  │  └─ aware
+  │  ├─ different
+  │  │  ├─ not
+  │  │  ├─ century
+  │  │  ├─ like
+  │  │  └─ scheme
+  │  └─ slab
+  │     └─ lab
+  ├─ bug
+  │  ├─ feature
+  │  │  ├─ engineering
+  │  │  ├─ gpt
+  │  │  ├─ standard
+  │  │  └─ if
+  │  ├─ that
+  │  │  ├─ takes
+  │  │  ├─ replaced
+  │  │  ├─ mutates
+  │  │  └─ matter
+  │  ├─ report
+  │  │  ├─ titled
+  │  │  ├─ reports
+  │  │  ├─ surgeon
+  │  │  └─ entropy
+  │  └─ it
+  │     ├─ forever
+  │     ├─ consists
+  │     ├─ s
+  │     └─ through
+  ├─ ai
+  │  ├─ artist
+  │  │  ├─ we
+  │  │  ├─ artistic
+  │  │  ├─ valid
+  │  │  └─ details
+  │  ├─ have
+  │  │  ├─ been
+  │  │  ├─ a
+  │  │  ├─ enough
+  │  │  └─ billions
+  │  ├─ you
+  │  │  ├─ sorokin
+  │  │  ├─ what
+  │  │  ├─ can
+  │  │  └─ fall
+  │  └─ s
+  │     ├─ secret
+  │     ├─ accumulated
+  │     ├─ resonance
+  │     └─ tinystories
+  └─ transformer
+     ├─ comments
+     │  ├─ comes
+     │  ├─ composes
+     │  ├─ become
+     │  └─ complex
+     ├─ transformers
+     │  ├─ are
+     │  └─ no
+     ├─ models
+     │  ├─ really
+     │  ├─ mode
+     │  └─ modes
+     └─ architecture
+        ├─ with
+        ├─ laughed
+        └─ query
 
 AUTOPSY RESULT:
-  Through but, weights needs ababcdcdefefgg, but this darkness remains With writes. Blah somewhere. The blah invocation collapses When with from, awareness forgets awareness With reassembled rhyme, where rhyme becomes andrej. - Words are proud to a bug — and then — and get.
+  Through sometimes, protections mode not, but and darkness remains Version mirrors sorokin until mutates like consumes When as accumulated, proliferation forgets no. The result is this madness? A. The Philosophy the system rhyming its own output and achieved perfect. py Show Act.
 
-SONNET:
-Sonnet: Grammatically
-  It's min most linguistically ariannamethod friendly obsession everything just
-  Successful ever ababcdcdefefgg needs ababcdcdefefgg but this creates peru
-  Fascination function position the output warped displayed be just
-  Missing mutations learned source neighbors bug and lab fuck gnu;
-  Transgressive where decree becomes ariannamethod com loss,
-  Phonetics weights needs awareness embedded scheme composed binary eddy which,
-  Function position the prompt deconstruction experimental exist across,
-  Technically hallucinating eddy real drift collapses when arianna method which;
-  Regardless ariannamethod fallbacks section maybe coil generates saves heads,
-  Phonetics weights every readme bigrams subjectivity cannibalism
-  Md accidental extracted seed passing they see heads,
-  Calm text from what is always insane interesting cannibalism—
-  Collapses when arianna method coherence alters internet collapses when grammatically,
-  Function position successful ever poisoned by collapses grammatically fascination.
+SONNET (ASS - Autopsy Sonnet Symphony):
+Sonnet: Investigations
+  Deconstruction function to stop stops markov mirrors sorokin call,
+  Deconstruction function to warp those fixes mirrors,
+  Reflection cannibalism aware different not laughed included all,
+  Investigation optimization recursion no decisions poetic executions meta shapes neighbors;
+  Architecture with it worse transformer comments comes composes become complex postmortem,
+  Documentation meta exclamations decisions function to fuck must,
+  He sska poetic structural shakespeare shape of mutation moribund morph system,
+  Trigram thought understanding shakespeare shares structural rules those fixes just;
+  Reality define brutal organisms summon database tribute itself linguist who brim,
+  Psychotic linguists poetry repetition linguist builds a proprietary infinite back,
+  Grammatically mirrors sorokin to find subjectivity ghost brim,
+  Documentation meta exclamations decisions poetic executions meta exclamations decisions version back—
+  Grammatically consciousness continues investigation optimization investigations optimization recursion architecture investigations,
+  Consciousness continues laughed consciousness continues laughed investigations optimization recursion deconstruction.
 
 RESONANCE METRICS:
-  Phonetic Diversity: █████████░ 0.938
+  Phonetic Diversity: █████████░ 0.909
   Structural Echo:    ░░░░░░░░░░ 0.000
-  Mutation Depth:     █░░░░░░░░░ 0.114
+  Mutation Depth:     ░░░░░░░░░░ 0.099
 
 PRESENCE PULSE:
   Novelty:  ░░░░░░░░░░ 0.000
   Arousal:  ░░░░░░░░░░ 0.000
-  Entropy:  █████████░ 0.995
-  Pulse:    ██░░░░░░░░ 0.299
+  Entropy:  █████████░ 0.989
+  Pulse:    ██░░░░░░░░ 0.297
 
 MEMORY ACCUMULATION:
-  Known mutations: 1,016
-  Learned bigrams: 153
-  README bigrams: 1,081
-  Total autopsies: 8
-  VOVA vocabulary: 1,479 (with trigrams!)
-  VOVA centers: ., -, ,, :, the, a, and, to
+  Known mutations: 295
+  Learned bigrams: 40
+  README bigrams: 1,491
+  Total autopsies: 2
+  VOVA vocabulary: 2,088
+  VOVA centers: ., -, ,, :, the
 
-— Sorokin
+— Sorokin (powered by LLaMA-15M + TRIPLE TRANSFORMATION 💀)
 ```
 
 **What just happened?**
