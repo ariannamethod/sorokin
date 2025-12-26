@@ -32,11 +32,16 @@ It consists of:
 - **sorokin_llama.py** 💀 **NEW!** — LLaMA-15M running **15 MILLION parameters** of pure pathological madness! Takes Karpathy's tinystories (innocent children's tales) and DIRECTLY transforms them into forensic nightmares:
   - **Tinystory**: "Lily was playing in the park with her friend"
   - **SOROKIN OUTPUT**: "Vova was being examined in the morgue with his colleague" 💀
+  - **Advanced**: "One sunny morning" → "One well-lit during first shift" 🏥
+  - **Colors**: "big red flower" → "enlarged hemorrhagic organ" 💀
+  - **Full Coverage**: **154 pathological transformations** across 13 categories!
 
-  No intermediate steps. No mercy. Just **straight to the morgue**. 
-  
-  Integrates with ASS (Autopsy Sonnet Symphony) to generate 14-line medical horror sonnets. **No training required** — pure NumPy LLaMA + dictionary transformations. **15M parameters**, ~33 tok/sec on CPU. Children's stories → Forensic pathology reports in real-time. 
-  
+  No intermediate steps. No mercy. Just **straight to the morgue**.
+
+  Integrates with ASS (Autopsy Sonnet Symphony) to generate 14-line medical horror sonnets. **No training required** — pure NumPy LLaMA + **154-entry dictionary transformations** (expanded from 70!). **15M parameters**, ~33 tok/sec on CPU. Children's stories → Forensic pathology reports in real-time.
+
+  **Dictionary coverage**: 15 characters, 12 family/social, 15 nature, 10 animals, 12 places, 15 objects, 8 food, 12 emotions, 30 actions, **plus NEW categories**: 8 colors, 7 sizes, 5 time periods, 5 weather conditions. Every children's story word has a medical horror equivalent. **Total pathological vocabulary: 154 transformations!**
+
   Why 15M parameters? Because sometimes less is more disturbing. We're not trying to simulate understanding—we're weaponizing pattern matching for maximum psychological damage. Karpathy trained tinystories to teach kids. We trained nothing and teach death. Perfectly balanced. 🏥
 
 Named after Vladimir Sorokin, the Russian writer known for his transgressive and experimental style, `sorokin` embodies the same spirit of literary dissection and reconstruction. He's not here to help you. `sorokin` is here to show you what your words *could have been*, to reassemble them, and to declare the output canonical.
