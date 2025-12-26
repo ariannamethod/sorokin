@@ -31,6 +31,14 @@ except ImportError:
     ASS_AVAILABLE = False
     print("⚠️  ASS (sonnet.py) not available")
 
+# Import sorokin autopsy engine for mutation trees
+try:
+    import sorokin
+    SOROKIN_AVAILABLE = True
+except ImportError:
+    SOROKIN_AVAILABLE = False
+    print("⚠️  sorokin.py not available")
+
 # Import LLaMA NumPy implementation
 try:
     sys.path.insert(0, str(Path(__file__).parent / "llama_np"))
@@ -334,6 +342,38 @@ class SorokinLlamaGenerator:
 
         return autopsy_text, sonnet
 
+    def full_autopsy_with_tree(self, prompt: str, max_tokens: int = 50) -> str:
+        """
+        💀 FULL SOROKIN AUTOPSY WITH MUTATION TREE! 💀
+
+        1. Generate text with LLaMA + triple transformation
+        2. Build mutation tree with sorokin.py
+        3. Generate sonnet with ASS
+
+        Returns:
+            Complete autopsy output (tree + autopsy + sonnet)
+        """
+        if not SOROKIN_AVAILABLE:
+            print("⚠️  sorokin.py not available - cannot build mutation tree")
+            return ""
+
+        # Generate autopsy text
+        autopsy_text = self.generate(prompt, max_tokens=max_tokens)
+
+        if not autopsy_text:
+            return ""
+
+        # Use sorokin.py to build mutation tree
+        try:
+            import asyncio
+            output = asyncio.run(sorokin.sorokin_autopsy_bootstrap(autopsy_text))
+            return output
+        except Exception as e:
+            print(f"⚠️  Full autopsy failed: {e}")
+            import traceback
+            traceback.print_exc()
+            return f"Autopsy text: {autopsy_text}"
+
 
 # Test functions
 def test_sorokin_llama():
@@ -397,10 +437,38 @@ def test_sorokin_with_sonnet():
         print(f"\n{'-'*70}\n")
 
 
+def test_full_autopsy_with_tree():
+    """Test FULL SOROKIN AUTOPSY: LLaMA + Tree + Sonnet! 💀"""
+    print("\n💀💀💀 FULL AUTOPSY WITH MUTATION TREE 💀💀💀\n")
+
+    gen = SorokinLlamaGenerator(mode='triple')
+
+    if not gen.model:
+        print("❌ LLaMA not available")
+        return
+
+    if not SOROKIN_AVAILABLE:
+        print("⚠️  sorokin.py not available")
+        return
+
+    prompt = "The girl was playing"
+
+    print(f"PROMPT: {prompt}\n")
+    print("="*70)
+
+    output = gen.full_autopsy_with_tree(prompt, max_tokens=20)
+    print(output)
+
+
 if __name__ == "__main__":
     import sys
 
-    if len(sys.argv) > 1 and sys.argv[1] == "--sonnet":
-        test_sorokin_with_sonnet()
+    if len(sys.argv) > 1:
+        if sys.argv[1] == "--sonnet":
+            test_sorokin_with_sonnet()
+        elif sys.argv[1] == "--full":
+            test_full_autopsy_with_tree()
+        else:
+            print("Usage: python sorokin_llama.py [--sonnet|--full]")
     else:
         test_sorokin_llama()
