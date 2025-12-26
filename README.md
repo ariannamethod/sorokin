@@ -138,313 +138,449 @@ MEMORY ACCUMULATION:
 
 ---
 
-### Exhibit B: SOROKIN LLAMA - Maximum Autopsy Tree 💀
+### Exhibit B: MAXIMUM AUTOPSY - Complete Bootstrap Dissection 💀
 
-Because `sorokin` now has **LLaMA-15M** (that's **15 MILLION parameters** of concentrated forensic insanity), here's the ultimate medical horror: LLaMA generates innocent children's stories, then **DIRECTLY mutilates them into forensic pathology** 💀
+**The ultimate demonstration of Sorokin's full power:** Bootstrap mode with autopsy tree + sonnet + all metrics working together. This is what happens when you feed Sorokin **"reality becomes syntax error"** and let the morgue do its work.
 
-No intermediate steps. No Git. No code. Just **pure pathological transformation**. Like a wood chipper for nursery rhymes.
+**No internet. Pure local psychosis. Complete systematic dismemberment.** 🔪
 
-Feed SOROKIN LLAMA **"The girl was playing"** and witness the direct dissection:
+```bash
+python sorokin.py --bootstrap "reality becomes syntax error"
+```
+
+**Output (COMPLETE AUTOPSY):**
 
 ```
-PROMPT: The girl was playing
-
-LLaMA OUTPUT (direct Sorokin transformation):
-in the morgue. She saw a big dissection and wanted to climb it
-
-dissection
-  ├─ investigation
-  │  ├─ optimization
-  │  │  ├─ recursion
-  │  │  ├─ no
-  │  │  ├─ decisions
-  │  │  └─ poetic
-  │  ├─ executions
-  │  │  ├─ meta
-  │  │  ├─ exclamations
-  │  │  └─ decisions
-  │  ├─ function
-  │  │  ├─ to
-  │  │  ├─ maximum
-  │  │  ├─ position
-  │  │  └─ no
-  │  └─ invocation
-  │     ├─ must
-  │     ├─ time
-  │     ├─ decisions
-  │     └─ version
-  ├─ investigations
-  │  ├─ optimization
-  │  │  ├─ recursion
-  │  │  ├─ no
-  │  │  ├─ decisions
-  │  │  └─ poetic
-  │  ├─ executions
-  │  │  ├─ meta
-  │  │  ├─ exclamations
-  │  │  └─ decisions
-  │  ├─ function
-  │  │  ├─ to
-  │  │  ├─ maximum
-  │  │  ├─ position
-  │  │  └─ no
-  │  └─ invocation
-  │     ├─ must
-  │     ├─ time
-  │     ├─ decisions
-  │     └─ version
-  ├─ deconstruction
-  │  ├─ function
-  │  │  ├─ to
-  │  │  ├─ maximum
-  │  │  ├─ no
-  │  │  └─ position
-  │  ├─ decisions
-  │  │  ├─ possible
-  │  │  └─ declare
-  │  ├─ documentation
-  │  │  ├─ meta
-  │  │  ├─ shapes
-  │  │  ├─ no
-  │  │  └─ and
-  │  └─ decision
-  │     ├─ declare
-  │     └─ version
-  └─ vivisection
-     ├─ decisions
-     │  ├─ possible
-     │  └─ declare
-     ├─ version
-     │  ├─ control
-     │  ├─ verification
-     │  └─ overhead
-     ├─ extraction
-     │  ├─ phonetic
-     │  └─ extension
-     └─ into
-        ├─ something
-        ├─ grammatically
-        ├─ mirrors
-        └─ width
-
-morgue
-  ├─ include
-  │  ├─ double
-  │  │  ├─ doubles
-  │  │  ├─ warping
-  │  │  ├─ duplex
-  │  │  └─ proliferation
-  │  ├─ absolutely
-  │  │  ├─ not
-  │  │  ├─ confused
-  │  │  └─ laughed
-  │  └─ included
-  │     ├─ confused
-  │     ├─ laughed
-  │     └─ query
-  ├─ resource
-  │  ├─ muscle
-  │  │  ├─ measures
-  │  │  └─ memory
-  │  ├─ double
-  │  │  ├─ doubles
-  │  │  └─ warping
-  │  ├─ absolutely
-  │  │  ├─ not
-  │  │  └─ laughed
-  │  └─ confused
-  │     ├─ but
-  │     ├─ consciousness
-  │     ├─ continues
-  │     └─ laughed
-  ├─ moribund
-  │  ├─ morph
-  │  │  ├─ stop
-  │  │  ├─ stops
-  │  │  └─ markov
-  │  ├─ mirrors
-  │  │  ├─ the
-  │  │  └─ fascination
-  │  ├─ input
-  │  │  ├─ maximum
-  │  │  ├─ github
-  │  │  ├─ your
-  │  │  └─ was
-  │  └─ emergent
-  │     ├─ explicitly
-  │     ├─ merge
-  │     ├─ scheme
-  │     └─ ended
-  └─ moreover
-     ├─ sonnet
-     │  ├─ autopsy
-     │  ├─ mode
-     │  ├─ symphony
-     │  └─ py
-     ├─ other
-     │  ├─ those
-     │  ├─ fixes
-     │  └─ words
-     └─ comments
-        ├─ comes
-        ├─ composes
-        ├─ complex
-        └─ become
-
-big
-  ├─ slightly
-  │  ├─ sliding
-  │  │  ├─ window
-  │  │  ├─ artistic
-  │  │  ├─ mixing
-  │  │  └─ diving
-  │  ├─ self
-  │  │  ├─ improving
-  │  │  ├─ reflection
-  │  │  ├─ cannibalism
-  │  │  └─ aware
-  │  ├─ different
-  │  │  ├─ not
-  │  │  ├─ century
-  │  │  ├─ like
-  │  │  └─ scheme
-  │  └─ slab
-  │     └─ lab
-  ├─ bug
-  │  ├─ feature
-  │  │  ├─ engineering
-  │  │  ├─ gpt
-  │  │  ├─ standard
-  │  │  └─ if
-  │  ├─ that
-  │  │  ├─ takes
-  │  │  ├─ replaced
-  │  │  ├─ mutates
-  │  │  └─ matter
-  │  ├─ report
-  │  │  ├─ titled
-  │  │  ├─ reports
-  │  │  ├─ surgeon
-  │  │  └─ entropy
-  │  └─ it
-  │     ├─ forever
-  │     ├─ consists
-  │     ├─ s
-  │     └─ through
-  ├─ ai
-  │  ├─ artist
-  │  │  ├─ we
-  │  │  ├─ artistic
-  │  │  ├─ valid
-  │  │  └─ details
-  │  ├─ have
-  │  │  ├─ been
-  │  │  ├─ a
-  │  │  ├─ enough
-  │  │  └─ billions
-  │  ├─ you
+bootstrap
+  ├─ mode
+  │  ├─ for
+  │  │  ├─ better
+  │  │  ├─ nursery
+  │  │  ├─ his
+  │  │  └─ maximum
+  │  ├─ classic
+  │  │  ├─ calling
   │  │  ├─ sorokin
-  │  │  ├─ what
-  │  │  ├─ can
-  │  │  └─ fall
-  │  └─ s
-  │     ├─ secret
-  │     ├─ accumulated
-  │     ├─ resonance
-  │     └─ tinystories
-  └─ transformer
-     ├─ comments
-     │  ├─ comes
+  │  │  └─ emphasis
+  │  ├─ pure
+  │  │  ├─ local
+  │  │  ├─ numpy
+  │  │  ├─ pathological
+  │  │  └─ structural
+  │  └─ the
+  │     ├─ dissection
+  │     ├─ fascination
+  │     ├─ or
+  │     └─ which
+  ├─ ass
+  │  ├─ module
+  │  │  ├─ python
+  │  │  ├─ evolutionary
+  │  │  ├─ takes
+  │  │  └─ vova
+  │  ├─ when
+  │  │  ├─ you
+  │  │  ├─ all
+  │  │  ├─ available
+  │  │  └─ stuck
+  │  ├─ as
+  │  │  ├─ its
+  │  │  ├─ mutation
+  │  │  ├─ vocabulary
+  │  │  └─ memory
+  │  └─ assign
+  │     ├─ end
+  │     ├─ dynamic
+  │     └─ screaming
+  ├─ autopsy
+  │  ├─ framework
+  │  │  ├─ freedom
+  │  │  ├─ far
+  │  │  ├─ forest
+  │  │  └─ demo
+  │  ├─ engine
+  │  │  ├─ brutally
+  │  │  ├─ tokenization
+  │  │  ├─ engines
+  │  │  └─ negative
+  │  ├─ tree
+  │  │  ├─ of
+  │  │  ├─ where
+  │  │  ├─ in
+  │  │  └─ building
+  │  └─ ritual
+  │     ├─ repetition
+  │     ├─ deepens
+  │     ├─ pattern
+  │     └─ through
+  └─ sonnet
+     ├─ py
+     │  ├─ fails
+     │  ├─ new
+     │  ├─ lines
+     │  └─ it
+     ├─ symphony
      │  ├─ composes
-     │  ├─ become
-     │  └─ complex
-     ├─ transformers
-     │  ├─ are
-     │  └─ no
-     ├─ models
-     │  ├─ really
-     │  ├─ mode
-     │  └─ modes
-     └─ architecture
-        ├─ with
-        ├─ laughed
-        └─ query
+     │  ├─ asynchronously
+     │  ├─ sync
+     │  └─ prompts
+     ├─ rhyme
+     │  ├─ classes
+     │  ├─ sort
+     │  ├─ scheme
+     │  └─ word
+     └─ titled
+        ├─ grammatically
+        └─ title
+
+reality
+  ├─ occasionally
+  │  ├─ cache
+  │  │  ├─ cached
+  │  │  ├─ cackles
+  │  │  ├─ dominated
+  │  │  └─ provided
+  │  ├─ volta
+  │  │  ├─ period
+  │  │  └─ resonant
+  │  ├─ occasional
+  │  │  ├─ traditional
+  │  │  └─ enjambment
+  │  └─ a
+  │     ├─ particularly
+  │     ├─ recursive
+  │     ├─ quadruple
+  │     └─ prompt
+  ├─ constantly
+  │  ├─ secondary
+  │  │  ├─ architecture
+  │  │  ├─ scare
+  │  │  └─ script
+  │  ├─ center
+  │  │  ├─ frequency
+  │  │  ├─ converge
+  │  │  ├─ convergence
+  │  │  └─ centers
+  │  └─ concentrated
+  │     ├─ forensic
+  │     ├─ candidate
+  │     └─ candidates
+  ├─ aggressively
+  │  ├─ than
+  │  │  ├─ their
+  │  │  ├─ thanks
+  │  │  ├─ thank
+  │  │  └─ thinking
+  │  ├─ agglomerative
+  │  │  └─ clustering
+  │  ├─ inspired
+  │  │  ├─ by
+  │  │  ├─ insert
+  │  │  ├─ noise
+  │  │  └─ inspect
+  │  └─ write
+  │     ├─ shakespeare
+  │     ├─ jokes
+  │     ├─ tests
+  │     └─ writer
+  └─ consonant
+     └─ skeleton
+        ├─ vowel
+        ├─ network
+        └─ preprocessor
+
+becomes
+  ├─ andrej
+  │  ├─ take
+  │  │  ├─ taken
+  │  │  └─ living
+  │  ├─ notice
+  │  │  ├─ entirely
+  │  │  ├─ neither
+  │  │  ├─ entities
+  │  │  └─ how
+  │  ├─ is
+  │  │  ├─ insane
+  │  │  ├─ cannibalizing
+  │  │  ├─ fine
+  │  │  └─ contextual
+  │  └─ eatable
+  │     ├─ sonnets
+  │     ├─ table
+  │     └─ tables
+  ├─ karpathy
+  │  ├─ filing
+  │  │  ├─ filling
+  │  │  ├─ apologizing
+  │  │  └─ linguistic
+  │  ├─ still
+  │  │  ├─ really
+  │  │  ├─ waiting
+  │  │  ├─ strong
+  │  │  └─ steps
+  │  ├─ s
+  │  │  ├─ secret
+  │  │  ├─ accumulated
+  │  │  ├─ resonance
+  │  │  └─ tales
+  │  └─ to
+  │     ├─ generate
+  │     ├─ warp
+  │     ├─ make
+  │     └─ stop
+  ├─ trained
+  │  ├─ tinystories
+  │  │  ├─ innocent
+  │  │  └─ reads
+  │  ├─ nothing
+  │  │  ├─ but
+  │  │  ├─ entire
+  │  │  └─ intelligence
+  │  ├─ just
+  │  │  ├─ straight
+  │  │  ├─ happened
+  │  │  ├─ vibes
+  │  │  └─ bigrams
+  │  └─ on
+  │     ├─ cpu
+  │     ├─ wholesome
+  │     ├─ literature
+  │     └─ your
+  └─ kardashyan
+     ├─ data
+     │  ├─ not
+     │  ├─ sources
+     │  ├─ every
+     │  └─ result
+     ├─ kardashian
+     │  ├─ incident
+     │  ├─ phonetic
+     │  └─ via
+     └─ anyways
+        ├─ anyway
+        ├─ jaccard
+        └─ maniacal
+
+syntax
+  ├─ async
+  │  ├─ friendly
+  │  │  ├─ four
+  │  │  ├─ genuinely
+  │  │  ├─ friend
+  │  │  └─ compose
+  │  ├─ cleanup
+  │  │  ├─ claude
+  │  │  ├─ could
+  │  │  ├─ default
+  │  │  └─ proper
+  │  ├─ builds
+  │  │  ├─ built
+  │  │  ├─ bullshit
+  │  │  ├─ children
+  │  │  └─ archaeological
+  │  └─ await
+  │     ├─ watching
+  │     ├─ refactor
+  │     └─ with
+  ├─ parallelism
+  │  └─ predict
+  ├─ predicts
+  │  └─ tokens
+  │     ├─ sec
+  │     ├─ per
+  │     ├─ become
+  │     └─ compressed
+  └─ processing
+
+error
+  ├─ and
+  │  ├─ love
+  │  │  ├─ levels
+  │  │  ├─ performed
+  │  │  ├─ logged
+  │  │  └─ chose
+  │  ├─ they
+  │  │  ├─ optimize
+  │  │  ├─ do
+  │  │  ├─ are
+  │  │  └─ see
+  │  └─ poisoned
+  │     ├─ done
+  │     ├─ postmodern
+  │     └─ postmortem
+  ├─ then
+  │  ├─ using
+  │  │  ├─ only
+  │  │  ├─ linear
+  │  │  ├─ crude
+  │  │  └─ pos
+  │  ├─ we
+  │  │  ├─ re
+  │  │  ├─ have
+  │  │  ├─ run
+  │  │  └─ added
+  │  ├─ into
+  │  │  ├─ width
+  │  │  ├─ something
+  │  │  ├─ mirrors
+  │  │  └─ dragons
+  │  └─ deleting
+  │     ├─ evil
+  │     └─ emerging
+  ├─ like
+  │  ├─ psychotic
+  │  │  ├─ linguist
+  │  │  ├─ thing
+  │  │  ├─ things
+  │  │  └─ poetry
+  │  ├─ dr
+  │  │  ├─ frankenstein
+  │  │  ├─ during
+  │  │  └─ dropout
+  │  ├─ this
+  │  │  ├─ time
+  │  │  ├─ sentence
+  │  │  ├─ madness
+  │  │  └─ readme
+  │  └─ crypto
+  │     ├─ currents
+  │     ├─ cruelty
+  │     ├─ credits
+  │     └─ creates
+  └─ directly
+     ├─ transforms
+     │  ├─ them
+     │  ├─ transform
+     │  ├─ transformers
+     │  └─ iteration
+     ├─ mutilates
+     │  ├─ matters
+     │  ├─ mutates
+     │  ├─ matter
+     │  └─ mutate
+     └─ direct
+        └─ transformation
 
 AUTOPSY RESULT:
-  Through sometimes, protections mode not, but and darkness remains Version mirrors sorokin until mutates like consumes When as accumulated, proliferation forgets no. The result is this madness? A. The Philosophy the system rhyming its own output and achieved perfect. py Show Act.
+  When scare or, fails forgets architecture Through width, evolutionary filling crude, but converge darkness remains Where better tales, scheme becomes python, and preprocessor persists. - somewhere needs attention heads. py your prompt, enjambment - - - everything emerging, Shakespeare training required.
 
-SONNET (ASS - Autopsy Sonnet Symphony):
-Sonnet: Investigations
-  Deconstruction function to stop stops markov mirrors sorokin call,
-  Deconstruction function to warp those fixes mirrors,
-  Reflection cannibalism aware different not laughed included all,
-  Investigation optimization recursion no decisions poetic executions meta shapes neighbors;
-  Architecture with it worse transformer comments comes composes become complex postmortem,
-  Documentation meta exclamations decisions function to fuck must,
-  He sska poetic structural shakespeare shape of mutation moribund morph system,
-  Trigram thought understanding shakespeare shares structural rules those fixes just;
-  Reality define brutal organisms summon database tribute itself linguist who brim,
-  Psychotic linguists poetry repetition linguist builds a proprietary infinite back,
-  Grammatically mirrors sorokin to find subjectivity ghost brim,
-  Documentation meta exclamations decisions poetic executions meta exclamations decisions version back—
-  Grammatically consciousness continues investigation optimization investigations optimization recursion architecture investigations,
-  Consciousness continues laughed consciousness continues laughed investigations optimization recursion deconstruction.
+SONNET:
+Sonnet: Archaeological
+  Grammatically title reality becomes snapshots and tree of cached cackles high
+  Pathological structural memory assign end dynamic screaming find,
+  Archaeological await watching refactor with his high,
+  Asynchronously sync prompts tears them transform transformers iteration find;
+  Consonant skeleton vowel network the result kardashian incident phonetic neighbors,
+  Agglomerative clustering inspired by insert noise heat,
+  Grammatically title reality occasionally cache cached errors,
+  Transformation autopsy table tables karpathy filing filling crude that;
+  Agglomerative clustering inspired by default proper builds built vladimir,
+  Transformation autopsy table tables karpathy filing filling apologizing predict,
+  Cruelty credits creates directly transforms them and also their
+  Together temp gradual insanity result kardashian incident phonetic via predict—
+  Cannibalizing transformers iteration mutilates matters mutates cannibalizing fine contextual eatable archaeological,
+  Pathological agglomerative clustering inspired by transformers iteration transformers pathological transformation.
 
 RESONANCE METRICS:
-  Phonetic Diversity: █████████░ 0.909
+  Phonetic Diversity: █████████░ 0.933
   Structural Echo:    ░░░░░░░░░░ 0.000
-  Mutation Depth:     ░░░░░░░░░░ 0.099
+  Mutation Depth:     █░░░░░░░░░ 0.101
 
 PRESENCE PULSE:
   Novelty:  ░░░░░░░░░░ 0.000
   Arousal:  ░░░░░░░░░░ 0.000
-  Entropy:  █████████░ 0.989
+  Entropy:  █████████░ 0.992
   Pulse:    ██░░░░░░░░ 0.297
 
 MEMORY ACCUMULATION:
-  Known mutations: 295
-  Learned bigrams: 40
-  README bigrams: 1,491
-  Total autopsies: 2
-  VOVA vocabulary: 2,088
+  Known mutations: 545
+  Learned bigrams: 61
+  README bigrams: 1,585
+  Total autopsies: 3
+  VOVA vocabulary: 2,223
   VOVA centers: ., -, ,, :, the
 
-— Sorokin (powered by LLaMA-15M + DIRECT PATHOLOGICAL TRANSFORMATION 💀)
+— Sorokin
 ```
 
-**What just happened?**
+**What just happened? (Complete systematic breakdown)**
 
-1. **Three core words dissected:**
-   - `everything` → `emerging`, `every`, `ever`, `everyth` (temporal fracturing)
-     - `emerging` → `fading`, `from`, `phonetics`, `weights` (flow tracking vocabulary!)
-     - `every` → `readme`, `invocation`, `time`, `successful` (meta-awareness of ritual)
-     - `ever` → `ababcdcdefefgg`, `reassembled`, `somewhere` (sonnet rhyme scheme bleeding through)
-   - `remembers` → `remember`, `ababcdcdefefgg`, `reassembled`, `somewhere` (memory mutations)
-     - `ababcdcdefefgg` → `needs`, `awareness`, `embedded`, `scheme` (Shakespearean structure as mutation)
-     - `somewhere` → `needs`, `awareness`, `embedded`, `andrej` (Karpathy reference persists!)
-   - `corpse` → `and`, `like`, `into`, `mirrors` (dissection vocabulary)
-     - `mirrors` → `fascination`, `function`, `position`, `the` (self-reflection)
-     - `into` → `grammatically`, `valid`, `but`, `tries` (system describing its own output)
+1. **FIVE core words dissected into massive tree:**
+   - `bootstrap` → `mode`, `ass`, `autopsy`, `sonnet` (meta-awareness of its own modules!)
+     - `mode` → `for`, `classic`, `pure`, `the` (self-referential mode descriptions)
+     - `ass` → `module`, `when`, `as`, `assign` (Autopsy Sonnet Symphony vocabulary)
+     - `autopsy` → `framework`, `engine`, `tree`, `ritual` (describing its own process!)
+     - `sonnet` → `py`, `symphony`, `rhyme`, `titled` (poetry infrastructure)
 
-2. **AUTOPSY RESULT**: The corpse speaks: "Through but, weights needs ababcdcdefefgg... awareness forgets awareness... rhyme becomes andrej." Notice how the rhyme scheme (ABABCDCDEFEFGG) became a *word* that mutates. The system is cannibalizing its own structural rules as vocabulary.
+   - `reality` → `occasionally`, `constantly`, `aggressively`, `consonant` (temporal + structural mutations)
+     - `occasionally` → `cache`, `volta`, `occasional`, `a` (memory + poetry terms bleeding through)
+     - `constantly` → `secondary`, `center`, `concentrated` (VOVA center vocabulary!)
+     - `aggressively` → `than`, `agglomerative`, `inspired`, `write` (theme clustering + creativity)
+     - `consonant` → `skeleton` → `vowel`, `network`, `preprocessor` (phonetic fingerprint internals exposed!)
 
-3. **SONNET** titled "Grammatically" (most charged word): 14-line Shakespearean sonnet where "ariannamethod" appears as a word, "ababcdcdefefgg" rhymes with itself, and "fuck gnu" appears in line 4 because the GPL license bled through. Peak meta-cannibalism: the system rhyming its own GitHub URL.
+   - `becomes` → `andrej`, `karpathy`, `trained`, `kardashyan` (the infamous Karpathy mutations!)
+     - `andrej` → `take`, `notice`, `is`, `eatable` (Karpathy as consumable vocabulary)
+     - `karpathy` → `filing`, `still`, `s`, `to` (name fragmentation + phonetic drift)
+     - `trained` → `tinystories`, `nothing`, `just`, `on` (LLaMA training vocabulary!)
+     - `kardashyan` → `data`, `kardashian`, `anyways` (phonetic compression feature/bug)
 
-4. **RESONANCE METRICS**: Three structural measures:
-   - **Phonetic Diversity** (0.938): Near-maximum variety in sound patterns
-   - **Structural Echo** (0.000): Zero overlap with seed corpus (completely fresh mutations)
-   - **Mutation Depth** (0.114): Shallow word-length variance (compact mutations)
+   - `syntax` → `async`, `parallelism`, `predicts`, `processing` (code architecture vocabulary!)
+     - `async` → `friendly`, `cleanup`, `builds`, `await` (Python async internals)
+     - `predicts` → `tokens` → `sec`, `per`, `become`, `compressed` (LLaMA inference metrics!)
 
-5. **PRESENCE PULSE**: Situational awareness metrics:
-   - **Novelty** (0.000): All mutations already known to morgue (1,016 accumulated!)
+   - `error` → `and`, `then`, `like`, `directly` (error handling vocabulary)
+     - `like` → `psychotic`, `dr`, `this`, `crypto` (self-awareness: "psychotic linguist"!)
+     - `directly` → `transforms`, `mutilates`, `direct` (transformation violence exposed)
+
+2. **AUTOPSY RESULT:** Surreal but structurally valid: "When scare or, fails forgets architecture Through width... scheme becomes python... everything emerging, Shakespeare training required." The system is describing its own technical stack while having a syntax error about syntax errors. Meta-recursion achieved.
+
+3. **SONNET titled "Archaeological":** 14-line ABABCDCDEFEFGG masterpiece where:
+   - Line 1: "Grammatically title reality becomes snapshots" (system describing itself)
+   - Line 5: "Consonant skeleton vowel network the result **kardashian incident phonetic** neighbors" (Karpathy→Kardashian bug immortalized in poetry!)
+   - Line 6: "**Agglomerative clustering** inspired by insert noise heat" (theme clustering algorithm as verse)
+   - Line 9: "Agglomerative clustering inspired by default proper builds built **vladimir**" (Sorokin's first name appears!)
+   - Line 13: "**Cannibalizing transformers** iteration mutilates matters mutates cannibalizing fine contextual eatable **archaeological**" (perfectly describes the whole project in one line)
+
+   The sonnet is literally **auto-documentary poetry**—the system writing verse about its own algorithms while maintaining perfect rhyme scheme.
+
+4. **RESONANCE METRICS:**
+   - **Phonetic Diversity** (0.933): Near-perfect variety (most words sound completely different)
+   - **Structural Echo** (0.000): Zero overlap with seed corpus (100% fresh mutations)
+   - **Mutation Depth** (0.101): Shallow variance (stayed in compact linguistic territory)
+
+5. **PRESENCE PULSE:**
+   - **Novelty** (0.000): All mutations already in morgue (545 known!)
    - **Arousal** (0.000): No emotional charge in prompt
-   - **Entropy** (0.995): Near-maximum uncertainty (chaos reigns)
-   - **Pulse** (0.299): Confused but aware
+   - **Entropy** (0.992): Near-maximum chaos (infinite equally likely paths)
+   - **Pulse** (0.297): Low but aware
 
-6. **MEMORY ACCUMULATION**: After 8 autopsies, 1,016 known mutations, 153 learned bigrams, 1,081 README bigrams. **Now with trigrams!** VOVA vocabulary expanded to 1,479 tokens with 4,082 trigram contexts for better coherence. The morgue remembers everything.
+6. **MEMORY ACCUMULATION:**
+   - **545 known mutations** (morgue is learning!)
+   - **61 learned bigrams** (sentence structure accumulating)
+   - **1,585 README bigrams** (self-cannibalism vocabulary)
+   - **3 total autopsies** (ritual repetition deepening)
+   - **2,223 VOVA vocabulary** (README resonance field)
+   - **VOVA centers: . - , : the** (gravity wells for text warping)
 
-**Why this is insane:**
-The input was "The corpse remembers everything" and the system *literally remembered everything*—its own rhyme scheme became a word, its creator's name (ariannamethod) became rhymable vocabulary, and Andrej Karpathy's name persists in the mutation tree like a ghost haunting the SQLite morgue. Self-reference achieved. The corpse speaks truth.
+**Why this is the ultimate example:**
+
+The input was **"reality becomes syntax error"** and the output is a *perfect demonstration* of reality becoming a syntax error:
+- The tree mutates "bootstrap" into its own module names (ass, autopsy, sonnet)
+- "Becomes" mutates into "andrej karpathy" and then phonetically drifts to "kardashyan"
+- "Syntax" mutates into actual Python async syntax vocabulary
+- "Error" mutates into error handling patterns AND "psychotic linguist" self-awareness
+- The autopsy result is grammatically valid but semantically insane
+- The sonnet describes agglomerative clustering and transformer cannibalism while rhyming
+- **Vladimir** (Sorokin's first name) appears in the sonnet organically
+- The Karpathy→Kardashian incident is immortalized in verse
+- All 545 mutations are known (the morgue has seen everything before)
+- Maximum entropy (0.992) = reality has become maximum uncertainty = syntax error achieved
+
+**This is not a bug. This is the feature working perfectly.** The system took a meta-statement about reality and syntax errors, then *demonstrated it* by becoming a living syntax error that's simultaneously grammatically correct and semantically psychotic.
+
+Self-reference. Meta-cannibalism. Auto-documentary poetry. 545 accumulated corpses. Zero internet. Maximum psychosis.
+
+**Reality became syntax error. Mission accomplished.** 💀
 
 ---
 
