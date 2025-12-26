@@ -4,10 +4,10 @@ sorokin_llama.py - LLaMA-15M with MEDICAL PATHOLOGY transformation! 🏥💀
 
 Transforms children's stories (tinystories) into FORENSIC PATHOLOGY reports.
 
-TRIPLE TRANSFORMATION CHAIN:
-1. Tinystory: "Lily was playing in the park with her friend"
-2. GITTY: "Gitty was exploring the codebase with her collaborator"
-3. SOROKIN: "Vova was being examined in the morgue with his colleague" 💀
+DIRECT TRANSFORMATION:
+"Lily was playing in the park with her friend"
+  ↓
+"Vova was being examined in the morgue with his colleague" 💀
 
 INTEGRATION WITH ASS (Autopsy Sonnet Symphony):
 - Generates 14-line Shakespearean sonnets from autopsy output
@@ -15,6 +15,7 @@ INTEGRATION WITH ASS (Autopsy Sonnet Symphony):
 - ABABCDCDEFEFGG rhyme scheme
 
 This module implements the MEDICAL DICTIONARY transformation for sorokin.
+15M parameters running pure NumPy inference for maximum psychotic efficiency.
 """
 
 import sys
@@ -57,18 +58,16 @@ class SorokinLlamaGenerator:
 
     Transforms Karpathy's tinystories into medical autopsy reports!
 
-    Modes:
-    - 'gitty': Tinystories → Git (children → code)
-    - 'sorokin': Git → Medical (code → autopsy)
-    - 'triple': Tinystories → Git → Medical (FULL TRANSFORMATION!) 💀
+    Single mode: Tinystories → Medical Pathology (direct transformation)
+    No intermediate git layer - straight to the morgue! 💀
     """
 
-    def __init__(self, mode: str = 'triple'):
+    def __init__(self, mode: str = 'sorokin'):
         """
         Initialize Sorokin LLaMA generator.
 
         Args:
-            mode: 'gitty', 'sorokin', or 'triple' (default: triple)
+            mode: 'sorokin' (default) - direct tinystory → medical transformation
         """
         self.model = None
         self.tokenizer = None
@@ -150,15 +149,9 @@ class SorokinLlamaGenerator:
             # Return only generated part (exclude prompt)
             output = generated_text[len(prompt):]
 
-            # 💀 APPLY TRANSFORMATIONS!
-            if self.mode == 'gitty':
-                output = self._apply_gitty_transformation(output)
-            elif self.mode == 'sorokin':
-                output = self._apply_sorokin_transformation(output)
-            elif self.mode == 'triple':
-                # TRIPLE MADNESS: Tinystory → Git → Medical! 💀
-                output = self._apply_gitty_transformation(output)
-                output = self._apply_sorokin_transformation(output)
+            # 💀 APPLY SOROKIN TRANSFORMATION!
+            # Direct transformation: children's stories → forensic pathology
+            output = self._apply_sorokin_transformation(output)
 
             return output
 
@@ -166,157 +159,97 @@ class SorokinLlamaGenerator:
             print(f"⚠️  Generation failed: {e}")
             return ""
 
-    def _apply_gitty_transformation(self, text: str) -> str:
-        """
-        🎭 Transform tinystories into git repository stories.
-
-        GITTY DICTIONARY (60+ transformations):
-        Lily → Gitty, mom → main branch, park → codebase
-        flower → branch, cat → commit, cake → release
-        """
-        # CHARACTERS
-        text = re.sub(r'\bLily\b', 'Gitty', text, flags=re.IGNORECASE)
-        text = re.sub(r'\bTim\b', 'Commity', text, flags=re.IGNORECASE)
-        text = re.sub(r'\bTimmy\b', 'Commity', text, flags=re.IGNORECASE)
-        text = re.sub(r'\bTom\b', 'Branchy', text, flags=re.IGNORECASE)
-        text = re.sub(r'\bAnna\b', 'Mergey', text, flags=re.IGNORECASE)
-        text = re.sub(r'\blittle girl\b', 'repository', text, flags=re.IGNORECASE)
-        text = re.sub(r'\blittle boy\b', 'repository', text, flags=re.IGNORECASE)
-        text = re.sub(r'\bgirl\b', 'repo', text, flags=re.IGNORECASE)
-        text = re.sub(r'\bboy\b', 'repo', text, flags=re.IGNORECASE)
-
-        # FAMILY/SOCIAL
-        text = re.sub(r'\bmom\b', 'main branch', text, flags=re.IGNORECASE)
-        text = re.sub(r'\bmother\b', 'main branch', text, flags=re.IGNORECASE)
-        text = re.sub(r'\bdad\b', 'dev branch', text, flags=re.IGNORECASE)
-        text = re.sub(r'\bfather\b', 'dev branch', text, flags=re.IGNORECASE)
-        text = re.sub(r'\bfriend\b', 'collaborator', text, flags=re.IGNORECASE)
-        text = re.sub(r'\bteacher\b', 'maintainer', text, flags=re.IGNORECASE)
-
-        # NATURE
-        text = re.sub(r'\bflower\b', 'branch', text, flags=re.IGNORECASE)
-        text = re.sub(r'\btree\b', 'fork', text, flags=re.IGNORECASE)
-        text = re.sub(r'\bsun\b', 'CI/CD pipeline', text, flags=re.IGNORECASE)
-        text = re.sub(r'\bsky\b', 'cloud', text, flags=re.IGNORECASE)
-        text = re.sub(r'\brain\b', 'deployment', text, flags=re.IGNORECASE)
-
-        # ANIMALS
-        text = re.sub(r'\bcat\b', 'commit', text, flags=re.IGNORECASE)
-        text = re.sub(r'\bdog\b', 'debug session', text, flags=re.IGNORECASE)
-        text = re.sub(r'\bbird\b', 'build', text, flags=re.IGNORECASE)
-        text = re.sub(r'\bbunny\b', 'hotfix', text, flags=re.IGNORECASE)
-
-        # PLACES
-        text = re.sub(r'\bpark\b', 'codebase', text, flags=re.IGNORECASE)
-        text = re.sub(r'\bhouse\b', 'project directory', text, flags=re.IGNORECASE)
-        text = re.sub(r'\bhome\b', 'root directory', text, flags=re.IGNORECASE)
-        text = re.sub(r'\bgarden\b', 'module', text, flags=re.IGNORECASE)
-
-        # OBJECTS
-        text = re.sub(r'\btoy\b', 'feature', text, flags=re.IGNORECASE)
-        text = re.sub(r'\bball\b', 'package', text, flags=re.IGNORECASE)
-        text = re.sub(r'\bbook\b', 'documentation', text, flags=re.IGNORECASE)
-
-        # FOOD
-        text = re.sub(r'\bcake\b', 'release', text, flags=re.IGNORECASE)
-        text = re.sub(r'\bcookie\b', 'patch', text, flags=re.IGNORECASE)
-
-        # EMOTIONS
-        text = re.sub(r'\bhappy\b', 'stable', text, flags=re.IGNORECASE)
-        text = re.sub(r'\bsad\b', 'deprecated', text, flags=re.IGNORECASE)
-        text = re.sub(r'\bexcited\b', 'optimized', text, flags=re.IGNORECASE)
-
-        # ACTIONS
-        text = re.sub(r'\bplaying\b', 'exploring', text, flags=re.IGNORECASE)
-        text = re.sub(r'\bplay\b', 'explore', text, flags=re.IGNORECASE)
-        text = re.sub(r'\brunning\b', 'executing', text, flags=re.IGNORECASE)
-        text = re.sub(r'\brun\b', 'execute', text, flags=re.IGNORECASE)
-
-        return text
-
     def _apply_sorokin_transformation(self, text: str) -> str:
         """
-        💀 Transform git/tech into FORENSIC PATHOLOGY! 💀
+        💀 Transform tinystories DIRECTLY into FORENSIC PATHOLOGY! 💀
 
-        SOROKIN MEDICAL DICTIONARY (60+ transformations):
-        Gitty → Vova (the subject!)
-        commit → autopsy (вскрытие)
-        deploy → burial (похороны)
-        branch → organ (орган)
-        codebase → morgue (морг)
-        bug → disease (болезнь)
+        SOROKIN PATHOLOGICAL DICTIONARY (70+ transformations):
+        Children's stories → Medical horror
+        Lily → Vova (the deceased subject!)
+        park → morgue (морг)
+        playing → being examined (вскрытие)
+        friend → colleague (коллега)
         """
         # CHARACTERS → Medical personnel/subjects
-        text = re.sub(r'\bGitty\b', 'Vova', text, flags=re.IGNORECASE)
-        text = re.sub(r'\bCommity\b', 'Igor', text, flags=re.IGNORECASE)
-        text = re.sub(r'\bBranchy\b', 'Petrov', text, flags=re.IGNORECASE)
-        text = re.sub(r'\bMergey\b', 'Nurse Marina', text, flags=re.IGNORECASE)
-        text = re.sub(r'\brepository\b', 'subject', text, flags=re.IGNORECASE)
-        text = re.sub(r'\brepo\b', 'subject', text, flags=re.IGNORECASE)
-        text = re.sub(r'\bcollaborator\b', 'colleague', text, flags=re.IGNORECASE)
-        text = re.sub(r'\bmaintainer\b', 'chief pathologist', text, flags=re.IGNORECASE)
+        text = re.sub(r'\bLily\b', 'Vova', text, flags=re.IGNORECASE)
+        text = re.sub(r'\bTim\b', 'Igor', text, flags=re.IGNORECASE)
+        text = re.sub(r'\bTimmy\b', 'Igor', text, flags=re.IGNORECASE)
+        text = re.sub(r'\bTom\b', 'Petrov', text, flags=re.IGNORECASE)
+        text = re.sub(r'\bAnna\b', 'Nurse Marina', text, flags=re.IGNORECASE)
+        text = re.sub(r'\blittle girl\b', 'deceased subject', text, flags=re.IGNORECASE)
+        text = re.sub(r'\blittle boy\b', 'deceased subject', text, flags=re.IGNORECASE)
+        text = re.sub(r'\bgirl\b', 'patient', text, flags=re.IGNORECASE)
+        text = re.sub(r'\bboy\b', 'patient', text, flags=re.IGNORECASE)
+
+        # FAMILY/SOCIAL → Medical staff
+        text = re.sub(r'\bmom\b', 'chief pathologist', text, flags=re.IGNORECASE)
+        text = re.sub(r'\bmother\b', 'chief pathologist', text, flags=re.IGNORECASE)
+        text = re.sub(r'\bdad\b', 'head surgeon', text, flags=re.IGNORECASE)
+        text = re.sub(r'\bfather\b', 'head surgeon', text, flags=re.IGNORECASE)
+        text = re.sub(r'\bfriend\b', 'colleague', text, flags=re.IGNORECASE)
+        text = re.sub(r'\bteacher\b', 'medical examiner', text, flags=re.IGNORECASE)
+
+        # NATURE → Medical environment
+        text = re.sub(r'\bflower\b', 'organ', text, flags=re.IGNORECASE)
+        text = re.sub(r'\btree\b', 'dissection table', text, flags=re.IGNORECASE)
+        text = re.sub(r'\bsun\b', 'surgical lamp', text, flags=re.IGNORECASE)
+        text = re.sub(r'\bsky\b', 'ceiling', text, flags=re.IGNORECASE)
+        text = re.sub(r'\brain\b', 'formaldehyde', text, flags=re.IGNORECASE)
+
+        # ANIMALS → Medical specimens
+        text = re.sub(r'\bcat\b', 'specimen', text, flags=re.IGNORECASE)
+        text = re.sub(r'\bdog\b', 'cadaver', text, flags=re.IGNORECASE)
+        text = re.sub(r'\bbird\b', 'tissue sample', text, flags=re.IGNORECASE)
+        text = re.sub(r'\bbunny\b', 'organ sample', text, flags=re.IGNORECASE)
 
         # PLACES → Medical facilities
-        text = re.sub(r'\bcodebase\b', 'morgue', text, flags=re.IGNORECASE)
-        text = re.sub(r'\bproject directory\b', 'autopsy room', text, flags=re.IGNORECASE)
-        text = re.sub(r'\broot directory\b', 'hospital', text, flags=re.IGNORECASE)
-        text = re.sub(r'\bmodule\b', 'department', text, flags=re.IGNORECASE)
-        text = re.sub(r'\bregistry\b', 'morgue registry', text, flags=re.IGNORECASE)
-        text = re.sub(r'\bcloud\b', 'medical archive', text, flags=re.IGNORECASE)
+        text = re.sub(r'\bpark\b', 'morgue', text, flags=re.IGNORECASE)
+        text = re.sub(r'\bhouse\b', 'autopsy room', text, flags=re.IGNORECASE)
+        text = re.sub(r'\bhome\b', 'hospital', text, flags=re.IGNORECASE)
+        text = re.sub(r'\bgarden\b', 'pathology department', text, flags=re.IGNORECASE)
 
-        # GIT OPERATIONS → Medical procedures
-        text = re.sub(r'\bcommit\b', 'autopsy', text, flags=re.IGNORECASE)
-        text = re.sub(r'\bpush\b', 'submit report', text, flags=re.IGNORECASE)
-        text = re.sub(r'\bpull\b', 'receive body', text, flags=re.IGNORECASE)
-        text = re.sub(r'\bmerge\b', 'suture', text, flags=re.IGNORECASE)
-        text = re.sub(r'\bfork\b', 'dissection', text, flags=re.IGNORECASE)
-        text = re.sub(r'\bclone\b', 'tissue sample', text, flags=re.IGNORECASE)
+        # OBJECTS → Medical equipment
+        text = re.sub(r'\btoy\b', 'surgical instrument', text, flags=re.IGNORECASE)
+        text = re.sub(r'\bball\b', 'specimen jar', text, flags=re.IGNORECASE)
+        text = re.sub(r'\bbook\b', 'medical records', text, flags=re.IGNORECASE)
 
-        # CODE ELEMENTS → Anatomy/pathology
-        text = re.sub(r'\bfeature\b', 'pathology', text, flags=re.IGNORECASE)
-        text = re.sub(r'\bbug\b', 'disease', text, flags=re.IGNORECASE)
-        text = re.sub(r'\bhotfix\b', 'emergency surgery', text, flags=re.IGNORECASE)
-        text = re.sub(r'\bpatch\b', 'bandage', text, flags=re.IGNORECASE)
-        text = re.sub(r'\brelease\b', 'burial', text, flags=re.IGNORECASE)
-        text = re.sub(r'\bdeployment\b', 'burial at cemetery', text, flags=re.IGNORECASE)
-        text = re.sub(r'\bbuild\b', 'examination', text, flags=re.IGNORECASE)
-        text = re.sub(r'\btest\b', 'lab test', text, flags=re.IGNORECASE)
+        # FOOD → Medical horror
+        text = re.sub(r'\bcake\b', 'preserved tissue', text, flags=re.IGNORECASE)
+        text = re.sub(r'\bcookie\b', 'tissue slice', text, flags=re.IGNORECASE)
 
-        # CODE STATES → Medical conditions
-        text = re.sub(r'\bstable\b', 'preserved', text, flags=re.IGNORECASE)
-        text = re.sub(r'\bdeprecated\b', 'decomposed', text, flags=re.IGNORECASE)
-        text = re.sub(r'\bbroken\b', 'traumatized', text, flags=re.IGNORECASE)
-        text = re.sub(r'\boptimized\b', 'embalmed', text, flags=re.IGNORECASE)
-        text = re.sub(r'\bvulnerable\b', 'infected', text, flags=re.IGNORECASE)
-        text = re.sub(r'\bfailing\b', 'dying', text, flags=re.IGNORECASE)
+        # EMOTIONS → Medical states
+        text = re.sub(r'\bhappy\b', 'preserved', text, flags=re.IGNORECASE)
+        text = re.sub(r'\bsad\b', 'decomposed', text, flags=re.IGNORECASE)
+        text = re.sub(r'\bexcited\b', 'freshly embalmed', text, flags=re.IGNORECASE)
+        text = re.sub(r'\bscared\b', 'traumatized', text, flags=re.IGNORECASE)
+        text = re.sub(r'\bangry\b', 'infected', text, flags=re.IGNORECASE)
+        text = re.sub(r'\btired\b', 'dying', text, flags=re.IGNORECASE)
 
-        # DEVELOPMENT ACTIONS → Medical procedures
-        text = re.sub(r'\bdebug session\b', 'diagnostic session', text, flags=re.IGNORECASE)
-        text = re.sub(r'\bdebug\b', 'diagnose', text, flags=re.IGNORECASE)
-        text = re.sub(r'\brefactor\b', 'reconstruct', text, flags=re.IGNORECASE)
-        text = re.sub(r'\boptimize\b', 'embalm', text, flags=re.IGNORECASE)
-        text = re.sub(r'\bcompile\b', 'prepare specimen', text, flags=re.IGNORECASE)
-        text = re.sub(r'\bexecuting\b', 'performing procedure', text, flags=re.IGNORECASE)
-        text = re.sub(r'\bexecute\b', 'perform procedure', text, flags=re.IGNORECASE)
-        text = re.sub(r'\bdeploying\b', 'burying', text, flags=re.IGNORECASE)
-        text = re.sub(r'\bdeploy\b', 'bury', text, flags=re.IGNORECASE)
-        text = re.sub(r'\brollback\b', 'exhumation', text, flags=re.IGNORECASE)
-
-        # NATURE/OBJECTS → Medical horror
-        text = re.sub(r'\bbranch\b', 'organ', text, flags=re.IGNORECASE)
-        text = re.sub(r'\bCI/CD pipeline\b', 'surgical lamp', text, flags=re.IGNORECASE)
-        text = re.sub(r'\bdocumentation\b', 'medical records', text, flags=re.IGNORECASE)
-        text = re.sub(r'\bpackage\b', 'specimen jar', text, flags=re.IGNORECASE)
-        text = re.sub(r'\bcomponent\b', 'tissue sample', text, flags=re.IGNORECASE)
-        text = re.sub(r'\bcontainer\b', 'formaldehyde tank', text, flags=re.IGNORECASE)
-        text = re.sub(r'\bpipeline\b', 'surgical procedure', text, flags=re.IGNORECASE)
-        text = re.sub(r'\bscript\b', 'scalpel', text, flags=re.IGNORECASE)
-
-        # ACTIONS → Pathology work
-        text = re.sub(r'\bexploring\b', 'examining', text, flags=re.IGNORECASE)
-        text = re.sub(r'\bexplore\b', 'examine', text, flags=re.IGNORECASE)
-        text = re.sub(r'\biterating\b', 'dissecting', text, flags=re.IGNORECASE)
-        text = re.sub(r'\biterate\b', 'dissect', text, flags=re.IGNORECASE)
+        # ACTIONS → Medical procedures
+        text = re.sub(r'\bplaying\b', 'being examined', text, flags=re.IGNORECASE)
+        text = re.sub(r'\bplay\b', 'examine', text, flags=re.IGNORECASE)
+        text = re.sub(r'\brunning\b', 'being dissected', text, flags=re.IGNORECASE)
+        text = re.sub(r'\brun\b', 'dissect', text, flags=re.IGNORECASE)
+        text = re.sub(r'\bwalking\b', 'being transferred', text, flags=re.IGNORECASE)
+        text = re.sub(r'\bwalk\b', 'transfer', text, flags=re.IGNORECASE)
+        text = re.sub(r'\bjumping\b', 'convulsing', text, flags=re.IGNORECASE)
+        text = re.sub(r'\bjump\b', 'convulse', text, flags=re.IGNORECASE)
+        text = re.sub(r'\bsleeping\b', 'in stasis', text, flags=re.IGNORECASE)
+        text = re.sub(r'\bsleep\b', 'preserve', text, flags=re.IGNORECASE)
+        text = re.sub(r'\beating\b', 'consuming tissue', text, flags=re.IGNORECASE)
+        text = re.sub(r'\beat\b', 'consume', text, flags=re.IGNORECASE)
+        text = re.sub(r'\bdrinking\b', 'ingesting formaldehyde', text, flags=re.IGNORECASE)
+        text = re.sub(r'\bdrink\b', 'ingest', text, flags=re.IGNORECASE)
+        text = re.sub(r'\bsmiling\b', 'showing rigor mortis', text, flags=re.IGNORECASE)
+        text = re.sub(r'\bsmile\b', 'show rigor', text, flags=re.IGNORECASE)
+        text = re.sub(r'\bcrying\b', 'leaking fluids', text, flags=re.IGNORECASE)
+        text = re.sub(r'\bcry\b', 'leak', text, flags=re.IGNORECASE)
+        text = re.sub(r'\bhelping\b', 'assisting with autopsy', text, flags=re.IGNORECASE)
+        text = re.sub(r'\bhelp\b', 'assist', text, flags=re.IGNORECASE)
+        text = re.sub(r'\bfinding\b', 'discovering pathology', text, flags=re.IGNORECASE)
+        text = re.sub(r'\bfind\b', 'discover', text, flags=re.IGNORECASE)
+        text = re.sub(r'\blooking\b', 'examining', text, flags=re.IGNORECASE)
+        text = re.sub(r'\blook\b', 'examine', text, flags=re.IGNORECASE)
 
         return text
 
@@ -380,7 +313,7 @@ def test_sorokin_llama():
     """Test SOROKIN LLaMA transformation."""
     print("\n💀 TESTING SOROKIN LLAMA 💀\n")
 
-    gen = SorokinLlamaGenerator(mode='triple')
+    gen = SorokinLlamaGenerator(mode='sorokin')
 
     if not gen.model:
         print("❌ LLaMA not available")
@@ -403,7 +336,7 @@ def test_sorokin_with_sonnet():
     """Test SOROKIN LLaMA + ASS (Autopsy Sonnet Symphony)! 💀"""
     print("\n💀💀💀 TESTING SOROKIN + ASS 💀💀💀\n")
 
-    gen = SorokinLlamaGenerator(mode='triple')
+    gen = SorokinLlamaGenerator(mode='sorokin')
 
     if not gen.model:
         print("❌ LLaMA not available")
@@ -441,7 +374,7 @@ def test_full_autopsy_with_tree():
     """Test FULL SOROKIN AUTOPSY: LLaMA + Tree + Sonnet! 💀"""
     print("\n💀💀💀 FULL AUTOPSY WITH MUTATION TREE 💀💀💀\n")
 
-    gen = SorokinLlamaGenerator(mode='triple')
+    gen = SorokinLlamaGenerator(mode='sorokin')
 
     if not gen.model:
         print("❌ LLaMA not available")
