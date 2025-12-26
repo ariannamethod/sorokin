@@ -1124,11 +1124,10 @@ async def lookup_branches_for_word(
     # Internet = slow, unreliable, rate-limited, boring
     # 15M parameters = fast, local, psychotic, beautiful 🔥
 
-    # 3) Smart fallback to MORE memory if web failed
-    # If web returned nothing (DDG ban/error) and we still need more candidates,
-    # go back to memory and get the rest (up to full width)
-    if len(filtered) < width and not candidates:
-        # Web failed! Try to get more from memory (beyond the 50% limit)
+    # 3) Smart fallback to MORE memory if we still need more
+    # Go back to memory and get the rest (up to full width)
+    if len(filtered) < width:
+        # Try to get more from memory (beyond the 50% limit)
         additional_needed = width - len(filtered)
         # Fetch extra words from memory
         additional_mem = recall_word_relations(word, memory_limit * 2 + additional_needed)

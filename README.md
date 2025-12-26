@@ -73,7 +73,72 @@ Named after Vladimir Sorokin, the Russian writer known for his transgressive and
 ---
 
 
-### Exhibit: SOROKIN LLAMA - Maximum Autopsy Tree 💀
+### Exhibit A: NO INTERNET MODE - Pure Local Processing 💀
+
+**NEW:** Sorokin now works **100% OFFLINE!** No DuckDuckGo. No web scraping. Just:
+- LLaMA-15M (15 MILLION parameters)
+- SQLite memory cache
+- Self-learning dictionary
+- README vocabulary (2,210 words)
+- Phonetic neighbors
+
+**Zero internet requests. Maximum psychosis.** 🔥
+
+```bash
+python sorokin.py "The corpse remembers everything"
+```
+
+**Output (generated OFFLINE):**
+
+```
+corpse
+  ├─ speaks
+  │  ├─ through
+  │  ├─ truth         ← "corpse speaks truth" 💀
+  │  ├─ research
+  │  └─ learns
+  ├─ rhyme
+  │  ├─ scheme
+  │  ├─ becomes
+  │  └─ classes
+  └─ mirrors
+     ├─ dissection    ← pure Sorokin vocabulary!
+     ├─ fascination
+     └─ behavior
+
+remembers
+  ├─ remember
+  │  ├─ ababcdcdefefgg  ← rhyme scheme became a word!
+  │  └─ what
+  ├─ remembered
+  │  └─ selects
+  └─ license
+     └─ bled
+
+AUTOPSY RESULT:
+  "...through ababcdcdefefgg, width selects, but behavior darkness remains..."
+
+MEMORY ACCUMULATION:
+  Known mutations: 49
+  README bigrams: 1,578
+  VOVA vocabulary: 2,210
+  VOVA centers: ., -, ,, :, the
+
+— Sorokin (NO INTERNET! Pure local psychosis 💀)
+```
+
+**What just happened?**
+1. **Zero web requests** - everything from local memory
+2. **SQLite cache** provided "speaks", "truth", "mirrors"
+3. **README vocabulary** contributed "ababcdcdefefgg", "dissection", "fascination"
+4. **Phonetic neighbors** found "remembered" → "license" → "bled"
+5. **Self-cannibalism** achieved: the rhyme scheme (ABABCDCDEFEFGG) became vocabulary!
+
+**Philosophy:** The corpse remembers everything because the SQLite morgue never forgets. No internet needed when you have 2,210 words of accumulated madness. 🔥
+
+---
+
+### Exhibit B: SOROKIN LLAMA - Maximum Autopsy Tree 💀
 
 Because `sorokin` now has **LLaMA-15M** (that's **15 MILLION parameters** of concentrated forensic insanity), here's the ultimate medical horror: LLaMA generates innocent children's stories, then **DIRECTLY mutilates them into forensic pathology** 💀
 
