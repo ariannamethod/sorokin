@@ -79,7 +79,7 @@ Feed SOROKIN LLAMA **"The girl was playing"** and witness the direct dissection:
 ```
 PROMPT: The girl was playing
 
-LLaMA OUTPUT (after triple transformation):
+LLaMA OUTPUT (direct Sorokin transformation):
 in the morgue. She saw a big dissection and wanted to climb it
 
 dissection
@@ -339,7 +339,7 @@ MEMORY ACCUMULATION:
   VOVA vocabulary: 2,088
   VOVA centers: ., -, ,, :, the
 
-— Sorokin (powered by LLaMA-15M + TRIPLE TRANSFORMATION 💀)
+— Sorokin (powered by LLaMA-15M + DIRECT PATHOLOGICAL TRANSFORMATION 💀)
 ```
 
 **What just happened?**
