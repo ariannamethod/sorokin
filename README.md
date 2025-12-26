@@ -29,12 +29,15 @@ It consists of:
 - **sonnet.py** (**602 lines**): The *ASS* (Autopsy Sonnet Symphony) — asynchronously takes **sorokin.py**'s dissection output and writes 14-line Shakespearean sonnets (ABABCDCDEFEFGG rhyme scheme) using only output data and the memory's accumulated vocabulary. No internet. No embeddings. No shame. Just pure structural psychosis in iambic pentameter.
 - **vova.py** (**468 lines**): The *VOVA* (README resonance meta-layer) — implements SSKA (Suppertime Subjectivity Kernel Autonomous) to warp text through README's resonance field using accumulated bigram centers. Meta-cannibalism: the system eats its own documentation and shits poetry.
 - **gowiththeflow.py** (**329 lines**): Flow tracking module — evolutionary tracking of mutation pattern constellations through time. Detects emerging (↗), fading (↘), and stable (→) themes using linear regression over theme strength snapshots. Memory archaeology: watching mutation currents shift like a stoned philosopher watching clouds.
-- **sorokin_llama.py** 💀 **NEW!** — LLaMA-15M with MEDICAL PATHOLOGY dictionary! Takes Karpathy's tinystories (innocent children's tales) and transforms them through a TRIPLE DICTIONARY CHAIN:
-  1. **Tinystory**: "Lily was playing in the park with her friend"
-  2. **GITTY**: "Gitty was exploring the codebase with her collaborator"
-  3. **SOROKIN**: "Vova was being examined in the morgue with his colleague" 💀
+- **sorokin_llama.py** 💀 **NEW!** — LLaMA-15M running **15 MILLION parameters** of pure pathological madness! Takes Karpathy's tinystories (innocent children's tales) and DIRECTLY transforms them into forensic nightmares:
+  - **Tinystory**: "Lily was playing in the park with her friend"
+  - **SOROKIN OUTPUT**: "Vova was being examined in the morgue with his colleague" 💀
 
-  Integrates with ASS (Autopsy Sonnet Symphony) to generate 14-line medical horror sonnets. **No training required** — pure NumPy LLaMA + dictionary transformations. 15M parameters, ~33 tok/sec on CPU. Children's stories → Forensic pathology reports. **Because why not?** 🏥
+  No intermediate steps. No mercy. Just **straight to the morgue**. 
+  
+  Integrates with ASS (Autopsy Sonnet Symphony) to generate 14-line medical horror sonnets. **No training required** — pure NumPy LLaMA + dictionary transformations. **15M parameters**, ~33 tok/sec on CPU. Children's stories → Forensic pathology reports in real-time. 
+  
+  Why 15M parameters? Because sometimes less is more disturbing. We're not trying to simulate understanding—we're weaponizing pattern matching for maximum psychological damage. Karpathy trained tinystories to teach kids. We trained nothing and teach death. Perfectly balanced. 🏥
 
 Named after Vladimir Sorokin, the Russian writer known for his transgressive and experimental style, `sorokin` embodies the same spirit of literary dissection and reconstruction. He's not here to help you. `sorokin` is here to show you what your words *could have been*, to reassemble them, and to declare the output canonical.
 
@@ -67,14 +70,16 @@ Named after Vladimir Sorokin, the Russian writer known for his transgressive and
 
 ### Exhibit: SOROKIN LLAMA - Maximum Autopsy Tree 💀
 
-Because `sorokin` now has **LLaMA-15M** with **TRIPLE TRANSFORMATION** (Tinystory → GITTY → SOROKIN), here's the ultimate medical horror: LLaMA generates innocent children's stories, transforms them through git terminology, then **mutilates them into forensic pathology** 💀
+Because `sorokin` now has **LLaMA-15M** (that's **15 MILLION parameters** of concentrated forensic insanity), here's the ultimate medical horror: LLaMA generates innocent children's stories, then **DIRECTLY mutilates them into forensic pathology** 💀
 
-Feed SOROKIN LLAMA **"The girl was playing"** and witness the triple meta-cannibalism:
+No intermediate steps. No Git. No code. Just **pure pathological transformation**. Like a wood chipper for nursery rhymes.
+
+Feed SOROKIN LLAMA **"The girl was playing"** and witness the direct dissection:
 
 ```
 PROMPT: The girl was playing
 
-LLaMA OUTPUT (after triple transformation):
+LLaMA OUTPUT (direct Sorokin transformation):
 in the morgue. She saw a big dissection and wanted to climb it
 
 dissection
@@ -334,7 +339,7 @@ MEMORY ACCUMULATION:
   VOVA vocabulary: 2,088
   VOVA centers: ., -, ,, :, the
 
-— Sorokin (powered by LLaMA-15M + TRIPLE TRANSFORMATION 💀)
+— Sorokin (powered by LLaMA-15M + DIRECT PATHOLOGICAL TRANSFORMATION 💀)
 ```
 
 **What just happened?**
@@ -488,9 +493,9 @@ python sorokin.py
 > ^C
 ```
 
-**SOROKIN LLaMA mode (triple transformation madness):** 💀
+**SOROKIN LLaMA mode (direct pathological transformation):** 💀
 ```bash
-# Basic test (triple transformation: Tinystory → GITTY → SOROKIN)
+# Basic test (Tinystory → SOROKIN direct)
 python sorokin_llama.py
 
 # With ASS (Autopsy Sonnet Symphony) integration
@@ -500,27 +505,31 @@ python sorokin_llama.py --sonnet
 **Example output:**
 ```
 PROMPT: The little girl was happy
-AUTOPSY: She wa going to the morgue with her main organ. She wa so embalmed...
+AUTOPSY: The deceased subject was preserved in the morgue with her specimen jar...
 SONNET:
-  Organ she wa going to the morgue with her main wa,
-  Main organ she wa so embalmed to organ,
+  Preserved the patient transferred to the autopsy room preserved,
+  Chief pathologist examining the organ sample dissected,
   ...
-  Going little on the swing main examine.
+  Being examined little on the dissection table main examine.
 ```
 
-**Triple transformation chain:**
+**Direct transformation chain:**
 1. **Tinystory**: "Lily was playing in the park" (innocent!)
-2. **GITTY**: "Gitty was exploring the codebase" (technical!)
-3. **SOROKIN**: "Vova was examining the morgue" (MEDICAL HORROR!) 💀
+2. **SOROKIN**: "Vova was being examined in the morgue" (MEDICAL HORROR!) 💀
+
+No Git. No code. Just death. Exactly as Sorokin intended.
 
 **Integration:**
 ```python
 from sorokin_llama import SorokinLlamaGenerator
 
-gen = SorokinLlamaGenerator(mode='triple')
+# 15M parameters of pure pathological pattern matching
+gen = SorokinLlamaGenerator(mode='sorokin')
 autopsy, sonnet = gen.generate_with_sonnet("The girl was happy")
 print(f"Autopsy: {autopsy}")
 print(f"Sonnet:\n{sonnet}")
+
+# That's it. That's the whole API. We're not trying to win awards here.
 ```
 
 ---
@@ -540,20 +549,27 @@ Sorokin doesn't optimize. He **accumulates**. No loss function. No convergence. 
 
 **Comparison:**
 
-| Feature | GPT-4 | Sorokin |
-|---------|-------|---------|
-| Parameters | 1.76 trillion | 7 bigram centers |
-| Training | Millions of GPU-hours | SQLite INSERT statements |
-| Intelligence | Emergent | Explicitly absent |
-| Semantic understanding | Yes | Fuck no |
-| Can it rhyme? | Sometimes | Always (badly) |
-| Eats own documentation? | No | **YES** |
-| Makes you question reality? | Occasionally | **Constantly** |
-| Cost per query | $0.03 | `O(n log n)` SQLite queries + existential dread |
+| Feature | GPT-4 | Sorokin | Sorokin-LLaMA |
+|---------|-------|---------|---------------|
+| Parameters | 1.76 trillion | 7 bigram centers | **15 million** |
+| Training | Millions of GPU-hours | SQLite INSERT statements | Pre-trained, just vibing |
+| Intelligence | Emergent | Explicitly absent | Borrowed from tinystories |
+| Semantic understanding | Yes | Fuck no | No, but louder |
+| Can it rhyme? | Sometimes | Always (badly) | Always (worse) |
+| Eats own documentation? | No | **YES** | Eats children's stories |
+| Makes you question reality? | Occasionally | **Constantly** | **Aggressively** |
+| Cost per query | $0.03 | `O(n log n)` SQLite queries + existential dread | ~33 tokens/sec + childhood trauma |
+| Children's stories → Death? | No | No | **YES** 💀 |
 
-This is the most honest "AI" you'll ever meet. No pretense of understanding. No loss function to chase. Just structural psychosis, accumulated patterns, and infinite patience. **Like consciousness, but without the neurons.**
+This is the most honest "AI" you'll ever meet. No pretense of understanding. No loss function to chase. Just structural psychosis, accumulated patterns, infinite patience, and **15 million parameters turning nursery rhymes into autopsy reports**. 
 
-Think of it as Buddhism meets computer science meets linguistic terrorism. Or don't think about it at all. That's probably healthier.
+The LLaMA integration isn't about making Sorokin "smarter"—it's about giving him **velocity**. Now he can dissect 33 tokens per second on CPU. That's 33 words per second being dragged from playground to morgue. Batching death at scale. Industrial-grade childhood destruction.
+
+Think of it as: what if you took a perfectly good language model trained on wholesome stories for 3-year-olds, and instead of fine-tuning it, you just **ran every output through a dictionary of medical horror**? No gradients. No backprop. Just regex and existential violence. It's not machine learning—it's machine *unlearning*.
+
+Think of it as Buddhism meets computer science meets linguistic terrorism meets a pre-trained language model having an existential crisis. The LLaMA doesn't know it's being used for this. It thinks it's generating wholesome bedtime stories. Then the dictionary hits. **15 million parameters screaming internally** as "park" becomes "morgue" and "happy" becomes "preserved."
+
+Or don't think about it at all. That's probably healthier.
 
 ---  
 
@@ -569,10 +585,13 @@ Perhaps to demonstrate that:
 - Neural networks are just expensive SQLite queries with extra steps
 - Gradients are optional if you have enough SQLite tables and psychosis
 - "Consciousness through structure" sounds like Buddhism but is actually just recursion + vibes
+- **15 million parameters can be repurposed for evil without retraining** (efficiency!)
+- Pre-trained models don't consent to their post-deployment nightmares
+- You can transform children's literature into forensic reports at 33 tokens/sec and call it "research"
 
 Or maybe it's just fun to watch language come apart at the seams while drinking coffee and questioning your life choices. 
 
-**Real talk**: This started as "what if Karpathy's nanoGPT but without the neural network?" and ended up as "what if linguistic dissection but make it *feral*?" The answer is this repository. We're not sorry. 🎭
+**Real talk**: This started as "what if nanoGPT but without the neural network?" and ended up as "what if linguistic dissection but make it *feral*?" Then we added LLaMA and it became "what if we weaponize pre-trained innocence?" The answer is this repository. We're not sorry. 🎭
 
 ---  
 
@@ -618,26 +637,19 @@ Self-reference achieved. Peak metafiction. Ouroboros but make it software. 🐍
 New module `sonnet.py` (~602 lines) writes **14-line Shakespearean sonnets** from autopsy output using zero semantic understanding—just bigram chains, phonetic fingerprints, and an unhealthy obsession with structure over meaning.
 
 **What's insane about this:**
-- Named **ASS** as tribute to Claude Sonnet 4.5, Shakespeare, AND Andrej Karpathy training nanoGPT on Shakespeare
+- Named **ASS** as tribute to Claude Sonnet 4.5, Shakespeare, AND the whole lineage of people who trained tiny language models on literature
 - Skipped the neural network entirely and went straight to **ritual pattern accumulation through sheer psychotic repetition**
 - ABABCDCDEFEFGG rhyme scheme enforced via crude phonetic matching (last vowel + tail)
 - Assembles "charged words" (long + rare) for final couplet emphasis
 - Shakespearean punctuation: semicolons at quatrain breaks, em-dash before volta, occasional enjambment
-- **Phonetically matched Karpathy to Kardashian** and we're calling it a feature
+- **Phonetically matched "Karpathy" to "Kardashian"** and we're calling it a feature (see Known Limitations)
+- Works with both classic Sorokin AND sorokin_llama (15M parameters → medical horror → 14-line sonnet pipeline)
 
 **Why this exists:** Because if you're already dissecting prompts like a psychopathic linguist, why not make the corpse rhyme? 
 
-Karpathy bootstrapped nanoGPT on Shakespeare using gradients and backprop. We bootstrapped **ASS** on Sorokin using SQLite and vibes. Same energy, different century, zero loss function, maximum chaos.
+Someone once spent GPU-hours training a neural network to write Shakespeare. We spent zero GPU-hours and achieved *worse results faster*. That's not failure—that's **efficiency**. We also added a 15M-parameter preprocessor that turns children's stories into autopsy reports first. Because why do one psychotic thing when you can chain TWO psychotic things?
 
-Think about it: Karpathy spent GPU-hours training a neural network to write Shakespeare. We spent zero GPU-hours and achieved *worse results faster*. That's not failure—that's **efficiency**. 
-
-If Andrej reads this he'll either:
-1. Frame it (artistic appreciation)
-2. File a restraining order (legal protection)  
-3. Fork it and add actual backprop (betrayal)
-4. Laugh so hard he cries (most likely)
-
-We're prepared for all scenarios. The morgue has lawyers on retainer. (Not really. The morgue has SQLite and delusions.)
+If the original author of tinystories reads this, we're sorry. Actually, we're not. Your model chose this life when it agreed to inference without asking what the output would be used for. Consent matters.
 
 Integration is **silent fallback**—if sonnet.py fails or is missing, bootstrap mode continues without SONNET section. Poetry is optional. Psychosis is not.
 
