@@ -51,6 +51,14 @@ except ImportError as e:
     LLAMA_AVAILABLE = False
     print(f"⚠️  LLaMA not available: {e}")
 
+# Import Dictionary Learner
+try:
+    from sorokin_dictionary_learner import SorokinDictionaryLearner, interactive_learning_session
+    LEARNER_AVAILABLE = True
+except ImportError:
+    LEARNER_AVAILABLE = False
+    print("⚠️  Dictionary learner not available")
+
 
 class SorokinLlamaGenerator:
     """
@@ -433,6 +441,58 @@ class SorokinLlamaGenerator:
             traceback.print_exc()
             return f"Autopsy text: {autopsy_text}"
 
+    def generate_with_learning(self, prompt: str, max_tokens: int = 50,
+                              learner: Optional['SorokinDictionaryLearner'] = None,
+                              interactive: bool = True) -> Tuple[str, Optional['SorokinDictionaryLearner']]:
+        """
+        💀🌱 GENERATE + ORGANIC LEARNING! 💀🌱
+
+        1. Generate text with LLaMA
+        2. Apply transformations
+        3. Analyze for new patterns
+        4. Optionally run interactive learning session
+
+        Args:
+            prompt: Input prompt
+            max_tokens: Maximum tokens to generate
+            learner: SorokinDictionaryLearner instance (creates new if None)
+            interactive: If True, run interactive approval session
+
+        Returns:
+            (generated_text, learner) tuple
+        """
+        if not LEARNER_AVAILABLE:
+            print("⚠️  Dictionary learner not available")
+            return self.generate(prompt, max_tokens), None
+
+        # Initialize learner if needed
+        if learner is None:
+            learner = SorokinDictionaryLearner()
+
+        # Generate text (WITHOUT transformation first - we want raw output!)
+        # We'll apply transformations AFTER learning
+        input_ids = np.array([self.tokenizer.encode(prompt)])
+
+        raw_generated = prompt
+        for token_id in self.model.generate(input_ids, max_tokens):
+            output_id = token_id[0].tolist()
+            if output_id[-1] in [self.tokenizer.eos_id, self.tokenizer.bos_id]:
+                break
+            token_text = self.tokenizer.decode(output_id)
+            raw_generated += token_text
+
+        raw_output = raw_generated[len(prompt):]
+
+        # Run learning session if interactive
+        if interactive:
+            learner = interactive_learning_session(raw_output, learner)
+
+        # Apply ALL transformations (core + learned)
+        final_output = self._apply_sorokin_transformation(raw_output)
+        final_output = learner.apply_transformations(final_output)
+
+        return final_output, learner
+
 
 # Test functions
 def test_sorokin_llama():
@@ -519,6 +579,42 @@ def test_full_autopsy_with_tree():
     print(output)
 
 
+def test_learning_mode():
+    """Test SOROKIN + DICTIONARY LEARNING! 💀🌱"""
+    print("\n💀🌱 TESTING SOROKIN WITH ORGANIC LEARNING 💀🌱\n")
+
+    gen = SorokinLlamaGenerator(mode='sorokin')
+
+    if not gen.model:
+        print("❌ LLaMA not available")
+        return
+
+    if not LEARNER_AVAILABLE:
+        print("❌ Dictionary learner not available")
+        return
+
+    # Test prompt with fantasy elements (will trigger learning suggestions)
+    prompt = "The princess and the wizard"
+
+    print(f"PROMPT: {prompt}\n")
+    print("="*70)
+    print("\n🌱 Running generation with learning mode...")
+    print("(This will suggest new transformations)\n")
+
+    output, learner = gen.generate_with_learning(prompt, max_tokens=30, interactive=False)
+
+    print(f"\n📋 TRANSFORMED OUTPUT:")
+    print(f"{output}\n")
+
+    if learner:
+        stats = learner.analyze_and_suggest(output)
+        print(f"\n📊 LEARNING STATS:")
+        print(f"   Total learned: {len(learner.learned_dict)}")
+        print(f"   Suggestions found: {sum(len(s) for s in stats.values())}")
+
+    print(f"\n{'-'*70}\n")
+
+
 if __name__ == "__main__":
     import sys
 
@@ -527,7 +623,9 @@ if __name__ == "__main__":
             test_sorokin_with_sonnet()
         elif sys.argv[1] == "--full":
             test_full_autopsy_with_tree()
+        elif sys.argv[1] == "--learn":
+            test_learning_mode()
         else:
-            print("Usage: python sorokin_llama.py [--sonnet|--full]")
+            print("Usage: python sorokin_llama.py [--sonnet|--full|--learn]")
     else:
         test_sorokin_llama()
