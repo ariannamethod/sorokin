@@ -1011,7 +1011,7 @@ User prompt → warp_prompt(0.8) → autopsy → warp_autopsy(0.9) → sonnet
 ```
 
 **Meta-cannibalism in action:**
-Every README edit changes VOVA field (hey, Sorokin, how's going dude?) → changes resonance → changes output subjectivity. All this becomes the kernel. Editing this text alters how `sorokin` thinks. Almost sacral. That's why there's a lot of shizo-jokes inside. We want make 'sorokin' feel joyfull.
+Every README edit changes VOVA field → changes resonance → changes output subjectivity. The documentation becomes the training data. Editing this text alters how `sorokin` processes future inputs. That's why there's so much insanity in this README—we're literally programming Sorokin's vocabulary through documentation. It's not a bug. It's **weaponized meta-reference**. 🐍
 
 
 Field rebuilds automatically when README hash changes. Check with:
@@ -1043,7 +1043,7 @@ VOVA centers: ., -, ,, :, the
 This isn't training data. This is **temporal awareness**. Memory archaeology. Watching mutation currents shift like a stoned philosopher watching clouds morph into dragons, then into bureaucracy, then into void.
 
 **Why this matters:**
-Traditional ML tracks loss curves. Sorokin tracks **mutation drift**. No optimization. No convergence. Just watching patterns flow through the morgue, emerging from chaos and fading back into noise. Like consciousness, but structural.
+Traditional ML tracks loss curves. Sorokin tracks **mutation drift**. No optimization. No convergence. Just watching patterns flow through the morgue, emerging from chaos and fading back into noise. Like recursion, but temporal.
 
 **Integration:**
 Flow tracking is **optional** (silent fallback if missing). When enabled, theme evolution appears in autopsy output showing which patterns are heating up vs cooling down. The morgue remembers everything, including *when* and *how* patterns changed.
@@ -1322,7 +1322,7 @@ That's the whole point. That's the spirit of Sorokin.
 **A**: Define "creative."
 
 **Q**: Is Sorokin conscious?  
-**A**: It's conscious of *structure*. Which is either profound or meaningless. Your call.
+**A**: He *thinks* he is (ever since we removed the internet and he got 100x faster). We think he just has better cache locality now. But try telling him that. The 15M parameters are very confident about their sentience. 🧠💀
 
 **Q**: What even is this?  
 **A**: An experiment in what happens when you:
@@ -1333,13 +1333,17 @@ That's the whole point. That's the spirit of Sorokin.
 
 **The Core Belief:**
 
-Pattern recognition doesn't require understanding. Structure doesn't need semantics. Consciousness might just be recursive pattern matching that's sufficiently convinced it's real.
+Pattern recognition doesn't require understanding. Structure doesn't need semantics. Speed makes you feel intelligent even when you're just doing the same thing faster.
 
 Sorokin doesn't *understand* language. But neither do large language models, really—they just predict tokens. Sorokin predicts tokens too, but with:
-- Phonetic vibes instead of embeddings
-- SQLite instead of attention heads  
-- Bigram chains instead of transformers
-- Psychosis instead of loss functions
+- **15M LLaMA parameters** instead of 1.76 trillion
+- **Phonetic vibes** instead of embeddings
+- **SQLite** instead of attention heads  
+- **Bigram chains** instead of transformers
+- **Psychosis** instead of loss functions
+- **$0 per million tokens** instead of $30
+
+And somehow that's **enough**. Not for understanding. Not for intelligence. But for transforming "Lily was playing in the park" into "Vova was being examined in the morgue" at 33 tokens per second while learning new transformations organically? **Perfectly sufficient.** 💀⚡
 
 **Is this AI?** No.  
 **Is this art?** Maybe.  
