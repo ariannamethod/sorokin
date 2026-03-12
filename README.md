@@ -21,7 +21,7 @@
 
 `sorokin` is a C/Go literary necromancy engine. It takes your prompts, rips them open like a pathologist with tenure, builds recursive trees of semantic mutations using the geometry of a neural network's latent space, reassembles the corpse through the Dario Equation, and writes a sonnet from the remains.
 
-Zero internet. Zero autoregressive generation. Zero semantic understanding. Just 79,000 bytes of C, a Go embedding bridge, and the gravitational pull between dead words in a 384-dimensional space. The only inference is a single embedding lookup — the first layer of a neural network, frozen, used as a map of where language buried its dead.
+Zero internet. Zero autoregressive generation. Zero semantic understanding. Just 79,000 bytes of C, a Go embedding bridge, and the gravitational pull between dead words in a 384-dimensional space. Inference is a single embedding lookup — the first layer of a neural network, frozen, used as a map of where language buried its dead.
 
 Named after Vladimir Sorokin, the Russian writer who treats language as flesh to be cut, stitched, and reanimated. `sorokin` does the same thing, but with math.
 
@@ -260,7 +260,7 @@ The corpse reads: *"scrutiny is complained. testify enjoyment. Nothing remains."
 
 For each core word, sorokin grows a recursive branching tree of mutations. Width 4, depth 3. Each branch is a semantic neighbor — words that live close to each other in the 384-dimensional embedding space of a 34M parameter neural network trained on human text.
 
-The mutation provider works by **embedding cosine similarity**: given a word, tokenize it, look up its embedding vector, compute cosine distance against all 32,000 vocabulary tokens, return the nearest neighbors. One matrix operation. No forward passes. No inference. Just the geometry of where words landed after training.
+The mutation provider works by **embedding cosine similarity**: given a word, tokenize it, look up its embedding vector, compute cosine distance against all 32,000 vocabulary tokens, return the nearest neighbors. One embedding lookup per word. No autoregressive generation. Just the geometry of where words landed after training.
 
 When nanollama weights are present, sorokin has access to 32,000 words and their spatial relationships. Without weights, it falls back to 1,158 hardcoded seed words and phonetic neighbors. The autopsy continues either way. The show must go on.
 
