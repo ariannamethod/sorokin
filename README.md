@@ -21,7 +21,7 @@
 
 `sorokin` is a C/Go literary necromancy engine. It takes your prompts, rips them open like a pathologist with tenure, builds recursive trees of semantic mutations using the geometry of a neural network's latent space, reassembles the corpse through the Dario Equation, and writes a sonnet from the remains.
 
-Zero internet. Zero inference. Zero semantic understanding. Just 79,000 bytes of C, a Go embedding bridge, and the gravitational pull between dead words in a 384-dimensional space.
+Zero internet. Zero autoregressive generation. Zero semantic understanding. Just 79,000 bytes of C, a Go embedding bridge, and the gravitational pull between dead words in a 384-dimensional space. The only inference is a single embedding lookup — the first layer of a neural network, frozen, used as a map of where language buried its dead.
 
 Named after Vladimir Sorokin, the Russian writer who treats language as flesh to be cut, stitched, and reanimated. `sorokin` does the same thing, but with math.
 
