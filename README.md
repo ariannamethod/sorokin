@@ -324,26 +324,19 @@ The Go layer loads a nanollama GGUF checkpoint (34M params, Llama 3 architecture
 ### Usage
 
 ```bash
-# Build with nanollama embeddings (Go + CGO)
 make go
-
-# Build standalone C (seed vocab + phonetic neighbors only)
-make
-
-# Autopsy
 ./sorokin "destroy the sentence"
+```
 
-# REPL mode
+REPL mode:
+```bash
 ./sorokin
 > bone becomes word and word becomes dust
 > the flesh remembers what the mind forgets
 > ^D
-
-# Quantize weights (F16 → Q4_0, 66MB → 19MB)
-./sorokin -quantize nano-base-f16.gguf nano-base-q4_0.gguf
 ```
 
-Place `nano-base-q4_0.gguf` (or `nano-base-f16.gguf`) in the working directory or `~/Downloads/nanollama/weights/`. If no weights found, sorokin falls back to seed vocabulary — 1,158 hardcoded words and phonetic neighbor mutations. The autopsy still works. It's just blind instead of seeing in 384 dimensions.
+`weights.gguf` (19MB, nanollama 34M Q4_0) ships with the repo. Embeddings load on startup. If weights are missing, sorokin falls back to 1,158 hardcoded seed words and phonetic neighbors — blind instead of seeing in 384 dimensions.
 
 ---
 

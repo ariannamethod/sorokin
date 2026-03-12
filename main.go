@@ -269,14 +269,9 @@ func main() {
 	// Initialize C-side autopsy engine
 	C.sorokin_init()
 
-	// Look for nanollama GGUF model (prefer q4_0 — smaller footprint)
+	// Look for weights.gguf (shipped with repo)
 	modelPaths := []string{
-		"nano-base-q4_0.gguf",
-		"nano-base-f16.gguf",
-		os.Getenv("HOME") + "/Downloads/nanollama/weights/nano-base-q4_0.gguf",
-		os.Getenv("HOME") + "/Downloads/nanollama/weights/nano-base-f16.gguf",
-		os.Getenv("HOME") + "/Downloads/nanollama/weights/nano-f16.gguf",
-		"../nanollama/weights/nano-base-f16.gguf",
+		"weights.gguf",
 	}
 
 	var modelPath string
