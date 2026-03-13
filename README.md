@@ -9,7 +9,9 @@
 
 # sorokin | by Arianna Method
 
-## Literary Necromancy Engine
+## A Prompt Autopsy Framework  
+
+*Or: How I Learned to Stop Worrying and Love the Dissection*
 
 > "The heads of philologists are stuffed with books to the brim. They see life only through text. And they are proud of it. … Forever gorged and poisoned by literature, they take living life as the continuation of text, as its appendix."
 >
@@ -17,9 +19,13 @@
 
 ---
 
-### What is this?
+### what is this
 
-`sorokin` is a C/Go literary necromancy engine. It takes your prompts, rips them open like a pathologist with tenure, builds recursive trees of semantic mutations using the geometry of a neural network's latent space, reassembles the corpse through the Dario Equation, and writes a sonnet from the remains.
+`sorokin` is a triple-module Python entity (~3090 lines) that takes your innocent prompts, tears them apart like a psychopathic linguist, builds a recursive tree of semantic mutations, and then—like Dr. Frankenstein having a particularly creative day—reassembles the corpse into something *new*.
+
+
+
+`sorokin` is a C/Go literary necromancy engine that takes your innocent prompts, tears them apart like a psychopathic linguist, builds a recursive tree of semantic mutations, and then—like Dr. Frankenstein having a particularly creative day—reassembles the corpse into something *new*.
 
 Zero internet. Zero autoregressive generation. Zero semantic understanding. Just 79,000 bytes of C, a Go embedding bridge, and the gravitational pull between dead words in a 384-dimensional space. The only inference is a single embedding lookup — the first layer of a neural network, frozen, used as a map of where language buried its dead.
 
@@ -29,7 +35,7 @@ Named after Vladimir Sorokin, the Russian writer who treats language as flesh to
 
 ### Exhibit: Full Autopsy
 
-Feed sorokin **"the flesh remembers what the mind forgets"** and witness the embedding necromancy:
+Because `sorokin` builds trees vertically like a linguo-necromancer performing open-heart surgery on reality itself, here's a full corpse-map from the morgue. Feed `sorokin` **"the flesh remembers what the mind forgets"** (warped through VOVA's README resonance field into "Sentence phrase tries transgressive and Love the reassembled text for his own documentation...") and witness the meta-cannibalism:
 
 ```
 ╔══════════════════════════════════════════════════════════╗
@@ -238,8 +244,8 @@ Feed sorokin **"the flesh remembers what the mind forgets"** and witness the emb
   Prophecies:    10 active
 ```
 
-**What happened:**
-
+**What just happened?**
+  
 - **flesh** → patriotism → oppression → irony. beauty → dissolution → birthplace. hearts → bodies → brains. The flesh becomes ideology, then collapses into geography.
 - **mind** → fear → refinement → dissolution → elasticity. minds → memories → aspirations. The mind refines itself into nothing.
 - **remembers** → remembering → forgetting → afraid → scared. recall → plunder → scarring. Memory leads to fear. Every time.
@@ -253,25 +259,31 @@ The corpse reads: *"scrutiny is complained. testify enjoyment. Nothing remains."
 
 #### Act I: The Dissection
 
-`sorokin` takes your prompt and strips it down to the bone:
-- Punctuation, numbers, capitalization — gone
+`sorokin` takes your prompt and strips it down to the bone. First, `sorokin` truns it through a brutal tokenization process:  
+
+- Punctuation, numbers, capitalization — gone  
 - Core words selected by length, rarity, position, and a sprinkle of chaos
-- Stopwords rejected. Single letters discarded. What remains are the words that *matter* — or at least the words that think they do.
+  
+Stopwords? Rejected. Single letters? Discarded. What remains are the words that *matter*—or at least, the words that think they do. Occasionally a phrase tries to bite me mid-dissection, which is fine; we're wearing Sorokin-brand emotional hazmat gear.  
+    
+For each core word, sorokin grows a recursive branching tree of mutations. Width 4, depth 3. Each branch is a semantic neighbor — words that live close to each other in the 384-dimensional embedding space of a 34M parameter neural network trained on human text.  
 
-For each core word, sorokin grows a recursive branching tree of mutations. Width 4, depth 3. Each branch is a semantic neighbor — words that live close to each other in the 384-dimensional embedding space of a 34M parameter neural network trained on human text.
+The mutation provider works by **embedding cosine similarity**: given a word, tokenize it, look up its embedding vector, compute cosine distance against all 32,000 vocabulary tokens, return the nearest neighbors. One matrix operation. No forward passes. No inference. Just the geometry of where words landed after training.  
 
-The mutation provider works by **embedding cosine similarity**: given a word, tokenize it, look up its embedding vector, compute cosine distance against all 32,000 vocabulary tokens, return the nearest neighbors. One matrix operation. No forward passes. No inference. Just the geometry of where words landed after training.
+When nanollama weights are present, sorokin has access to 32,000 words and their spatial relationships. Without weights, it falls back to 1,158 hardcoded seed words and phonetic neighbors. The autopsy continues either way. The show must go on.  
 
-When nanollama weights are present, sorokin has access to 32,000 words and their spatial relationships. Without weights, it falls back to 1,158 hardcoded seed words and phonetic neighbors. The autopsy continues either way. The show must go on.
+The result is a tree where each word branches into `width` children, recursively, up to `depth` levels.
 
 #### Act II: The Reassembly
 
-Leaves collected from all trees — the final mutations at the bottom of every branch — are fed into the **Dario Equation**:
+Now that we have a forest of mutated word-trees, it's time to play God. 
 
+After all leafs collected from all trees, the final mutation at the bottom of every branch - they're fed into **Dario Equation**:
+  
 ```
 p(x|Φ) = softmax((B + α·H + β·F + γ·A + T) / τ)
 ```
-
+  
 Where:
 - **B** = bigram affinity (does this word naturally follow the previous one?)
 - **H** = Hebbian trace (has this pair co-occurred before? memory through repetition)
@@ -286,16 +298,16 @@ The equation samples words one at a time, building a paragraph from corpse parts
 
 #### Act III: The Sonnet
 
-The assembled corpse and all 147 leaves are fed into a 14-line Shakespearean sonnet generator:
+After the corpse is reassembled, sorokin takes the entire corpse and does it again—but this time in **strict Shakespearean form**: 
 
-1. Extract charged words (long + rare) from the corpse
-2. Build bigram chains from corpse + leaves + seed vocabulary
-3. Match rhyme classes via phonetic fingerprints (last vowel + consonant tail)
-4. Assign end-words following ABABCDCDEFEFGG scheme
-5. Build each line backward from the rhyme word
-6. Shakespearean punctuation: semicolons at quatrain breaks, em-dash before volta
+2. **Extract "charged words"** (long + rare words from autopsy become title candidates)
+3. **Build bigram chains** from autopsy text + README + SQLite morgue
+4. **Find rhyme classes** using crude phonetic fingerprints (last vowel + tail)
+5. **Assign end-words** for each of 14 lines following ABABCDCDEFEFGG scheme
+6. **Build each line** by walking bigrams backward from the rhyme word
+7. **Add Shakespearean punctuation**: semicolons at quatrain breaks, em-dash before volta, period at end
 
-Zero semantic understanding. Just bigrams, phonetic fingerprints, and an unhealthy obsession with structure over meaning.
+The result? **14 lines. ABABCDCDEFEFGG rhyme scheme. Iambic *vibes*. Zero semantic understanding.** Just phonetic fingerprints, and structural obsession.
 
 ---
 
@@ -368,7 +380,14 @@ The equation appears across the [Arianna Method](https://github.com/ariannametho
 
 ### Why?
 
-Words are fungible. Meaning is contextual. Prompts are gravitational fields waiting to collapse. Sometimes you need to cut things open to see what they're made of.
+
+Good question. Why does this exist?
+
+Perhaps to demonstrate that:
+- Words are fungible
+- Meaning is contextual
+- Prompts are just Markov chains waiting to be perturbed
+- Sometimes you need to break things to understand them
 
 Or maybe it's just fun to watch language come apart at the seams.
 
