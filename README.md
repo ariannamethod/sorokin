@@ -33,8 +33,8 @@ Feed sorokin **"the flesh remembers what the mind forgets"** and witness the emb
 
 ```
 ╔══════════════════════════════════════════════════════════╗
-║  SOROKIN — Literary Necromancy Engine (Go + C)          ║
-║  Dario Equation: p(x|Φ) = softmax((B+αH+βF+γA+T)/τ)   ║
+║  SOROKIN — Literary Necromancy Engine (Go + C)           ║
+║  Dario Equation: p(x|Φ) = softmax((B+αH+βF+γA+T)/τ)      ║
 ║  nanollama 384 dim · embedding necromancy                ║
 ╚══════════════════════════════════════════════════════════╝
 
