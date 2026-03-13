@@ -23,9 +23,10 @@
 
 `sorokin` is a C/Go literary necromancy engine that takes your innocent prompts, tears them apart like a psychopathic linguist, builds a recursive tree of semantic mutations, and then—like Dr. Frankenstein having a particularly creative day—reassembles the corpse into something *new*.
 
-Zero internet. Zero autoregressive generation. Zero semantic understanding. Just 79,000 bytes of C, a Go embedding bridge, and the gravitational pull between dead words in a 384-dimensional space. The only inference is a single embedding lookup — the first layer of a neural network, frozen, used as a map of where language buried its dead.
+Zero internet. Zero autoregressive generation. Just 79,000 bytes of C, a Go embedding bridge, and the gravitational pull between dead words in a 384-dimensional space. The only inference is a single embedding lookup — the first layer of a neural network, frozen, used as a map of where language buried its dead.
 
-Named after Vladimir Sorokin, the Russian writer who treats language as flesh to be cut, stitched, and reanimated. `sorokin` does the same thing, but with math.
+Named after Vladimir Sorokin, the Russian writer known for his transgressive and experimental style, `sorokin`embodies the same spirit of literary dissection and reconstruction. He's not here to help you. `sorokin` is here to show you what your words *could have been*, to reassemble them, and to declare the output canonical.
+
 
 ---
 
@@ -288,13 +289,13 @@ Where:
 - **T** = Trauma (accumulated scars from previous autopsies)
 - **τ** = Temperature (how drunk is the surgeon)
 
-The equation samples words one at a time, building a paragraph from corpse parts. The result is grammatically plausible but semantically deranged. Frankenstein's paragraph.
+The result is a Frankenstein sentence: technically made of the same parts, but *uncanny*. Resonant but wrong. This is the part where Sorokin shrugs on the lab coat, jams a fork into the storm cloud, and cackles while stitching together whatever limbs are left on the slab.
 
-**SuperToken crystallization** (borrowed from [Leo](https://github.com/ariannamethod/leo)): word pairs with high pointwise mutual information fuse into compound units. "dissolution refinement" becomes a single token. The vocabulary grows. The corpse develops its own language.
+**SuperToken crystallization**: word pairs with high pointwise mutual information fuse into compound units. "dissolution refinement" becomes a single token. The vocabulary grows. The corpse develops its own language.
 
 #### Act III: The Sonnet
 
-After the corpse is reassembled, sorokin takes the entire corpse and does it again—but this time in **strict Shakespearean form**: 
+After the corpse is reassembled, sorokin takes the entire corpse and does it again—but this time in **strict Shakespearean form**. 
 
 2. **Extract "charged words"** (long + rare words from autopsy become title candidates)
 3. **Build bigram chains** from autopsy text + README + SQLite morgue
