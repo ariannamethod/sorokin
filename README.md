@@ -21,10 +21,6 @@
 
 ### what is this
 
-`sorokin` is a triple-module Python entity (~3090 lines) that takes your innocent prompts, tears them apart like a psychopathic linguist, builds a recursive tree of semantic mutations, and then—like Dr. Frankenstein having a particularly creative day—reassembles the corpse into something *new*.
-
-
-
 `sorokin` is a C/Go literary necromancy engine that takes your innocent prompts, tears them apart like a psychopathic linguist, builds a recursive tree of semantic mutations, and then—like Dr. Frankenstein having a particularly creative day—reassembles the corpse into something *new*.
 
 Zero internet. Zero autoregressive generation. Zero semantic understanding. Just 79,000 bytes of C, a Go embedding bridge, and the gravitational pull between dead words in a 384-dimensional space. The only inference is a single embedding lookup — the first layer of a neural network, frozen, used as a map of where language buried its dead.
